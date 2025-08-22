@@ -338,31 +338,29 @@
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('glowing-particle');
-        
-        // وضع عشوائي للجسيمات
         particle.style.left = Math.random() * 100 + 'vw';
         particle.style.top = Math.random() * 100 + 'vh';
-        
-        // حجم وتأخير عشوائي للجسيمات
         const size = Math.random() * 3 + 2;
         particle.style.width = size + 'px';
         particle.style.height = size + 'px';
         particle.style.animationDelay = Math.random() * 5 + 's';
-        
         particlesContainer.appendChild(particle);
       }
     }
-    
-    // الانتقال إلى الصفحة الثانية مباشرة
+
+    // ✅ كلمة السر
     function showPage2() {
-      document.getElementById('page1').classList.add('hidden');
-      document.getElementById('page2').classList.remove('hidden');
+      const password = prompt("🔒 أدخل كلمة السر:");
+      if (password === "blakzet123") {
+        document.getElementById('page1').classList.add('hidden');
+        document.getElementById('page2').classList.remove('hidden');
+      } else {
+        alert("❌ كلمة السر غير صحيحة!");
+      }
     }
-    
-    // عرض السنة الحالية في الفوتر
+
     document.getElementById('current-year').textContent = new Date().getFullYear();
-    
-    // تهيئة الصفحة
+
     window.onload = function() {
       createParticles();
     };
