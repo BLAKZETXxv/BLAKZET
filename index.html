@@ -110,7 +110,7 @@
     
     @keyframes pulse {
       0% {box-shadow: 0 0 5px var(--accent-color);}
-     50% {box-shadow: 0 0 20px var(--accent-color);}
+      50% {box-shadow: 0 0 20px var(--accent-color);}
       100% {box-shadow: 0 0 5px var(--accent-color);}
     }
     
@@ -302,47 +302,6 @@
     .close-modal:hover {
       color: red;
     }
-
-    /* ===== Music Indicator ===== */
-    .music-indicator {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      width: 30px;
-      height: 30px;
-      color: var(--accent-color);
-      font-size: 1.2rem;
-      cursor: pointer;
-      z-index: 999;
-      text-shadow: 0 0 10px var(--accent-color);
-      animation: pulse 2s infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .music-indicator:hover {
-      transform: scale(1.2);
-    }
-    
-    .music-tooltip {
-      position: fixed;
-      bottom: 50px;
-      right: 15px;
-      background: rgba(0, 0, 0, 0.8);
-      border: 1px solid var(--accent-color);
-      border-radius: 5px;
-      padding: 8px 12px;
-      font-size: 0.8rem;
-      color: var(--text-color);
-      display: none;
-      z-index: 1000;
-      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    }
-    
-    .music-indicator:hover + .music-tooltip {
-      display: block;
-    }
   </style>
 </head>
 <body>
@@ -380,23 +339,20 @@
 
     <!-- الصفحة الثانية -->
     <div class="section hidden" id="page2">
-      <a href="#" class="site-button"><i class="fas fa-magic button-icon"></i> MAGIC BULLET SAFE</a>
-      <a href="#" class="site-button"><i class="fas fa-satellite button-icon"></i> ANTENNA SAFE</a>
-      <a href="#" class="site-button"><i class="fas fa-fist-raised button-icon"></i> BUFF DAMAGE SAFE</a>
-      <a href="#" class="site-button"><i class="fas fa-crosshairs button-icon"></i> AIM DRAGE X NORECOIL SAFE</a>
-      <a href="#" class="site-button"><i class="fas fa-camera button-icon"></i> CAMERA ZOOM SAFE</a>
-      <a href="#" class="site-button"><i class="fas fa-video button-icon"></i> CAMERA HACK SAFE</a>
+      <h3 style="color: var(--accent-color); margin-bottom: 20px;">IOS XIT FREE</h3>
+      <a href="https://www.mediafire.com/file/yqa14ft4jms66b7/MAGIC_BULLET_PANEL_COUNTER.html/file" class="site-button"><i class="fas fa-magic button-icon"></i> MAGIC BULLET SAFE (h5gg)</a>
+      <a href="https://www.mediafire.com/file/4v57a6hj9irpbqx/ANTENNA_SAFE_HEAD.html/file" class="site-button"><i class="fas fa-satellite button-icon"></i> ANTENNA SAFE (h5gg)</a>
+      <a href="https://www.mediafire.com/file/yxgj29mdbezlc0f/SAFE_AIM_RECOIL_COMBO.html/file" class="site-button"><i class="fas fa-fist-raised button-icon"></i>AIM DRAGE X NORECOIL SAFE (h5gg)</a>
+      <a href="https://www.mediafire.com/file/7i8j1yn4tkc1ev3/OBB+.zip/file" class="site-button"><i class="fas fa-crosshairs button-icon"></i> OBB SAFE (filza)</a>
+      <a href="https://www.mediafire.com/file/h20xs6dhl76l84g/Aim+drage.zip/file" class="site-button"><i class="fas fa-camera button-icon"></i> AIM DRAGE SAFE (filza)</a>
+      <a href="https://www.mediafire.com/file/kfrklexwbze9opo/3d.zip/file" class="site-button"><i class="fas fa-video button-icon"></i> 3D  SAFE (filza)</a>
+            <a href="https://www.mediafire.com/file/yynigbc9doavluq/Magec.zip/file" class="site-button"><i class="fas fa-video button-icon"></i> MAGEC  SAFE (filza)</a>
     </div>
 
     <!-- الصفحة الثالثة للأندرويد -->
     <div class="section hidden" id="page3">
-      <h3 style="color: var(--accent-color); margin-bottom: 20px;">ANDROID FEATURES</h3>
-      <a href="#" class="site-button"><i class="fas fa-bolt button-icon"></i> ANDROID SPEED HACK</a>
-      <a href="#" class="site-button"><i class="fas fa-eye button-icon"></i> WALLHACK FOR ANDROID</a>
-      <a href="#" class="site-button"><i class="fas fa-shield-alt button-icon"></i> ANDROID ANTIBAN</a>
-      <a href="#" class="site-button"><i class="fas fa-gamepad button-icon"></i> ANDROID AUTO AIM</a>
-      <a href="#" class="site-button"><i class="fas fa-download button-icon"></i> DOWNLOAD ANDROID APK</a>
-      <a href="#" class="site-button"><i class="fas fa-cog button-icon"></i> ANDROID SETUP GUIDE</a>
+      <h3 style="color: var(--accent-color); margin-bottom: 20px;">ANDROID XIT FREE</h4>
+      <a href="#" class="site-button"><i class="fas fa-bolt button-icon"></i>3D SAFE (ZR)</a>
     </div>
 
     <div class="footer">
@@ -425,21 +381,6 @@
       <p id="androidErrorMessage" class="error-message">❌ كلمة السر غير صحيحة!</p>
     </div>
   </div>
-
-  <!-- مؤشر الموسيقى -->
-  <div class="music-indicator" id="musicIndicator">
-    <i class="fas fa-music"></i>
-  </div>
-  <div class="music-tooltip">
-    Press M to mute/unmute
-  </div>
-
-  <!-- عنصر الصوت -->
-  <audio id="bgMusic" loop>
-    <!-- استبدل هذا الرابط برابط الأغنية التي تريدها -->
-    <source src="https://files.catbox.moe/7z23jo.mp4" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
 
   <script>
     function createParticles() {
@@ -474,7 +415,7 @@
       const pass = document.getElementById("iosPasswordInput").value;
       const errorMsg = document.getElementById("iosErrorMessage");
       
-      if(pass === "blakzet123"){ // كلمة السر لـ iOS
+      if(pass === "EXCELSIOR"){ // كلمة السر لـ iOS
         document.getElementById("iosPasswordModal").style.display = "none";
         document.getElementById("page1").classList.add("hidden");
         document.getElementById("page2").classList.remove("hidden");
@@ -507,7 +448,7 @@
       const pass = document.getElementById("androidPasswordInput").value;
       const errorMsg = document.getElementById("androidErrorMessage");
       
-      if(pass === "android123"){ // كلمة السر لـ Android (يمكن تغييرها)
+      if(pass === "EXCELSIOR"){ // كلمة السر لـ Android (يمكن تغييرها)
         document.getElementById("androidPasswordModal").style.display = "none";
         document.getElementById("page1").classList.add("hidden");
         document.getElementById("page3").classList.remove("hidden");
@@ -536,79 +477,6 @@
         closeAndroidPasswordModal();
       }
     }
-
-    // التحكم في الموسيقى
-    document.addEventListener('DOMContentLoaded', function() {
-      const audio = document.getElementById('bgMusic');
-      const musicIndicator = document.getElementById('musicIndicator');
-      
-      // تشغيل الموسيقى تلقائيًا عند تحميل الصفحة
-      audio.volume = 0.5; // مستوى الصوت الافتراضي
-      
-      // محاولة تشغيل الموسيقى تلقائيًا
-      const playAudio = () => {
-        audio.play().then(() => {
-          console.log('الموسيقى تعمل الآن');
-          musicIndicator.innerHTML = '<i class="fas fa-volume-up"></i>';
-        }).catch(error => {
-          console.log('لم يتمكن من تشغيل الموسيقى تلقائيًا:', error);
-          musicIndicator.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        });
-      };
-      
-      // إضافة حدث النقر للصفحة لبدء التشغيل (مطلوب في بعض المتصفحات)
-      document.body.addEventListener('click', function() {
-        if (audio.paused) {
-          playAudio();
-        }
-      }, { once: true }); // مرة واحدة فقط
-      
-      // محاولة التشغيل التلقائي
-      playAudio();
-      
-      // التحكم في الموسيقى بواسطة لوحة المفاتيح (M لكتم/إلغاء كتم الصوت)
-      document.addEventListener('keydown', function(event) {
-        if (event.key.toLowerCase() === 'm') {
-          if (audio.paused) {
-            audio.play();
-            musicIndicator.innerHTML = '<i class="fas fa-volume-up"></i>';
-          } else {
-            audio.pause();
-            musicIndicator.innerHTML = '<i class="fas fa-volume-mute"></i>';
-          }
-        }
-        
-        // التحكم في مستوى الصوت بالسهمين لأعلى ولأسفل
-        if (event.key === 'ArrowUp') {
-          event.preventDefault();
-          if (audio.volume < 0.9) {
-            audio.volume += 0.1;
-          } else {
-            audio.volume = 1;
-          }
-        }
-        
-        if (event.key === 'ArrowDown') {
-          event.preventDefault();
-          if (audio.volume > 0.1) {
-            audio.volume -= 0.1;
-          } else {
-            audio.volume = 0;
-          }
-        }
-      });
-      
-      // النقر على المؤشر للتحكم بالموسيقى
-      musicIndicator.addEventListener('click', function() {
-        if (audio.paused) {
-          audio.play();
-          musicIndicator.innerHTML = '<i class="fas fa-volume-up"></i>';
-        } else {
-          audio.pause();
-          musicIndicator.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        }
-      });
-    });
 
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
