@@ -313,7 +313,7 @@
       <div class="logo">
         <img src="https://www2.0zz0.com/2025/07/27/06/186435785.jpeg" alt="BLAKZET x SIMEONE">
       </div>
-      <h1>BLAKZET x SIMEONE</h1>
+      <h1>BKZxSMN 🥷🏼🇲🇦</h1>
       <h2>simeone mcha yn3as o blakzet fa9</h2>
     </div>
 
@@ -328,11 +328,11 @@
       <a href="https://instagram.com/blakzetxxv" class="app-button" target="_blank">
         <i class="fab fa-instagram button-icon"></i> Instagram
       </a>
-      <button class="next-button" onclick="showPasswordModal()">
-        <i class="fas fa-ios button-icon"></i> GET XIT IOS
+      <button class="next-button" onclick="showIosPasswordModal()">
+        <i class="fa-brands fa-apple"></i> GET XIT IOS
       </button>
       <!-- الزر الجديد المضاف -->
-      <button class="next-button" onclick="showPasswordModal()">
+      <button class="next-button" onclick="showAndroidPasswordModal()">
         <i class="fa-brands fa-android"></i> GET XIT ANDROID
       </button>
     </div>
@@ -347,19 +347,41 @@
       <a href="#" class="site-button"><i class="fas fa-video button-icon"></i> CAMERA HACK SAFE</a>
     </div>
 
+    <!-- الصفحة الثالثة للأندرويد -->
+    <div class="section hidden" id="page3">
+      <h3 style="color: var(--accent-color); margin-bottom: 20px;">ANDROID FEATURES</h3>
+      <a href="#" class="site-button"><i class="fas fa-bolt button-icon"></i> ANDROID SPEED HACK</a>
+      <a href="#" class="site-button"><i class="fas fa-eye button-icon"></i> WALLHACK FOR ANDROID</a>
+      <a href="#" class="site-button"><i class="fas fa-shield-alt button-icon"></i> ANDROID ANTIBAN</a>
+      <a href="#" class="site-button"><i class="fas fa-gamepad button-icon"></i> ANDROID AUTO AIM</a>
+      <a href="#" class="site-button"><i class="fas fa-download button-icon"></i> DOWNLOAD ANDROID APK</a>
+      <a href="#" class="site-button"><i class="fas fa-cog button-icon"></i> ANDROID SETUP GUIDE</a>
+    </div>
+
     <div class="footer">
       By BLAKZET x SIMEONE | <span id="current-year">2023</span>
     </div>
   </div>
 
-  <!-- نافذة كلمة السر -->
-  <div id="passwordModal" class="modal">
+  <!-- نافذة كلمة السر لـ iOS -->
+  <div id="iosPasswordModal" class="modal">
     <div class="modal-content">
-      <span class="close-modal" onclick="closePasswordModal()">&times;</span>
-      <h2 class="modal-header">ENTER PASSWORD</h2>
-      <input type="password" id="passwordInput" class="modal-input" placeholder="Password" onkeypress="handleKeyPress(event)">
-      <button class="modal-button" onclick="checkPassword()">SUBMIT</button>
-      <p id="errorMessage" class="error-message">❌ كلمة السر غير صحيحة!</p>
+      <span class="close-modal" onclick="closeIosPasswordModal()">&times;</span>
+      <h2 class="modal-header">ENTER PASSWORD FOR iOS</h2>
+      <input type="password" id="iosPasswordInput" class="modal-input" placeholder="iOS Password" onkeypress="handleIosKeyPress(event)">
+      <button class="modal-button" onclick="checkIosPassword()">SUBMIT</button>
+      <p id="iosErrorMessage" class="error-message">❌ كلمة السر غير صحيحة!</p>
+    </div>
+  </div>
+
+  <!-- نافذة كلمة السر لـ Android -->
+  <div id="androidPasswordModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeAndroidPasswordModal()">&times;</span>
+      <h2 class="modal-header">ENTER PASSWORD FOR ANDROID</h2>
+      <input type="password" id="androidPasswordInput" class="modal-input" placeholder="Android Password" onkeypress="handleAndroidKeyPress(event)">
+      <button class="modal-button" onclick="checkAndroidPassword()">SUBMIT</button>
+      <p id="androidErrorMessage" class="error-message">❌ كلمة السر غير صحيحة!</p>
     </div>
   </div>
 
@@ -380,43 +402,82 @@
       }
     }
 
-    function showPasswordModal() {
-      document.getElementById("passwordModal").style.display = "flex";
-      document.getElementById("passwordInput").value = "";
-      document.getElementById("errorMessage").style.display = "none";
-      document.getElementById("passwordInput").focus();
+    // وظائف خاصة بـ iOS
+    function showIosPasswordModal() {
+      document.getElementById("iosPasswordModal").style.display = "flex";
+      document.getElementById("iosPasswordInput").value = "";
+      document.getElementById("iosErrorMessage").style.display = "none";
+      document.getElementById("iosPasswordInput").focus();
     }
 
-    function closePasswordModal() {
-      document.getElementById("passwordModal").style.display = "none";
+    function closeIosPasswordModal() {
+      document.getElementById("iosPasswordModal").style.display = "none";
     }
 
-    function checkPassword() {
-      const pass = document.getElementById("passwordInput").value;
-      const errorMsg = document.getElementById("errorMessage");
+    function checkIosPassword() {
+      const pass = document.getElementById("iosPasswordInput").value;
+      const errorMsg = document.getElementById("iosErrorMessage");
       
-      if(pass === "blakzet123"){ // كلمة السر
-        document.getElementById("passwordModal").style.display = "none";
+      if(pass === "blakzet123"){ // كلمة السر لـ iOS
+        document.getElementById("iosPasswordModal").style.display = "none";
         document.getElementById("page1").classList.add("hidden");
         document.getElementById("page2").classList.remove("hidden");
       } else {
         errorMsg.style.display = "block";
-        document.getElementById("passwordInput").value = "";
-        document.getElementById("passwordInput").focus();
+        document.getElementById("iosPasswordInput").value = "";
+        document.getElementById("iosPasswordInput").focus();
       }
     }
 
-    function handleKeyPress(event) {
+    function handleIosKeyPress(event) {
       if (event.key === "Enter") {
-        checkPassword();
+        checkIosPassword();
       }
     }
 
-    // إغلاق النافذة عند النقر خارجها
+    // وظائف خاصة بـ Android
+    function showAndroidPasswordModal() {
+      document.getElementById("androidPasswordModal").style.display = "flex";
+      document.getElementById("androidPasswordInput").value = "";
+      document.getElementById("androidErrorMessage").style.display = "none";
+      document.getElementById("androidPasswordInput").focus();
+    }
+
+    function closeAndroidPasswordModal() {
+      document.getElementById("androidPasswordModal").style.display = "none";
+    }
+
+    function checkAndroidPassword() {
+      const pass = document.getElementById("androidPasswordInput").value;
+      const errorMsg = document.getElementById("androidErrorMessage");
+      
+      if(pass === "android123"){ // كلمة السر لـ Android (يمكن تغييرها)
+        document.getElementById("androidPasswordModal").style.display = "none";
+        document.getElementById("page1").classList.add("hidden");
+        document.getElementById("page3").classList.remove("hidden");
+      } else {
+        errorMsg.style.display = "block";
+        document.getElementById("androidPasswordInput").value = "";
+        document.getElementById("androidPasswordInput").focus();
+      }
+    }
+
+    function handleAndroidKeyPress(event) {
+      if (event.key === "Enter") {
+        checkAndroidPassword();
+      }
+    }
+
+    // إغلاق النوافذ عند النقر خارجها
     window.onclick = function(event) {
-      const modal = document.getElementById("passwordModal");
-      if (event.target == modal) {
-        closePasswordModal();
+      const iosModal = document.getElementById("iosPasswordModal");
+      const androidModal = document.getElementById("androidPasswordModal");
+      
+      if (event.target == iosModal) {
+        closeIosPasswordModal();
+      }
+      if (event.target == androidModal) {
+        closeAndroidPasswordModal();
       }
     }
 
