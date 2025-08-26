@@ -335,6 +335,13 @@
       <button class="next-button" onclick="showAndroidPasswordModal()">
         <i class="fa-brands fa-android"></i> GET XIT ANDROID
       </button>
+      <!-- الزرين الجديدين -->
+      <button class="next-button" onclick="showPcPasswordModal()">
+        <i class="fa-solid fa-download"></i> DOWNLOAD E-SIGN  
+      </button>
+      <button class="next-button" onclick="showSupportPasswordModal()">
+        <i class="fa-solid fa-app-store"></i>  CRACK APPS
+      </button>
     </div>
 
     <!-- الصفحة الثانية -->
@@ -346,14 +353,27 @@
       <a href="https://www.mediafire.com/file/7i8j1yn4tkc1ev3/OBB+.zip/file" class="site-button"><i class="fas fa-crosshairs button-icon"></i> OBB SAFE (filza)</a>
       <a href="https://www.mediafire.com/file/h20xs6dhl76l84g/Aim+drage.zip/file" class="site-button"><i class="fa-duotone fa-solid fa-crosshairs"></i> AIM DRAGE SAFE (filza)</a>
       <a href="https://www.mediafire.com/file/kfrklexwbze9opo/3d.zip/file" class="site-button"><i class="fa-solid fa-vr-cardboard"></i> 3D  SAFE (filza)</a>
-            <a href="https://www.mediafire.com/file/yynigbc9doavluq/Magec.zip/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles"></i> MAGEC  SAFE (filza)</a>
-       <a href="https://www.mediafire.com/file/fmi83tk1d3v4f41/Free+Fire_1.114.1_iPhone+Distribution-+EEO+Education+Ltd._1756001977@com.dts.freefireth.ipa/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles"></i> IPA ALL HACK  SAFE (esign)</a>
+      <a href="https://www.mediafire.com/file/yynigbc9doavluq/Magec.zip/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles"></i> MAGEC  SAFE (filza)</a>
+      <a href="https://www.mediafire.com/file/fmi83tk1d3v4f41/Free+Fire_1.114.1_iPhone+Distribution-+EEO+Education+Ltd._1756001977@com.dts.freefireth.ipa/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles"></i> IPA ALL HACK  SAFE (esign)</a>
     </div>
 
     <!-- الصفحة الثالثة للأندرويد -->
     <div class="section hidden" id="page3">
-      <h3 style="color: var(--accent-color); margin-bottom: 20px;">ANDROID XIT FREE</h4>
+      <h3 style="color: var(--accent-color); margin-bottom: 20px;">ANDROID XIT FREE</h3>
       <a href="https://www.mediafire.com/file/ov83jxh7r4dv4v1/3D_ANDROID_.zip/file" class="site-button"><i class="fas fa-bolt button-icon"></i>3D SAFE (ZR)</a>
+    </div>
+
+    <!-- الصفحة الرابعة لأدوات الكمبيوتر -->
+    <div class="section hidden" id="page4">
+      <h3 style="color: var(--accent-color); margin-bottom: 20px;"> Download esign</h3>
+      <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85841" class="site-button"><i class="fa-solid fa-file-signature"></i> E-sign</a>
+      <a href="https://www.mediafire.com/file/817gxh3pl4tc6it/Certificate.zip/file" class="site-button"><i class="fa-solid fa-file"></i> Download Certificate</a>
+    </div>
+
+    <!-- الصفحة الخامسة للدعم والإرشادات -->
+    <div class="section hidden" id="page5">
+      <h3 style="color: var(--accent-color); margin-bottom: 20px;">CRACK APPS</h3>
+      <a href="https://www.mediafire.com/file/n5q86ql1wl47mix/Spotify_9.0.70_1756207065.ipa/file" class="site-button"><i class=" fa-brands fa-spotify"></i> Spotify</a>
     </div>
 
     <div class="footer">
@@ -380,6 +400,28 @@
       <input type="password" id="androidPasswordInput" class="modal-input" placeholder="Android Password" onkeypress="handleAndroidKeyPress(event)">
       <button class="modal-button" onclick="checkAndroidPassword()">SUBMIT</button>
       <p id="androidErrorMessage" class="error-message">❌ كلمة السر غير صحيحة!</p>
+    </div>
+  </div>
+
+  <!-- نافذة كلمة السر لأدوات الكمبيوتر -->
+  <div id="pcPasswordModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closePcPasswordModal()">&times;</span>
+      <h2 class="modal-header">ENTER PASSWORD FOR ESINGN</h2>
+      <input type="password" id="pcPasswordInput" class="modal-input" placeholder="PC Tools Password" onkeypress="handlePcKeyPress(event)">
+      <button class="modal-button" onclick="checkPcPassword()">SUBMIT</button>
+      <p id="pcErrorMessage" class="error-message">❌ كلمة السر غير صحيحة!</p>
+    </div>
+  </div>
+
+  <!-- نافذة كلمة السر للدعم -->
+  <div id="supportPasswordModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeSupportPasswordModal()">&times;</span>
+      <h2 class="modal-header">ENTER PASSWORD FOR Crack apps</h2>
+      <input type="password" id="supportPasswordInput" class="modal-input" placeholder="Support Password" onkeypress="handleSupportKeyPress(event)">
+      <button class="modal-button" onclick="checkSupportPassword()">SUBMIT</button>
+      <p id="supportErrorMessage" class="error-message">❌ كلمة السر غير صحيحة!</p>
     </div>
   </div>
 
@@ -449,7 +491,7 @@
       const pass = document.getElementById("androidPasswordInput").value;
       const errorMsg = document.getElementById("androidErrorMessage");
       
-      if(pass === "EXCELSIOR"){ // كلمة السر لـ Android (يمكن تغييرها)
+      if(pass === "EXCELSIOR"){ // كلمة السر لـ Android
         document.getElementById("androidPasswordModal").style.display = "none";
         document.getElementById("page1").classList.add("hidden");
         document.getElementById("page3").classList.remove("hidden");
@@ -466,17 +508,83 @@
       }
     }
 
+    // وظائف خاصة بـ PC Tools
+    function showPcPasswordModal() {
+      document.getElementById("pcPasswordModal").style.display = "flex";
+      document.getElementById("pcPasswordInput").value = "";
+      document.getElementById("pcErrorMessage").style.display = "none";
+      document.getElementById("pcPasswordInput").focus();
+    }
+
+    function closePcPasswordModal() {
+      document.getElementById("pcPasswordModal").style.display = "none";
+    }
+
+    function checkPcPassword() {
+      const pass = document.getElementById("pcPasswordInput").value;
+      const errorMsg = document.getElementById("pcErrorMessage");
+      
+      if(pass === "blakzet"){ // كلمة السر لأدوات الكمبيوتر (يمكن تغييرها)
+        document.getElementById("pcPasswordModal").style.display = "none";
+        document.getElementById("page1").classList.add("hidden");
+        document.getElementById("page4").classList.remove("hidden");
+      } else {
+        errorMsg.style.display = "block";
+        document.getElementById("pcPasswordInput").value = "";
+        document.getElementById("pcPasswordInput").focus();
+      }
+    }
+
+    function handlePcKeyPress(event) {
+      if (event.key === "Enter") {
+        checkPcPassword();
+      }
+    }
+
+    // وظائف خاصة بـ Support
+    function showSupportPasswordModal() {
+      document.getElementById("supportPasswordModal").style.display = "flex";
+      document.getElementById("supportPasswordInput").value = "";
+      document.getElementById("supportErrorMessage").style.display = "none";
+      document.getElementById("supportPasswordInput").focus();
+    }
+
+    function closeSupportPasswordModal() {
+      document.getElementById("supportPasswordModal").style.display = "none";
+    }
+
+    function checkSupportPassword() {
+      const pass = document.getElementById("supportPasswordInput").value;
+      const errorMsg = document.getElementById("supportErrorMessage");
+      
+      if(pass === "blakzet"){ // كلمة السر للدعم (يمكن تغييرها)
+        document.getElementById("supportPasswordModal").style.display = "none";
+        document.getElementById("page1").classList.add("hidden");
+        document.getElementById("page5").classList.remove("hidden");
+      } else {
+        errorMsg.style.display = "block";
+        document.getElementById("supportPasswordInput").value = "";
+        document.getElementById("supportPasswordInput").focus();
+      }
+    }
+
+    function handleSupportKeyPress(event) {
+      if (event.key === "Enter") {
+        checkSupportPassword();
+      }
+    }
+
     // إغلاق النوافذ عند النقر خارجها
     window.onclick = function(event) {
       const iosModal = document.getElementById("iosPasswordModal");
       const androidModal = document.getElementById("androidPasswordModal");
+      const pcModal = document.getElementById("pcPasswordModal");
+      const supportModal = document.getElementById("supportPasswordModal");
       
-      if (event.target == iosModal) {
-        closeIosPasswordModal();
-      }
-      if (event.target == androidModal) {
-        closeAndroidPasswordModal();
-      }
+      if (event.target == iosModal) closeIosPasswordModal();
+      if (event.target == androidModal) closeAndroidPasswordModal();
+      if (event.target == pcModal) closePcPasswordModal();
+      if (event.target == supportModal) closeSupportPasswordModal();
     }
 
     document.getElementById('current-year').textContent = new Date().getFullYear();
