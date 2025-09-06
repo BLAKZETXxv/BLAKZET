@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-:root {
-        --main-bg: linear-gradient(45deg, #000000, #1a1a1a, #000000);
-        --accent-color: #ff0000;
-        --accent-glow: 0 0 10px rgba(255, 0, 0, 0.7);
-        --card-bg: rgba(0, 0, 0, 0.6);
-        --text-color: #ffffff;
-    }
+        :root {
+            --main-bg: linear-gradient(45deg, #000000, #0a0a0a, #000000);
+            --accent-color: #8b0000;
+            --accent-glow: 0 0 15px rgba(139, 0, 0, 0.8), 0 0 30px rgba(139, 0, 0, 0.4);
+            --card-bg: rgba(10, 10, 10, 0.7);
+            --text-color: #f1f1f1;
+            --blood-color: #8b0000;
+        }
 
         * {
             margin: 0;
@@ -24,7 +25,7 @@
             font-family: 'Courier New', monospace;
             background: var(--main-bg);
             background-size: 400% 400%;
-            animation: gradientBG 12s ease infinite;
+            animation: gradientBG 15s ease infinite;
             color: var(--text-color);
             text-align: center;
             min-height: 100vh;
@@ -32,7 +33,7 @@
             overflow-x: hidden;
         }
 
-@keyframes gradientBG {
+        @keyframes gradientBG {
             0% {
                 background-position: 0% 50%;
             }
@@ -44,6 +45,7 @@
             }
         }
 
+        /* تأثير الجسيمات المتحركة */
         .glowing-particle {
             position: absolute;
             width: 4px;
@@ -55,7 +57,7 @@
             animation: float 8s linear infinite;
         }
 
-@keyframes float {
+        @keyframes float {
             0% {
                 transform: translateY(0) translateX(0);
                 opacity: 0;
@@ -68,6 +70,36 @@
             }
             100% {
                 transform: translateY(-100vh) translateX(calc(-50vw + 100px));
+                opacity: 0;
+            }
+        }
+
+        /* تأثير الدم المتساقط */
+        .blood-drip {
+            position: fixed;
+            top: -50px;
+            width: 3px;
+            height: 50px;
+            background: var(--blood-color);
+            opacity: 0.7;
+            box-shadow: 0 0 10px var(--blood-color);
+            animation: drip 10s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes drip {
+            0% {
+                top: -50px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            95% {
+                opacity: 0.7;
+            }
+            100% {
+                top: 100vh;
                 opacity: 0;
             }
         }
@@ -96,43 +128,61 @@
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: bold;
             color: var(--text-color);
-            text-shadow: var(--accent-glow);
+            text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
             margin-bottom: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            font-family: 'Arial Black', sans-serif;
+            position: relative;
         }
 
         .header h2 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #ff4d4d;
             text-shadow: 0 0 8px var(--accent-color);
             margin-top: 0;
             font-weight: normal;
+            letter-spacing: 1px;
         }
 
         .logo {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             margin: 0 auto 20px;
-            border: 2px solid var(--accent-color);
+            border: 3px solid var(--accent-color);
             box-shadow: var(--accent-glow);
             padding: 5px;
             overflow: hidden;
-            animation: pulse 2s infinite;
+            animation: pulse 3s infinite;
+            position: relative;
+            background: #000;
         }
 
-@keyframes pulse {
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, transparent 30%, var(--accent-color) 150%);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
             0% {
-                box-shadow: 0 0 5px var(--accent-color);
+                box-shadow: 0 0 10px var(--accent-color);
             }
             50% {
-                box-shadow: 0 0 20px var(--accent-color);
+                box-shadow: 0 0 30px var(--accent-color);
             }
             100% {
-                box-shadow: 0 0 5px var(--accent-color);
+                box-shadow: 0 0 10px var(--accent-color);
             }
         }
 
@@ -141,22 +191,46 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
+            filter: grayscale(30%) contrast(120%);
         }
 
         .section {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 10px;
             padding: 25px;
             margin: 30px auto;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 0, 0, 0.2);
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(139, 0, 0, 0.3);
             max-width: 500px;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            animation: scanline 3s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: 100%;
+            }
         }
 
         .section:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.6);
         }
 
         .app-button, .site-button, .next-button {
@@ -164,10 +238,10 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            background-color: rgba(26, 26, 26, 0.8);
+            background-color: rgba(15, 15, 15, 0.9);
             border: 1px solid var(--accent-color);
-            border-radius: 8px;
-            padding: 12px 20px;
+            border-radius: 6px;
+            padding: 14px 20px;
             margin: 15px auto;
             text-decoration: none;
             color: var(--text-color);
@@ -176,6 +250,10 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
         .app-button::before, .site-button::before, .next-button::before {
@@ -185,7 +263,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(139, 0, 0, 0.3), transparent);
             transition: 0.5s;
         }
 
@@ -195,9 +273,10 @@
 
         .app-button:hover, .site-button:hover, .next-button:hover {
             background-color: var(--accent-color);
-            color: black;
-            transform: scale(1.03);
-            box-shadow: 0 0 15px var(--accent-color);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--accent-color);
+            letter-spacing: 2px;
         }
 
         .button-icon {
@@ -214,7 +293,9 @@
             color: var(--accent-color);
             text-shadow: 0 0 10px var(--accent-color);
             padding: 15px;
-            border-top: 1px solid rgba(255, 0, 0, 0.3);
+            border-top: 1px solid rgba(139, 0, 0, 0.3);
+            position: relative;
+            letter-spacing: 1px;
         }
 
         .social-links {
@@ -232,22 +313,23 @@
 
         .social-icon:hover {
             color: var(--accent-color);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.2);
+            text-shadow: 0 0 10px var(--accent-color);
         }
 
-@media (max-width: 600px) {
+        @media (max-width: 600px) {
             .header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             .header h2 {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
             .section {
                 padding: 20px 15px;
             }
             .app-button, .site-button, .next-button {
-                padding: 10px 15px;
-                font-size: 0.9rem;
+                padding: 12px 15px;
+                font-size: 0.85rem;
             }
         }
 
@@ -259,7 +341,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.95);
             align-items: center;
             justify-content: center;
             z-index: 1000;
@@ -267,58 +349,78 @@
         }
 
         .modal-content {
-            background: #000;
-            border: 2px solid red;
-            box-shadow: 0 0 25px red;
+            background: #0a0a0a;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 30px var(--accent-color);
             padding: 30px;
-            border-radius: 12px;
+            border-radius: 8px;
             text-align: center;
             color: white;
-            width: 300px;
+            width: 320px;
             position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, #1a0000 100%);
+            pointer-events: none;
         }
 
         .modal-header {
-            color: red;
+            color: var(--accent-color);
             margin-bottom: 20px;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px red;
+            text-shadow: 0 0 10px var(--accent-color);
+            text-transform: uppercase;
         }
 
         .modal-input {
             width: 100%;
             padding: 12px;
             margin-bottom: 15px;
-            border: 1px solid red;
-            border-radius: 5px;
-            background: black;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             text-align: center;
             font-size: 16px;
             outline: none;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
         }
 
         .modal-input:focus {
-            box-shadow: 0 0 8px red;
+            box-shadow: 0 0 10px var(--accent-color);
+            background: rgba(20, 0, 0, 0.7);
         }
 
         .modal-button {
-            padding: 10px 20px;
-            background: red;
+            padding: 12px 20px;
+            background: var(--accent-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
             width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Courier New', monospace;
         }
 
         .modal-button:hover {
-            background: darkred;
-            box-shadow: 0 0 10px red;
+            background: #600;
+            box-shadow: 0 0 15px var(--accent-color);
+            letter-spacing: 2px;
         }
 
         .error-message {
@@ -326,6 +428,7 @@
             margin-top: 10px;
             font-size: 14px;
             display: none;
+            text-shadow: 0 0 5px #ff0000;
         }
 
         .close-modal {
@@ -336,24 +439,43 @@
             font-size: 24px;
             cursor: pointer;
             transition: 0.3s;
+            z-index: 10;
         }
 
         .close-modal:hover {
-            color: red;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        /* تأثيرات النص المخيفة */
+        .creepy-text {
+            font-family: 'Arial Black', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* تأثير الوهج للنصوص */
+        .glow {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
         }
     </style>
 </head>
 <body>
     <!-- الجسيمات المتحركة في الخلفية -->
     <div id="particles"></div>
+    
+    <!-- تأثيرات الدم المتساقط -->
+    <div id="blood-drips"></div>
 
     <div class="container">
         <div class="header">
             <div class="logo">
                 <img src="https://www2.0zz0.com/2025/07/27/06/186435785.jpeg" alt="BLAKZET x SIMEONE">
             </div>
-            <h1>BKZxSMN 🥷🏼🇲🇦</h1>
-            <h2>simeone mcha yn3as o blakzet fa9 </h2>
+            <h1 class="creepy-text glow">BKZxSMN 🥷🏼🇲🇦</h1>
+            <h2>simeone mcha yn3as o blakzet fa9</h2>
         </div>
 
         <!-- الصفحة الأولى -->
@@ -385,7 +507,7 @@
 
         <!-- الصفحة الثانية -->
         <div class="section hidden" id="page2">
-            <h3 style="color: var(--accent-color); margin-bottom: 20px;">IOS XIT FREE</h3>
+            <h3 style="color: var(--accent-color); margin-bottom: 20px; text-shadow: var(--accent-glow);">IOS XIT FREE</h3>
             <a href="https://www.mediafire.com/file/yqa14ft4jms66b7/MAGIC_BULLET_PANEL_COUNTER.html/file" class="site-button"><i class="fas fa-magic button-icon"></i> MAGIC BULLET SAFE (h5gg)</a>
             <a href="https://www.mediafire.com/file/4v57a6hj9irpbqx/ANTENNA_SAFE_HEAD.html/file" class="site-button"><i class="fas fa-satellite button-icon"></i> ANTENNA SAFE (h5gg)</a>
             <a href="https://www.mediafire.com/file/yxgj29mdbezlc0f/SAFE_AIM_RECOIL_COMBO.html/file" class="site-button"><i class="fas fa-fist-raised button-icon"></i>AIM DRAGE X NORECOIL SAFE (h5gg)</a>
@@ -400,20 +522,20 @@
 
         <!-- الصفحة الثالثة للأندرويد -->
         <div class="section hidden" id="page3">
-            <h3 style="color: var(--accent-color); margin-bottom: 20px;">ANDROID XIT FREE</h3>
+            <h3 style="color: var(--accent-color); margin-bottom: 20px; text-shadow: var(--accent-glow);">ANDROID XIT FREE</h3>
             <a href="https://www.mediafire.com/file/ov83jxh7r4dv4v1/3D_ANDROID_.zip/file" class="site-button"><i class="fas fa-bolt button-icon"></i>3D SAFE (ZR)</a>
         </div>
 
         <!-- الصفحة الرابعة لأدوات الكمبيوتر -->
         <div class="section hidden" id="page4">
-            <h3 style="color: var(--accent-color); margin-bottom: 20px;"> Download esign</h3>
+            <h3 style="color: var(--accent-color); margin-bottom: 20px; text-shadow: var(--accent-glow);"> Download esign</h3>
             <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85841" class="site-button"><i class="fa-solid fa-file-signature"></i> E-sign</a>
             <a href="https://www.mediafire.com/file/817gxh3pl4tc6it/Certificate.zip/file" class="site-button"><i class="fa-solid fa-file"></i> Download Certificate</a>
         </div>
 
         <!-- الصفحة الخامسة للدعم والإرشادات -->
         <div class="section hidden" id="page5">
-            <h3 style="color: var(--accent-color); margin-bottom: 20px;">CRACK APPS</h3>
+            <h3 style="color: var(--accent-color); margin-bottom: 20px; text-shadow: var(--accent-glow);">CRACK APPS</h3>
             <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85842" class="site-button"><i class=" fa-brands fa-spotify"></i> Spotify</a>
         </div>
 
@@ -477,17 +599,30 @@
     <script>
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
+            const particleCount = 40;
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('glowing-particle');
                 particle.style.left = Math.random() * 100 + 'vw';
                 particle.style.top = Math.random() * 100 + 'vh';
-                const size = Math.random() * 3 + 2;
+                const size = Math.random() * 4 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 particle.style.animationDelay = Math.random() * 5 + 's';
                 particlesContainer.appendChild(particle);
+            }
+        }
+
+        function createBloodDrips() {
+            const dripsContainer = document.getElementById('blood-drips');
+            const dripCount = 10;
+            for (let i = 0; i < dripCount; i++) {
+                const drip = document.createElement('div');
+                drip.classList.add('blood-drip');
+                drip.style.left = Math.random() * 100 + 'vw';
+                drip.style.animationDelay = Math.random() * 15 + 's';
+                drip.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                dripsContainer.appendChild(drip);
             }
         }
 
@@ -644,6 +779,22 @@
 
         window.onload = function() {
             createParticles();
+            createBloodDrips();
+            
+            // إضافة تأثير كتابة للنص الرئيسي
+            const title = document.querySelector('.header h1');
+            const originalText = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            const typeWriter = setInterval(() => {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeWriter);
+                }
+            }, 100);
         };
     </script>
 </body>
