@@ -1,647 +1,860 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>BLAKZET x SIMEONE | MODERN DESIGN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>مغامرة الفارس الشجاع</title>
     <style>
-        :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3a0ca3;
-            --accent-color: #7209b7;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
-            --gradient: linear-gradient(135deg, #4361ee, #3a0ca3, #7209b7);
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --text-color: #333;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--gradient);
-            color: var(--text-color);
-            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
             min-height: 100vh;
-            padding: 20px;
             overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header {
-            padding: 30px 20px;
-            position: relative;
-            margin-bottom: 30px;
-        }
-
-        .logo {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            border: 4px solid white;
-            box-shadow: var(--shadow);
-            padding: 5px;
+        .game-container {
+            width: 100%;
+            max-width: 900px;
+            height: 650px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.6);
             overflow: hidden;
             position: relative;
-            background: white;
-            transition: var(--transition);
+            border: 2px solid #ff6b6b;
         }
 
-        .logo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-
-        .logo img {
+        /* شاشة البداية */
+        .screen {
+            position: absolute;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.5s ease;
+            padding: 20px;
+            text-align: center;
+            z-index: 2;
         }
 
-        .header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        #start-screen {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650"><rect width="900" height="650" fill="%23111"/><path d="M0,400 Q225,350 450,400 T900,400" fill="none" stroke="%23ff6b6b" stroke-width="3"/><circle cx="200" cy="150" r="40" fill="%23ff6b6b" opacity="0.3"/><circle cx="700" cy="500" r="60" fill="%2348dbfb" opacity="0.3"/><circle cx="450" cy="250" r="50" fill="%231aeaff" opacity="0.3"/></svg>');
+            background-size: cover;
         }
 
-        .header h2 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 600px;
-            margin: 0 auto;
+        .title {
+            font-size: 56px;
+            text-shadow: 0 0 20px #ff6b6b, 0 0 30px #ff6b6b;
+            margin-bottom: 20px;
+            animation: glow 2s infinite alternate;
+            color: #48dbfb;
+            font-weight: bold;
         }
 
-        .section {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 30px auto;
-            box-shadow: var(--shadow);
-            max-width: 500px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+        .subtitle {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #1aeaff;
+            text-shadow: 0 0 10px #1aeaff;
         }
 
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        .instructions {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #ff6b6b;
+            max-width: 80%;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
         }
 
-        .section-title {
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-            font-weight: 600;
-            position: relative;
-            padding-bottom: 10px;
+        .instructions h2 {
+            color: #ff9ff3;
+            margin-bottom: 15px;
+            font-size: 24px;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--gradient);
-            border-radius: 3px;
+        .instructions ul {
+            list-style: none;
+            text-align: right;
         }
 
-        .app-button, .site-button, .next-button {
+        .instructions li {
+            margin: 12px 0;
+            font-size: 18px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
-            background: white;
-            border: 2px solid #f0f0f0;
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin: 15px auto;
-            text-decoration: none;
-            color: var(--text-color);
-            width: 100%;
-            transition: var(--transition);
+            justify-content: flex-end;
+        }
+
+        .instructions i {
+            color: #ff9ff3;
+            margin-left: 10px;
+            font-size: 20px;
+        }
+
+        .btn {
+            padding: 16px 45px;
+            font-size: 22px;
+            background: linear-gradient(to right, #ff6b6b, #ff9ff3);
+            border: none;
+            border-radius: 50px;
+            color: #fff;
             cursor: pointer;
-            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.7);
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.9);
+            background: linear-gradient(to right, #ff9ff3, #ff6b6b);
+        }
+
+        /* شاشة اللعبة */
+        #game-screen {
+            display: none;
+            flex-direction: column;
+            padding: 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650"><rect width="900" height="650" fill="%23111"/><circle cx="100" cy="100" r="50" fill="%2348dbfb" opacity="0.2"/><circle cx="700" cy="500" r="80" fill="%23ff9ff3" opacity="0.2"/><circle cx="400" cy="200" r="60" fill="%23ff6b6b" opacity="0.2"/></svg>');
+            background-size: cover;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: 2px solid #48dbfb;
+            box-shadow: 0 0 15px rgba(72, 219, 251, 0.4);
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .stat i {
+            margin-left: 10px;
+            color: #ff9ff3;
+            font-size: 22px;
+        }
+
+        .game-area {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 2px solid #ff9ff3;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 159, 243, 0.4);
         }
 
-        .app-button::before, .site-button::before, .next-button::before {
-            content: '';
+        .player {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(to right, #48dbfb, #1aeaff);
+            border-radius: 50%;
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            opacity: 0;
-            z-index: 0;
-            transition: var(--transition);
+            bottom: 100px;
+            left: 100px;
+            box-shadow: 0 0 25px #48dbfb;
+            transition: transform 0.2s;
+            z-index: 2;
         }
 
-        .app-button:hover::before, .site-button:hover::before, .next-button:hover::before {
-            opacity: 1;
+        .obstacle {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(to right, #ff6b6b, #ff9ff3);
+            border-radius: 12px;
+            position: absolute;
+            bottom: 100px;
+            right: -70px;
+            box-shadow: 0 0 25px #ff6b6b;
+            z-index: 2;
         }
 
-        .app-button:hover, .site-button:hover, .next-button:hover {
-            color: white;
-            border-color: transparent;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .button-text, .button-icon {
-            position: relative;
-            z-index: 1;
-        }
-
-        .button-icon {
-            font-size: 1.4rem;
-            width: 24px;
-            text-align: center;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .footer {
-            margin: 40px 0 20px;
-            padding: 20px;
-            position: relative;
-            letter-spacing: 0.5px;
-            color: white;
-        }
-
-        .footer-text {
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-
-        /* أيقونات وسائل التواصل الاجتماعي في الأسفل */
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .social-icon {
-            color: white;
-            font-size: 1.4rem;
-            transition: var(--transition);
+        .coin {
             width: 45px;
             height: 45px;
+            background: linear-gradient(to right, #ffd700, #ff9f43);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 200px;
+            right: -45px;
+            box-shadow: 0 0 20px #ffd700;
+            animation: rotate 3s infinite linear;
+            z-index: 2;
+        }
+
+        .power-up {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(to right, #00ff00, #00cc00);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 250px;
+            right: -45px;
+            box-shadow: 0 0 20px #00ff00;
+            animation: pulse 1.5s infinite alternate;
+            z-index: 2;
+        }
+
+        /* شاشة النهاية */
+        #end-screen {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650"><rect width="900" height="650" fill="%23200"/><polygon points="450,100 500,250 650,250 525,350 575,500 450,400 325,500 375,350 250,250 400,250" fill="%23ffd700" opacity="0.5"/></svg>');
+            background-size: cover;
+            display: none;
+            text-align: center;
+        }
+
+        .score-display {
+            font-size: 85px;
+            color: #ffd700;
+            text-shadow: 0 0 25px #ffd700;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+
+        .achievements {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .achievement {
+            margin: 10px 15px;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 2px solid #48dbfb;
+            box-shadow: 0 0 15px rgba(72, 219, 251, 0.4);
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .social-icon:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .achievement i {
+            color: #ff9ff3;
+            margin-left: 8px;
+            font-size: 20px;
         }
 
-        /* ===== Modal Password ===== */
-        .modal {
-            display: none;
-            position: fixed;
+        /* تأثيرات الحركة */
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #48dbfb, 0 0 20px #48dbfb;
+            }
+            to {
+                text-shadow: 0 0 20px #48dbfb, 0 0 30px #48dbfb, 0 0 40px #48dbfb;
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                box-shadow: 0 0 15px #00ff00;
+            }
+            to {
+                transform: scale(1.2);
+                box-shadow: 0 0 25px #00ff00;
+            }
+        }
+
+        /* النجوم الخلفية */
+        .stars {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            font-family: 'Poppins', sans-serif;
-            backdrop-filter: blur(5px);
+            z-index: 1;
         }
 
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            color: var(--text-color);
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-            box-shadow: var(--shadow);
-            animation: modalAppear 0.4s ease;
-        }
-
-        @keyframes modalAppear {
-            0% { transform: scale(0.9); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-header {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .modal-input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            background: #f8f9fa;
-            color: var(--text-color);
-            text-align: center;
-            font-size: 1rem;
-            outline: none;
-            font-family: 'Poppins', sans-serif;
-            transition: var(--transition);
-        }
-
-        .modal-input:focus {
-            border-color: var(--primary-color);
-            background: white;
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-        }
-
-        .modal-button {
-            padding: 15px 25px;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .modal-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .error-message {
-            color: #e63946;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            display: none;
-        }
-
-        .close-modal {
+        .star {
             position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #6c757d;
-            font-size: 24px;
-            cursor: pointer;
-            transition: var(--transition);
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
         }
 
-        .close-modal:hover {
-            color: var(--primary-color);
-            transform: rotate(90deg);
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
         }
 
-        /* تأثيرات عامة */
-        .fade-in {
-            animation: fadeIn 1s ease;
+        /* تأثيرات القفز والانحناء */
+        .jump {
+            animation: jump 0.5s ease;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        @keyframes jump {
+            0% { bottom: 100px; }
+            50% { bottom: 250px; }
+            100% { bottom: 100px; }
         }
 
-        @media (max-width: 600px) {
-            .header h1 {
-                font-size: 2.2rem;
+        .duck {
+            animation: duck 0.5s ease;
+        }
+
+        @keyframes duck {
+            0% { height: 70px; }
+            50% { height: 35px; }
+            100% { height: 70px; }
+        }
+
+        /* رسائل اللعبة */
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            padding: 25px 50px;
+            border-radius: 15px;
+            border: 3px solid #ffd700;
+            font-size: 36px;
+            color: #ffd700;
+            display: none;
+            z-index: 100;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+            font-weight: bold;
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .game-container {
+                height: 500px;
             }
-            .header h2 {
-                font-size: 1rem;
+            
+            .title {
+                font-size: 36px;
             }
-            .section {
-                padding: 25px 20px;
+            
+            .subtitle {
+                font-size: 22px;
             }
-            .app-button, .site-button, .next-button {
-                padding: 14px 16px;
-                font-size: 0.9rem;
+            
+            .btn {
+                padding: 14px 35px;
+                font-size: 18px;
             }
-            .social-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
+            
+            .instructions {
+                font-size: 16px;
+                padding: 15px;
             }
+            
+            .instructions li {
+                font-size: 16px;
+            }
+            
+            .score-display {
+                font-size: 60px;
+            }
+        }
+
+        /* أرضية اللعبة */
+        .ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #333, #222);
+            z-index: 1;
+            border-top: 3px solid #ff6b6b;
+        }
+
+        /* تأثيرات الخلفية */
+        .background-element {
+            position: absolute;
+            z-index: 0;
+        }
+
+        .mountain {
+            position: absolute;
+            bottom: 100px;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid #2c3e50;
+        }
+
+        .tree {
+            position: absolute;
+            bottom: 100px;
+            width: 40px;
+            height: 80px;
+            background: #2c3e50;
+        }
+
+        .tree:before {
+            content: '';
+            position: absolute;
+            bottom: 40px;
+            left: -30px;
+            width: 100px;
+            height: 60px;
+            background: #27ae60;
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header fade-in">
-            <div class="logo">
-                <img src="https://www2.0zz0.com/2025/07/27/06/186435785.jpeg" alt="BLAKZET x SIMEONE">
-            </div>
-            <h1>BKZ x SMN</h1>
-            <h2>Modern solutions for your gaming experience</h2>
-        </div>
-
-        <!-- الصفحة الأولى -->
-        <div class="section fade-in" id="page1">
-            <button class="next-button" onclick="showIosPasswordModal()">
-                <i class="fa-brands fa-apple button-icon"></i>
-                <span class="button-text">GET XIT IOS</span>
-            </button>
-            <button class="next-button" onclick="showAndroidPasswordModal()">
-                <i class="fa-brands fa-android button-icon"></i>
-                <span class="button-text">GET XIT ANDROID</span>
-            </button>
-            <button class="next-button" onclick="showPcPasswordModal()">
-                <i class="fa-solid fa-download button-icon"></i>
-                <span class="button-text">DOWNLOAD E-SIGN</span>
-            </button>
-            <button class="next-button" onclick="showSupportPasswordModal()">
-                <i class="fa-solid fa-app-store button-icon"></i>
-                <span class="button-text">CRACK APPS</span>
-            </button>
-        </div>
-
-        <!-- الصفحة الثانية -->
-        <div class="section hidden" id="page2">
-            <h3 class="section-title">IOS XIT FREE</h3>
-            <a href="https://www.mediafire.com/file/yqa14ft4jms66b7/MAGIC_BULLET_PANEL_COUNTER.html/file" class="site-button"><i class="fas fa-magic button-icon"></i> <span class="button-text">MAGIC BULLET SAFE (h5gg)</span></a>
-            <a href="https://www.mediafire.com/file/4v57a6hj9irpbqx/ANTENNA_SAFE_HEAD.html/file" class="site-button"><i class="fas fa-satellite button-icon"></i> <span class="button-text">ANTENNA SAFE (h5gg)</span></a>
-            <a href="https://www.mediafire.com/file/yxgj29mdbezlc0f/SAFE_AIM_RECOIL_COMBO.html/file" class="site-button"><i class="fas fa-fist-raised button-icon"></i> <span class="button-text">AIM DRAGE X NORECOIL SAFE (h5gg)</span></a>
-            <a href="https://www.mediafire.com/file/7i8j1yn4tkc1ev3/OBB+.zip/file" class="site-button"><i class="fas fa-crosshairs button-icon"></i> <span class="button-text">OBB SAFE (filza)</span></a>
-            <a href="https://www.mediafire.com/file/h20xs6dhl76l84g/Aim+drage.zip/file" class="site-button"><i class="fa-duotone fa-solid fa-crosshairs button-icon"></i> <span class="button-text">AIM DRAGE SAFE (filza)</span></a>
-            <a href="https://www.mediafire.com/file/kfrklexwbze9opo/3d.zip/file" class="site-button"><i class="fa-solid fa-vr-cardboard button-icon"></i> <span class="button-text">3D SAFE (filza)</span></a>
-            <a href="https://www.mediafire.com/file/yynigbc9doavluq/Magec.zip/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles button-icon"></i> <span class="button-text">MAGEC SAFE (filza)</span></a>
-            <a href="https://www.mediafire.com/file/fmi83tk1d3v4f41/Free+Fire_1.114.1_iPhone+Distribution-+EEO+Education+Ltd._1756001977@com.dts.freefireth.ipa/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles button-icon"></i> <span class="button-text">IPA ALL HACK SAFE (esign)</span></a>
-            <a href="https://www.mediafire.com/file/rxfv5la1e0ze75i/AIM+DRAG+BKZ.imazingapp/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles button-icon"></i> <span class="button-text">AIM DRAGE SAFE (imazing)</span></a>
-            <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85938" class="site-button"><i class="fa-solid fa-file-lines button-icon"></i> <span class="button-text">PANEL FREE FIRE SAFE (DIRECT)</span></a>
-        </div>
-
-        <!-- الصفحة الثالثة للأندرويد -->
-        <div class="section hidden" id="page3">
-            <h3 class="section-title">ANDROID XIT FREE</h3>
-            <a href="https://www.mediafire.com/file/ov83jxh7r4dv4v1/3D_ANDROID_.zip/file" class="site-button"><i class="fas fa-bolt button-icon"></i> <span class="button-text">3D SAFE (ZR)</span></a>
-        </div>
-
-        <!-- الصفحة الرابعة لأدوات الكمبيوتر -->
-        <div class="section hidden" id="page4">
-            <h3 class="section-title">DOWNLOAD ESIGN</h3>
-            <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85841" class="site-button"><i class="fa-solid fa-file-signature button-icon"></i> <span class="button-text">E-sign</span></a>
-            <a href="https://www.mediafire.com/file/817gxh3pl4tc6it/Certificate.zip/file" class="site-button"><i class="fa-solid fa-file button-icon"></i> <span class="button-text">Download Certificate</span></a>
-        </div>
-
-        <!-- الصفحة الخامسة للدعم والإرشادات -->
-        <div class="section hidden" id="page5">
-            <h3 class="section-title">CRACK APPS</h3>
-            <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85842" class="site-button"><i class="fa-brands fa-spotify button-icon"></i> <span class="button-text">Spotify</span></a>
-        </div>
-
-        <div class="footer">
-            <div class="footer-text">
-                By BLAKZET x SIMEONE | <span id="current-year">2023</span>
+    <div class="stars" id="stars"></div>
+    
+    <div class="game-container">
+        <!-- شاشة البداية -->
+        <div class="screen" id="start-screen">
+            <h1 class="title">مغامرة الفارس الشجاع</h1>
+            <p class="subtitle">رحلة عبر الأراضي السحرية</p>
+            
+            <div class="instructions">
+                <h2><i class="fas fa-info-circle"></i> تعليمات اللعبة</h2>
+                <ul>
+                    <li><i class="fas fa-space-shuttle"></i> استخدم مفتاح المسافة للقفز فوق العقبات</li>
+                    <li><i class="fas fa-arrow-down"></i> استخدم السهم لأسفل للانحناء وتجنب العقبات</li>
+                    <li><i class="fas fa-coins"></i> اجمع العملات لزيادة نقاطك</li>
+                    <li><i class="fas fa-bolt"></i> اجمع المكافآت لتعزيز قدراتك</li>
+                    <li><i class="fas fa-heart"></i> تجنب العقبات للحفاظ على أرواحك</li>
+                </ul>
             </div>
             
-            <!-- أيقونات وسائل التواصل الاجتماعي الصغيرة -->
-            <div class="social-icons">
-                <a href="https://wa.me/+212600119471" class="social-icon" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://t.me/blakzetxx" class="social-icon" target="_blank">
-                    <i class="fab fa-telegram"></i>
-                </a>
-                <a href="https://instagram.com/blakzetxxv" class="social-icon" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
+            <button class="btn" id="start-btn">
+                <i class="fas fa-play"></i> ابدأ المغامرة
+            </button>
+        </div>
+
+        <!-- شاشة اللعبة -->
+        <div class="screen" id="game-screen">
+            <div class="stats">
+                <div class="stat">
+                    <i class="fas fa-star"></i>
+                    <span id="score">0</span> :النقاط
+                </div>
+                <div class="stat">
+                    <i class="fas fa-heart"></i>
+                    <span id="lives">3</span> :الأرواح
+                </div>
+                <div class="stat">
+                    <i class="fas fa-level-up-alt"></i>
+                    <span id="level">1</span> :المستوى
+                </div>
+                <div class="stat">
+                    <i class="fas fa-bolt"></i>
+                    <span id="power">0</span> :الطاقة
+                </div>
+            </div>
+            
+            <div class="game-area">
+                <div class="ground"></div>
+                <div class="player" id="player"></div>
+                <div class="message" id="game-message"></div>
+                
+                <!-- عناصر الخلفية -->
+                <div class="mountain" style="left: 150px;"></div>
+                <div class="mountain" style="left: 300px;"></div>
+                <div class="mountain" style="left: 600px;"></div>
+                
+                <div class="tree" style="left: 200px;"></div>
+                <div class="tree" style="left: 450px;"></div>
+                <div class="tree" style="left: 750px;"></div>
             </div>
         </div>
-    </div>
 
-    <!-- نافذة كلمة السر لـ iOS -->
-    <div id="iosPasswordModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeIosPasswordModal()">&times;</span>
-            <h2 class="modal-header">ENTER PASSWORD FOR iOS</h2>
-            <input type="password" id="iosPasswordInput" class="modal-input" placeholder="iOS Password" onkeypress="handleIosKeyPress(event)">
-            <button class="modal-button" onclick="checkIosPassword()">SUBMIT</button>
-            <p id="iosErrorMessage" class="error-message">❌ Incorrect password!</p>
-        </div>
-    </div>
-
-    <!-- نافذة كلمة السر لـ Android -->
-    <div id="androidPasswordModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeAndroidPasswordModal()">&times;</span>
-            <h2 class="modal-header">ENTER PASSWORD FOR ANDROID</h2>
-            <input type="password" id="androidPasswordInput" class="modal-input" placeholder="Android Password" onkeypress="handleAndroidKeyPress(event)">
-            <button class="modal-button" onclick="checkAndroidPassword()">SUBMIT</button>
-            <p id="androidErrorMessage" class="error-message">❌ Incorrect password!</p>
-        </div>
-    </div>
-
-    <!-- نافذة كلمة السر لأدوات الكمبيوتر -->
-    <div id="pcPasswordModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closePcPasswordModal()">&times;</span>
-            <h2 class="modal-header">ENTER PASSWORD FOR ESIGN</h2>
-            <input type="password" id="pcPasswordInput" class="modal-input" placeholder="PC Tools Password" onkeypress="handlePcKeyPress(event)">
-            <button class="modal-button" onclick="checkPcPassword()">SUBMIT</button>
-            <p id="pcErrorMessage" class="error-message">❌ Incorrect password!</p>
-        </div>
-    </div>
-
-    <!-- نافذة كلمة السر للدعم -->
-    <div id="supportPasswordModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeSupportPasswordModal()">&times;</span>
-            <h2 class="modal-header">ENTER PASSWORD FOR CRACK APPS</h2>
-            <input type="password" id="supportPasswordInput" class="modal-input" placeholder="Support Password" onkeypress="handleSupportKeyPress(event)">
-            <button class="modal-button" onclick="checkSupportPassword()">SUBMIT</button>
-            <p id="supportErrorMessage" class="error-message">❌ Incorrect password!</p>
+        <!-- شاشة النهاية -->
+        <div class="screen" id="end-screen">
+            <h1 class="title">لقد انتهت المغامرة!</h1>
+            <p class="subtitle">لقد أبليت بلاءً حسناً</p>
+            
+            <div class="score-display" id="final-score">0</div>
+            
+            <div class="achievements">
+                <div class="achievement">
+                    <i class="fas fa-trophy"></i>
+                    <span id="achievement-level">مبتدئ</span>
+                </div>
+                <div class="achievement">
+                    <i class="fas fa-coins"></i>
+                    <span id="total-coins">0</span> عملة
+                </div>
+                <div class="achievement">
+                    <i class="fas fa-clock"></i>
+                    <span id="play-time">0</span> ثانية
+                </div>
+            </div>
+            
+            <button class="btn" id="restart-btn">
+                <i class="fas fa-redo"></i> مغامرة جديدة
+            </button>
         </div>
     </div>
 
     <script>
-        // وظائف خاصة بـ iOS
-        function showIosPasswordModal() {
-            document.getElementById("iosPasswordModal").style.display = "flex";
-            document.getElementById("iosPasswordInput").value = "";
-            document.getElementById("iosErrorMessage").style.display = "none";
-            document.getElementById("iosPasswordInput").focus();
+        // إنشاء النجوم في الخلفية
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = `${Math.random() * 4}px`;
+            star.style.height = star.style.width;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            starsContainer.appendChild(star);
         }
 
-        function closeIosPasswordModal() {
-            document.getElementById("iosPasswordModal").style.display = "none";
+        // عناصر DOM
+        const startScreen = document.getElementById('start-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const endScreen = document.getElementById('end-screen');
+        const startBtn = document.getElementById('start-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const scoreElement = document.getElementById('score');
+        const livesElement = document.getElementById('lives');
+        const levelElement = document.getElementById('level');
+        const powerElement = document.getElementById('power');
+        const finalScoreElement = document.getElementById('final-score');
+        const player = document.getElementById('player');
+        const gameArea = document.querySelector('.game-area');
+        const gameMessage = document.getElementById('game-message');
+        const achievementLevel = document.getElementById('achievement-level');
+        const totalCoinsElement = document.getElementById('total-coins');
+        const playTimeElement = document.getElementById('play-time');
+
+        // متغيرات اللعبة
+        let score = 0;
+        let lives = 3;
+        let level = 1;
+        let power = 0;
+        let gameSpeed = 2;
+        let gameInterval;
+        let obstacles = [];
+        let coins = [];
+        let powerUps = [];
+        let isJumping = false;
+        let isDucking = false;
+        let totalCoins = 0;
+        let startTime = 0;
+
+        // بدء اللعبة
+        startBtn.addEventListener('click', startGame);
+        restartBtn.addEventListener('click', startGame);
+
+        function startGame() {
+            // إعادة تعيين المتغيرات
+            score = 0;
+            lives = 3;
+            level = 1;
+            power = 0;
+            gameSpeed = 2;
+            obstacles = [];
+            coins = [];
+            powerUps = [];
+            totalCoins = 0;
+            startTime = Date.now();
+            
+            // تحديث واجهة المستخدم
+            scoreElement.textContent = score;
+            livesElement.textContent = lives;
+            levelElement.textContent = level;
+            powerElement.textContent = power;
+            
+            // تغيير الشاشات
+            startScreen.style.display = 'none';
+            endScreen.style.display = 'none';
+            gameScreen.style.display = 'flex';
+            
+            // إعداد اللاعب
+            player.style.background = 'linear-gradient(to right, #48dbfb, #1aeaff)';
+            
+            // بدء حلقة اللعبة
+            if (gameInterval) clearInterval(gameInterval);
+            gameInterval = setInterval(updateGame, 20);
+            
+            // إنشاء العقبات والعملات والمكافآت
+            generateObstacles();
+            generateCoins();
+            generatePowerUps();
+            
+            // إظهار رسالة البداية
+            showMessage('ابدأ المغامرة!');
         }
 
-        function checkIosPassword() {
-            const pass = document.getElementById("iosPasswordInput").value;
-            const errorMsg = document.getElementById("iosErrorMessage");
+        function updateGame() {
+            // تحديث موقع العقبات
+            obstacles.forEach((obstacle, index) => {
+                obstacle.style.right = parseInt(obstacle.style.right || 0) + gameSpeed + 'px';
+                
+                // إذا تجاوزت العقبة اللاعب
+                if (parseInt(obstacle.style.right) > 900) {
+                    obstacle.remove();
+                    obstacles.splice(index, 1);
+                    increaseScore(10);
+                }
+                
+                // اكتشاف التصادم
+                if (isColliding(player, obstacle)) {
+                    obstacle.remove();
+                    obstacles.splice(index, 1);
+                    decreaseLives();
+                }
+            });
+            
+            // تحديث موقع العملات
+            coins.forEach((coin, index) => {
+                coin.style.right = parseInt(coin.style.right || 0) + gameSpeed + 'px';
+                
+                // إذا تجاوزت العملة اللاعب
+                if (parseInt(coin.style.right) > 900) {
+                    coin.remove();
+                    coins.splice(index, 1);
+                }
+                
+                // اكتشاف جمع العملة
+                if (isColliding(player, coin)) {
+                    coin.remove();
+                    coins.splice(index, 1);
+                    increaseScore(50);
+                    totalCoins++;
+                    showMessage('+50 نقطة!');
+                }
+            });
+            
+            // تحديث موقع المكافآت
+            powerUps.forEach((powerUp, index) => {
+                powerUp.style.right = parseInt(powerUp.style.right || 0) + gameSpeed + 'px';
+                
+                // إذا تجاوزت المكافأة اللاعب
+                if (parseInt(powerUp.style.right) > 900) {
+                    powerUp.remove();
+                    powerUps.splice(index, 1);
+                }
+                
+                // اكتشاف جمع المكافأة
+                if (isColliding(player, powerUp)) {
+                    powerUp.remove();
+                    powerUps.splice(index, 1);
+                    increasePower();
+                    showMessage('قوة إضافية!');
+                }
+            });
+            
+            // زيادة مستوى الصعوبة
+            if (score > level * 200) {
+                level++;
+                gameSpeed += 0.5;
+                levelElement.textContent = level;
+                showMessage(`المستوى ${level}!`);
+            }
+            
+            // تحديث وقت اللعب
+            const playTime = Math.floor((Date.now() - startTime) / 1000);
+            playTimeElement.textContent = playTime;
+        }
 
-            if (pass === "CHAL7") {
-                document.getElementById("iosPasswordModal").style.display = "none";
-                document.getElementById("page1").classList.add("hidden");
-                document.getElementById("page2").classList.remove("hidden");
+        function generateObstacles() {
+            setInterval(() => {
+                const obstacle = document.createElement('div');
+                obstacle.classList.add('obstacle');
+                obstacle.style.right = '-70px';
+                obstacle.style.bottom = '100px';
+                gameArea.appendChild(obstacle);
+                obstacles.push(obstacle);
+            }, 2000 / gameSpeed);
+        }
+
+        function generateCoins() {
+            setInterval(() => {
+                const coin = document.createElement('div');
+                coin.classList.add('coin');
+                coin.style.right = '-45px';
+                coin.style.bottom = `${Math.random() * 300 + 100}px`;
+                gameArea.appendChild(coin);
+                coins.push(coin);
+            }, 1500 / gameSpeed);
+        }
+
+        function generatePowerUps() {
+            setInterval(() => {
+                if (Math.random() > 0.7) { // 30% chance to generate power-up
+                    const powerUp = document.createElement('div');
+                    powerUp.classList.add('power-up');
+                    powerUp.style.right = '-45px';
+                    powerUp.style.bottom = `${Math.random() * 300 + 100}px`;
+                    gameArea.appendChild(powerUp);
+                    powerUps.push(powerUp);
+                }
+            }, 5000 / gameSpeed);
+        }
+
+        function isColliding(element1, element2) {
+            const rect1 = element1.getBoundingClientRect();
+            const rect2 = element2.getBoundingClientRect();
+            
+            return !(
+                rect1.right < rect2.left ||
+                rect1.left > rect2.right ||
+                rect1.bottom < rect2.top ||
+                rect1.top > rect2.bottom
+            );
+        }
+
+        function increaseScore(points) {
+            score += points;
+            scoreElement.textContent = score;
+        }
+
+        function increasePower() {
+            power += 25;
+            powerElement.textContent = power;
+            
+            if (power >= 100) {
+                // تفعيل قدرة خاصة
+                power = 0;
+                powerElement.textContent = power;
+                showMessage('قدرة خاصة مفعلة!');
+                // جعل اللاعب منيعًا للضربات لفترة
+                player.style.boxShadow = '0 0 30px #00ff00';
+                setTimeout(() => {
+                    player.style.boxShadow = '0 0 25px #48dbfb';
+                }, 3000);
+            }
+        }
+
+        function decreaseLives() {
+            lives--;
+            livesElement.textContent = lives;
+            
+            if (lives <= 0) {
+                endGame();
             } else {
-                errorMsg.style.display = "block";
-                document.getElementById("iosPasswordInput").value = "";
-                document.getElementById("iosPasswordInput").focus();
+                showMessage('انتبه للعقبات!');
+                // تأثير اهتزاز عند فقدان حياة
+                player.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    player.style.animation = '';
+                }, 500);
             }
         }
 
-        function handleIosKeyPress(event) {
-            if (event.key === "Enter") {
-                checkIosPassword();
-            }
-        }
-
-        // وظائف خاصة بـ Android
-        function showAndroidPasswordModal() {
-            document.getElementById("androidPasswordModal").style.display = "flex";
-            document.getElementById("androidPasswordInput").value = "";
-            document.getElementById("androidErrorMessage").style.display = "none";
-            document.getElementById("androidPasswordInput").focus();
-        }
-
-        function closeAndroidPasswordModal() {
-            document.getElementById("androidPasswordModal").style.display = "none";
-        }
-
-        function checkAndroidPassword() {
-            const pass = document.getElementById("androidPasswordInput").value;
-            const errorMsg = document.getElementById("androidErrorMessage");
-
-            if (pass === "EXCELSIOR") {
-                document.getElementById("androidPasswordModal").style.display = "none";
-                document.getElementById("page1").classList.add("hidden");
-                document.getElementById("page3").classList.remove("hidden");
+        function endGame() {
+            clearInterval(gameInterval);
+            gameScreen.style.display = 'none';
+            endScreen.style.display = 'flex';
+            finalScoreElement.textContent = score;
+            totalCoinsElement.textContent = totalCoins;
+            
+            // تحديد مستوى الإنجاز
+            if (score < 500) {
+                achievementLevel.textContent = 'مبتدئ';
+            } else if (score < 1000) {
+                achievementLevel.textContent = 'محترف';
+            } else if (score < 2000) {
+                achievementLevel.textContent = 'خبير';
             } else {
-                errorMsg.style.display = "block";
-                document.getElementById("androidPasswordInput").value = "";
-                document.getElementById("androidPasswordInput").focus();
+                achievementLevel.textContent = 'أسطورة';
             }
+            
+            // إزالة جميع العقبات والعملات والمكافآت
+            obstacles.forEach(obstacle => obstacle.remove());
+            coins.forEach(coin => coin.remove());
+            powerUps.forEach(powerUp => powerUp.remove());
         }
 
-        function handleAndroidKeyPress(event) {
-            if (event.key === "Enter") {
-                checkAndroidPassword();
+        function showMessage(text) {
+            gameMessage.textContent = text;
+            gameMessage.style.display = 'block';
+            setTimeout(() => {
+                gameMessage.style.display = 'none';
+            }, 2000);
+        }
+
+        // التحكم في اللاعب (القفز والانحناء)
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && !isJumping) {
+                jump();
             }
-        }
-
-        // وظائف خاصة بـ PC Tools
-        function showPcPasswordModal() {
-            document.getElementById("pcPasswordModal").style.display = "flex";
-            document.getElementById("pcPasswordInput").value = "";
-            document.getElementById("pcErrorMessage").style.display = "none";
-            document.getElementById("pcPasswordInput").focus();
-        }
-
-        function closePcPasswordModal() {
-            document.getElementById("pcPasswordModal").style.display = "none";
-        }
-
-        function checkPcPassword() {
-            const pass = document.getElementById("pcPasswordInput").value;
-            const errorMsg = document.getElementById("pcErrorMessage");
-
-            if (pass === "blakzet") {
-                document.getElementById("pcPasswordModal").style.display = "none";
-                document.getElementById("page1").classList.add("hidden");
-                document.getElementById("page4").classList.remove("hidden");
-            } else {
-                errorMsg.style.display = "block";
-                document.getElementById("pcPasswordInput").value = "";
-                document.getElementById("pcPasswordInput").focus();
+            
+            if (e.code === 'ArrowDown' && !isDucking) {
+                duck();
             }
+        });
+
+        function jump() {
+            if (isJumping) return;
+            isJumping = true;
+            player.classList.add('jump');
+            
+            setTimeout(() => {
+                player.classList.remove('jump');
+                isJumping = false;
+            }, 500);
         }
 
-        function handlePcKeyPress(event) {
-            if (event.key === "Enter") {
-                checkPcPassword();
+        function duck() {
+            if (isDucking) return;
+            isDucking = true;
+            player.classList.add('duck');
+            
+            setTimeout(() => {
+                player.classList.remove('duck');
+                isDucking = false;
+            }, 500);
+        }
+
+        // تأثير الاهتزاز
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes shake {
+                0% { transform: translateX(0); }
+                20% { transform: translateX(-10px); }
+                40% { transform: translateX(10px); }
+                60% { transform: translateX(-10px); }
+                80% { transform: translateX(10px); }
+                100% { transform: translateX(0); }
             }
-        }
-
-        // وظائف خاصة بـ Support
-        function showSupportPasswordModal() {
-            document.getElementById("supportPasswordModal").style.display = "flex";
-            document.getElementById("supportPasswordInput").value = "";
-            document.getElementById("supportErrorMessage").style.display = "none";
-            document.getElementById("supportPasswordInput").focus();
-        }
-
-        function closeSupportPasswordModal() {
-            document.getElementById("supportPasswordModal").style.display = "none";
-        }
-
-        function checkSupportPassword() {
-            const pass = document.getElementById("supportPasswordInput").value;
-            const errorMsg = document.getElementById("supportErrorMessage");
-
-            if (pass === "blakzet") {
-                document.getElementById("supportPasswordModal").style.display = "none";
-                document.getElementById("page1").classList.add("hidden");
-                document.getElementById("page5").classList.remove("hidden");
-            } else {
-                errorMsg.style.display = "block";
-                document.getElementById("supportPasswordInput").value = "";
-                document.getElementById("supportPasswordInput").focus();
-            }
-        }
-
-        function handleSupportKeyPress(event) {
-            if (event.key === "Enter") {
-                checkSupportPassword();
-            }
-        }
-
-        // إغلاق النوافذ عند النقر خارجها
-        window.onclick = function(event) {
-            const iosModal = document.getElementById("iosPasswordModal");
-            const androidModal = document.getElementById("androidPasswordModal");
-            const pcModal = document.getElementById("pcPasswordModal");
-            const supportModal = document.getElementById("supportPasswordModal");
-
-            if (event.target == iosModal) closeIosPasswordModal();
-            if (event.target == androidModal) closeAndroidPasswordModal();
-            if (event.target == pcModal) closePcPasswordModal();
-            if (event.target == supportModal) closeSupportPasswordModal();
-        }
-
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        `;
+        document.head.appendChild(style);
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>
