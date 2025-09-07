@@ -1,860 +1,1058 @@
+<!-- code by Lộc Lỏ 17/9/2024
+Tôn trọng người dùng không xóa  
+xóa làm chó okeee-->
+
+
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مغامرة الفارس الشجاع</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="utf-8"/>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .game-container {
-            width: 100%;
-            max-width: 900px;
-            height: 650px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(255, 105, 180, 0.6);
-            overflow: hidden;
-            position: relative;
-            border: 2px solid #ff6b6b;
-        }
-
-        /* شاشة البداية */
-        .screen {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.5s ease;
-            padding: 20px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        #start-screen {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650"><rect width="900" height="650" fill="%23111"/><path d="M0,400 Q225,350 450,400 T900,400" fill="none" stroke="%23ff6b6b" stroke-width="3"/><circle cx="200" cy="150" r="40" fill="%23ff6b6b" opacity="0.3"/><circle cx="700" cy="500" r="60" fill="%2348dbfb" opacity="0.3"/><circle cx="450" cy="250" r="50" fill="%231aeaff" opacity="0.3"/></svg>');
-            background-size: cover;
-        }
-
-        .title {
-            font-size: 56px;
-            text-shadow: 0 0 20px #ff6b6b, 0 0 30px #ff6b6b;
-            margin-bottom: 20px;
-            animation: glow 2s infinite alternate;
-            color: #48dbfb;
-            font-weight: bold;
-        }
-
-        .subtitle {
-            font-size: 28px;
-            margin-bottom: 30px;
-            color: #1aeaff;
-            text-shadow: 0 0 10px #1aeaff;
-        }
-
-        .instructions {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            border: 2px solid #ff6b6b;
-            max-width: 80%;
-            box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
-        }
-
-        .instructions h2 {
-            color: #ff9ff3;
-            margin-bottom: 15px;
-            font-size: 24px;
-        }
-
-        .instructions ul {
-            list-style: none;
-            text-align: right;
-        }
-
-        .instructions li {
-            margin: 12px 0;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-
-        .instructions i {
-            color: #ff9ff3;
-            margin-left: 10px;
-            font-size: 20px;
-        }
-
-        .btn {
-            padding: 16px 45px;
-            font-size: 22px;
-            background: linear-gradient(to right, #ff6b6b, #ff9ff3);
-            border: none;
-            border-radius: 50px;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 20px rgba(255, 107, 107, 0.7);
-            margin: 10px;
-            font-weight: bold;
-        }
-
-        .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(255, 107, 107, 0.9);
-            background: linear-gradient(to right, #ff9ff3, #ff6b6b);
-        }
-
-        /* شاشة اللعبة */
-        #game-screen {
-            display: none;
-            flex-direction: column;
-            padding: 20px;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650"><rect width="900" height="650" fill="%23111"/><circle cx="100" cy="100" r="50" fill="%2348dbfb" opacity="0.2"/><circle cx="700" cy="500" r="80" fill="%23ff9ff3" opacity="0.2"/><circle cx="400" cy="200" r="60" fill="%23ff6b6b" opacity="0.2"/></svg>');
-            background-size: cover;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 12px 24px;
-            border-radius: 12px;
-            border: 2px solid #48dbfb;
-            box-shadow: 0 0 15px rgba(72, 219, 251, 0.4);
-        }
-
-        .stat {
-            display: flex;
-            align-items: center;
-            font-size: 18px;
-        }
-
-        .stat i {
-            margin-left: 10px;
-            color: #ff9ff3;
-            font-size: 22px;
-        }
-
-        .game-area {
-            flex: 1;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            border: 2px solid #ff9ff3;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 159, 243, 0.4);
-        }
-
-        .player {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(to right, #48dbfb, #1aeaff);
-            border-radius: 50%;
-            position: absolute;
-            bottom: 100px;
-            left: 100px;
-            box-shadow: 0 0 25px #48dbfb;
-            transition: transform 0.2s;
-            z-index: 2;
-        }
-
-        .obstacle {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(to right, #ff6b6b, #ff9ff3);
-            border-radius: 12px;
-            position: absolute;
-            bottom: 100px;
-            right: -70px;
-            box-shadow: 0 0 25px #ff6b6b;
-            z-index: 2;
-        }
-
-        .coin {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(to right, #ffd700, #ff9f43);
-            border-radius: 50%;
-            position: absolute;
-            bottom: 200px;
-            right: -45px;
-            box-shadow: 0 0 20px #ffd700;
-            animation: rotate 3s infinite linear;
-            z-index: 2;
-        }
-
-        .power-up {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(to right, #00ff00, #00cc00);
-            border-radius: 50%;
-            position: absolute;
-            bottom: 250px;
-            right: -45px;
-            box-shadow: 0 0 20px #00ff00;
-            animation: pulse 1.5s infinite alternate;
-            z-index: 2;
-        }
-
-        /* شاشة النهاية */
-        #end-screen {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650"><rect width="900" height="650" fill="%23200"/><polygon points="450,100 500,250 650,250 525,350 575,500 450,400 325,500 375,350 250,250 400,250" fill="%23ffd700" opacity="0.5"/></svg>');
-            background-size: cover;
-            display: none;
-            text-align: center;
-        }
-
-        .score-display {
-            font-size: 85px;
-            color: #ffd700;
-            text-shadow: 0 0 25px #ffd700;
-            margin: 30px 0;
-            font-weight: bold;
-        }
-
-        .achievements {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .achievement {
-            margin: 10px 15px;
-            font-size: 18px;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 12px 18px;
-            border-radius: 12px;
-            border: 2px solid #48dbfb;
-            box-shadow: 0 0 15px rgba(72, 219, 251, 0.4);
-            display: flex;
-            align-items: center;
-        }
-
-        .achievement i {
-            color: #ff9ff3;
-            margin-left: 8px;
-            font-size: 20px;
-        }
-
-        /* تأثيرات الحركة */
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #48dbfb, 0 0 20px #48dbfb;
-            }
-            to {
-                text-shadow: 0 0 20px #48dbfb, 0 0 30px #48dbfb, 0 0 40px #48dbfb;
-            }
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes pulse {
-            from {
-                transform: scale(1);
-                box-shadow: 0 0 15px #00ff00;
-            }
-            to {
-                transform: scale(1.2);
-                box-shadow: 0 0 25px #00ff00;
-            }
-        }
-
-        /* النجوم الخلفية */
-        .stars {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .star {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle linear infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
-        }
-
-        /* تأثيرات القفز والانحناء */
-        .jump {
-            animation: jump 0.5s ease;
-        }
-
-        @keyframes jump {
-            0% { bottom: 100px; }
-            50% { bottom: 250px; }
-            100% { bottom: 100px; }
-        }
-
-        .duck {
-            animation: duck 0.5s ease;
-        }
-
-        @keyframes duck {
-            0% { height: 70px; }
-            50% { height: 35px; }
-            100% { height: 70px; }
-        }
-
-        /* رسائل اللعبة */
-        .message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.85);
-            padding: 25px 50px;
-            border-radius: 15px;
-            border: 3px solid #ffd700;
-            font-size: 36px;
-            color: #ffd700;
-            display: none;
-            z-index: 100;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
-            font-weight: bold;
-        }
-
-        /* تصميم متجاوب */
-        @media (max-width: 768px) {
-            .game-container {
-                height: 500px;
-            }
-            
-            .title {
-                font-size: 36px;
-            }
-            
-            .subtitle {
-                font-size: 22px;
-            }
-            
-            .btn {
-                padding: 14px 35px;
-                font-size: 18px;
-            }
-            
-            .instructions {
-                font-size: 16px;
-                padding: 15px;
-            }
-            
-            .instructions li {
-                font-size: 16px;
-            }
-            
-            .score-display {
-                font-size: 60px;
-            }
-        }
-
-        /* أرضية اللعبة */
-        .ground {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            font-family: Arial, sans-serif;
+            width: 270px;
             height: 100px;
-            background: linear-gradient(to top, #333, #222);
-            z-index: 1;
-            border-top: 3px solid #ff6b6b;
+            margin: auto;
+            margin-top: 10px
+            
         }
 
-        /* تأثيرات الخلفية */
-        .background-element {
+        input[type=radio] {
+            display: none;
+        }
+
+        .textradio {
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type=radio] + label {
+            padding: 3px 7px;
+            background: #2c3c3c;
+            color: rgb(22, 17, 17);
+            border-radius: 5px;
+            user-select: none;
+        }
+
+        input[type=radio]:checked + label {
+            background: #22ff0070;
+        }
+
+        .draggable1 {
+            width: 58px;
+            height: 54px;
             position: absolute;
-            z-index: 0;
+            top: 100px;
+            left: 305px;
+            border: 1.5px solid cyan;
+            border-radius: 13px;
+            background-color: transparent;
+            cursor: move; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 2px;
         }
 
-        .mountain {
-            position: absolute;
-            bottom: 100px;
-            width: 0;
-            height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 100px solid #2c3e50;
+        #tsw {
+            color: rgb(255, 105, 180);
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 11px;
+            margin-bottom: 5px;
         }
 
-        .tree {
-            position: absolute;
-            bottom: 100px;
-            width: 40px;
-            height: 80px;
-            background: #2c3e50;
+        .switch {
+            transform: scale(1);
+            border: 2.5px solid transparent;
+            border-radius: 16px; 
         }
 
-        .tree:before {
+        input[type="checkbox"].switch {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 51px;
+            height: 31px;
+            /* background-color: rgb(254, 252, 252); */
+            background-color: transparent;
+            position: relative;
+            outline: none;
+        }
+
+        input[type="checkbox"].switch:checked {
+            background-color: rgb(0, 255, 0);
+        }
+
+        input[type="checkbox"].switch::before {
             content: '';
             position: absolute;
-            bottom: 40px;
-            left: -30px;
-            width: 100px;
-            height: 60px;
-            background: #27ae60;
+            top: 0px;
+            left: 0px;
+            width: 27px;
+            height: 27px;
             border-radius: 50%;
+            background-color: white;
+            transition: 0.2s;
         }
+
+        input[type="checkbox"].switch:checked::before {
+            left: 20px; 
+        }
+
     </style>
-</head>
-<body>
-    <div class="stars" id="stars"></div>
-    
-    <div class="game-container">
-        <!-- شاشة البداية -->
-        <div class="screen" id="start-screen">
-            <h1 class="title">مغامرة الفارس الشجاع</h1>
-            <p class="subtitle">رحلة عبر الأراضي السحرية</p>
-            
-            <div class="instructions">
-                <h2><i class="fas fa-info-circle"></i> تعليمات اللعبة</h2>
-                <ul>
-                    <li><i class="fas fa-space-shuttle"></i> استخدم مفتاح المسافة للقفز فوق العقبات</li>
-                    <li><i class="fas fa-arrow-down"></i> استخدم السهم لأسفل للانحناء وتجنب العقبات</li>
-                    <li><i class="fas fa-coins"></i> اجمع العملات لزيادة نقاطك</li>
-                    <li><i class="fas fa-bolt"></i> اجمع المكافآت لتعزيز قدراتك</li>
-                    <li><i class="fas fa-heart"></i> تجنب العقبات للحفاظ على أرواحك</li>
-                </ul>
-            </div>
-            
-            <button class="btn" id="start-btn">
-                <i class="fas fa-play"></i> ابدأ المغامرة
-            </button>
-        </div>
-
-        <!-- شاشة اللعبة -->
-        <div class="screen" id="game-screen">
-            <div class="stats">
-                <div class="stat">
-                    <i class="fas fa-star"></i>
-                    <span id="score">0</span> :النقاط
-                </div>
-                <div class="stat">
-                    <i class="fas fa-heart"></i>
-                    <span id="lives">3</span> :الأرواح
-                </div>
-                <div class="stat">
-                    <i class="fas fa-level-up-alt"></i>
-                    <span id="level">1</span> :المستوى
-                </div>
-                <div class="stat">
-                    <i class="fas fa-bolt"></i>
-                    <span id="power">0</span> :الطاقة
-                </div>
-            </div>
-            
-            <div class="game-area">
-                <div class="ground"></div>
-                <div class="player" id="player"></div>
-                <div class="message" id="game-message"></div>
-                
-                <!-- عناصر الخلفية -->
-                <div class="mountain" style="left: 150px;"></div>
-                <div class="mountain" style="left: 300px;"></div>
-                <div class="mountain" style="left: 600px;"></div>
-                
-                <div class="tree" style="left: 200px;"></div>
-                <div class="tree" style="left: 450px;"></div>
-                <div class="tree" style="left: 750px;"></div>
-            </div>
-        </div>
-
-        <!-- شاشة النهاية -->
-        <div class="screen" id="end-screen">
-            <h1 class="title">لقد انتهت المغامرة!</h1>
-            <p class="subtitle">لقد أبليت بلاءً حسناً</p>
-            
-            <div class="score-display" id="final-score">0</div>
-            
-            <div class="achievements">
-                <div class="achievement">
-                    <i class="fas fa-trophy"></i>
-                    <span id="achievement-level">مبتدئ</span>
-                </div>
-                <div class="achievement">
-                    <i class="fas fa-coins"></i>
-                    <span id="total-coins">0</span> عملة
-                </div>
-                <div class="achievement">
-                    <i class="fas fa-clock"></i>
-                    <span id="play-time">0</span> ثانية
-                </div>
-            </div>
-            
-            <button class="btn" id="restart-btn">
-                <i class="fas fa-redo"></i> مغامرة جديدة
-            </button>
-        </div>
-    </div>
-
     <script>
-        // إنشاء النجوم في الخلفية
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 200; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.width = `${Math.random() * 4}px`;
-            star.style.height = star.style.width;
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            starsContainer.appendChild(star);
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const dragItem = document.querySelector('.draggable1');
+            let active = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
 
-        // عناصر DOM
-        const startScreen = document.getElementById('start-screen');
-        const gameScreen = document.getElementById('game-screen');
-        const endScreen = document.getElementById('end-screen');
-        const startBtn = document.getElementById('start-btn');
-        const restartBtn = document.getElementById('restart-btn');
-        const scoreElement = document.getElementById('score');
-        const livesElement = document.getElementById('lives');
-        const levelElement = document.getElementById('level');
-        const powerElement = document.getElementById('power');
-        const finalScoreElement = document.getElementById('final-score');
-        const player = document.getElementById('player');
-        const gameArea = document.querySelector('.game-area');
-        const gameMessage = document.getElementById('game-message');
-        const achievementLevel = document.getElementById('achievement-level');
-        const totalCoinsElement = document.getElementById('total-coins');
-        const playTimeElement = document.getElementById('play-time');
-
-        // متغيرات اللعبة
-        let score = 0;
-        let lives = 3;
-        let level = 1;
-        let power = 0;
-        let gameSpeed = 2;
-        let gameInterval;
-        let obstacles = [];
-        let coins = [];
-        let powerUps = [];
-        let isJumping = false;
-        let isDucking = false;
-        let totalCoins = 0;
-        let startTime = 0;
-
-        // بدء اللعبة
-        startBtn.addEventListener('click', startGame);
-        restartBtn.addEventListener('click', startGame);
-
-        function startGame() {
-            // إعادة تعيين المتغيرات
-            score = 0;
-            lives = 3;
-            level = 1;
-            power = 0;
-            gameSpeed = 2;
-            obstacles = [];
-            coins = [];
-            powerUps = [];
-            totalCoins = 0;
-            startTime = Date.now();
-            
-            // تحديث واجهة المستخدم
-            scoreElement.textContent = score;
-            livesElement.textContent = lives;
-            levelElement.textContent = level;
-            powerElement.textContent = power;
-            
-            // تغيير الشاشات
-            startScreen.style.display = 'none';
-            endScreen.style.display = 'none';
-            gameScreen.style.display = 'flex';
-            
-            // إعداد اللاعب
-            player.style.background = 'linear-gradient(to right, #48dbfb, #1aeaff)';
-            
-            // بدء حلقة اللعبة
-            if (gameInterval) clearInterval(gameInterval);
-            gameInterval = setInterval(updateGame, 20);
-            
-            // إنشاء العقبات والعملات والمكافآت
-            generateObstacles();
-            generateCoins();
-            generatePowerUps();
-            
-            // إظهار رسالة البداية
-            showMessage('ابدأ المغامرة!');
-        }
-
-        function updateGame() {
-            // تحديث موقع العقبات
-            obstacles.forEach((obstacle, index) => {
-                obstacle.style.right = parseInt(obstacle.style.right || 0) + gameSpeed + 'px';
-                
-                // إذا تجاوزت العقبة اللاعب
-                if (parseInt(obstacle.style.right) > 900) {
-                    obstacle.remove();
-                    obstacles.splice(index, 1);
-                    increaseScore(10);
+            function dragStart(e) {
+                if (e.type === "touchstart") {
+                    initialX = e.touches[0].clientX - xOffset;
+                    initialY = e.touches[0].clientY - yOffset;
+                } else {
+                    initialX = e.clientX - xOffset;
+                    initialY = e.clientY - yOffset;
                 }
-                
-                // اكتشاف التصادم
-                if (isColliding(player, obstacle)) {
-                    obstacle.remove();
-                    obstacles.splice(index, 1);
-                    decreaseLives();
+                if (e.target === dragItem) {
+                    active = true;
+                }
+            }
+
+            function dragEnd() {
+                initialX = currentX;
+                initialY = currentY;
+                active = false;
+            }
+
+            function drag(e) {
+                if (active) {
+                    e.preventDefault();
+                    if (e.type === "touchmove") {
+                        currentX = e.touches[0].clientX - initialX;
+                        currentY = e.touches[0].clientY - initialY;
+                    } else {
+                        currentX = e.clientX - initialX;
+                        currentY = e.clientY - initialY;
+                    }
+                    xOffset = currentX;
+                    yOffset = currentY;
+                    setTranslate(currentX, currentY, dragItem);
+                }
+            }
+
+            function setTranslate(xPos, yPos, el) {
+                el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+            }
+
+            dragItem.addEventListener('mousedown', dragStart, false);
+            dragItem.addEventListener('touchstart', dragStart, false);
+
+            document.addEventListener('mouseup', dragEnd, false);
+            document.addEventListener('touchend', dragEnd, false);
+
+            document.addEventListener('mousemove', drag, false);
+            document.addEventListener('touchmove', drag, false);
+            
+            const switchInput = document.getElementById('sw1');
+            switchInput.addEventListener('change', function() {
+                if (this.checked) {
+                    ActiveCodePatch("freefireth", 0x33538D0, "C0035FD6");
+                } else {
+                    DeactiveCodePatch("freefireth", 0x33538D0, "C0035FD6");
                 }
             });
-            
-            // تحديث موقع العملات
-            coins.forEach((coin, index) => {
-                coin.style.right = parseInt(coin.style.right || 0) + gameSpeed + 'px';
-                
-                // إذا تجاوزت العملة اللاعب
-                if (parseInt(coin.style.right) > 900) {
-                    coin.remove();
-                    coins.splice(index, 1);
-                }
-                
-                // اكتشاف جمع العملة
-                if (isColliding(player, coin)) {
-                    coin.remove();
-                    coins.splice(index, 1);
-                    increaseScore(50);
-                    totalCoins++;
-                    showMessage('+50 نقطة!');
-                }
-            });
-            
-            // تحديث موقع المكافآت
-            powerUps.forEach((powerUp, index) => {
-                powerUp.style.right = parseInt(powerUp.style.right || 0) + gameSpeed + 'px';
-                
-                // إذا تجاوزت المكافأة اللاعب
-                if (parseInt(powerUp.style.right) > 900) {
-                    powerUp.remove();
-                    powerUps.splice(index, 1);
-                }
-                
-                // اكتشاف جمع المكافأة
-                if (isColliding(player, powerUp)) {
-                    powerUp.remove();
-                    powerUps.splice(index, 1);
-                    increasePower();
-                    showMessage('قوة إضافية!');
-                }
-            });
-            
-            // زيادة مستوى الصعوبة
-            if (score > level * 200) {
-                level++;
-                gameSpeed += 0.5;
-                levelElement.textContent = level;
-                showMessage(`المستوى ${level}!`);
-            }
-            
-            // تحديث وقت اللعب
-            const playTime = Math.floor((Date.now() - startTime) / 1000);
-            playTimeElement.textContent = playTime;
-        }
-
-        function generateObstacles() {
-            setInterval(() => {
-                const obstacle = document.createElement('div');
-                obstacle.classList.add('obstacle');
-                obstacle.style.right = '-70px';
-                obstacle.style.bottom = '100px';
-                gameArea.appendChild(obstacle);
-                obstacles.push(obstacle);
-            }, 2000 / gameSpeed);
-        }
-
-        function generateCoins() {
-            setInterval(() => {
-                const coin = document.createElement('div');
-                coin.classList.add('coin');
-                coin.style.right = '-45px';
-                coin.style.bottom = `${Math.random() * 300 + 100}px`;
-                gameArea.appendChild(coin);
-                coins.push(coin);
-            }, 1500 / gameSpeed);
-        }
-
-        function generatePowerUps() {
-            setInterval(() => {
-                if (Math.random() > 0.7) { // 30% chance to generate power-up
-                    const powerUp = document.createElement('div');
-                    powerUp.classList.add('power-up');
-                    powerUp.style.right = '-45px';
-                    powerUp.style.bottom = `${Math.random() * 300 + 100}px`;
-                    gameArea.appendChild(powerUp);
-                    powerUps.push(powerUp);
-                }
-            }, 5000 / gameSpeed);
-        }
-
-        function isColliding(element1, element2) {
-            const rect1 = element1.getBoundingClientRect();
-            const rect2 = element2.getBoundingClientRect();
-            
-            return !(
-                rect1.right < rect2.left ||
-                rect1.left > rect2.right ||
-                rect1.bottom < rect2.top ||
-                rect1.top > rect2.bottom
-            );
-        }
-
-        function increaseScore(points) {
-            score += points;
-            scoreElement.textContent = score;
-        }
-
-        function increasePower() {
-            power += 25;
-            powerElement.textContent = power;
-            
-            if (power >= 100) {
-                // تفعيل قدرة خاصة
-                power = 0;
-                powerElement.textContent = power;
-                showMessage('قدرة خاصة مفعلة!');
-                // جعل اللاعب منيعًا للضربات لفترة
-                player.style.boxShadow = '0 0 30px #00ff00';
-                setTimeout(() => {
-                    player.style.boxShadow = '0 0 25px #48dbfb';
-                }, 3000);
-            }
-        }
-
-        function decreaseLives() {
-            lives--;
-            livesElement.textContent = lives;
-            
-            if (lives <= 0) {
-                endGame();
-            } else {
-                showMessage('انتبه للعقبات!');
-                // تأثير اهتزاز عند فقدان حياة
-                player.style.animation = 'shake 0.5s';
-                setTimeout(() => {
-                    player.style.animation = '';
-                }, 500);
-            }
-        }
-
-        function endGame() {
-            clearInterval(gameInterval);
-            gameScreen.style.display = 'none';
-            endScreen.style.display = 'flex';
-            finalScoreElement.textContent = score;
-            totalCoinsElement.textContent = totalCoins;
-            
-            // تحديد مستوى الإنجاز
-            if (score < 500) {
-                achievementLevel.textContent = 'مبتدئ';
-            } else if (score < 1000) {
-                achievementLevel.textContent = 'محترف';
-            } else if (score < 2000) {
-                achievementLevel.textContent = 'خبير';
-            } else {
-                achievementLevel.textContent = 'أسطورة';
-            }
-            
-            // إزالة جميع العقبات والعملات والمكافآت
-            obstacles.forEach(obstacle => obstacle.remove());
-            coins.forEach(coin => coin.remove());
-            powerUps.forEach(powerUp => powerUp.remove());
-        }
-
-        function showMessage(text) {
-            gameMessage.textContent = text;
-            gameMessage.style.display = 'block';
-            setTimeout(() => {
-                gameMessage.style.display = 'none';
-            }, 2000);
-        }
-
-        // التحكم في اللاعب (القفز والانحناء)
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space' && !isJumping) {
-                jump();
-            }
-            
-            if (e.code === 'ArrowDown' && !isDucking) {
-                duck();
-            }
         });
 
-        function jump() {
-            if (isJumping) return;
-            isJumping = true;
-            player.classList.add('jump');
-            
-            setTimeout(() => {
-                player.classList.remove('jump');
-                isJumping = false;
-            }, 500);
-        }
-
-        function duck() {
-            if (isDucking) return;
-            isDucking = true;
-            player.classList.add('duck');
-            
-            setTimeout(() => {
-                player.classList.remove('duck');
-                isDucking = false;
-            }, 500);
-        }
-
-        // تأثير الاهتزاز
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes shake {
-                0% { transform: translateX(0); }
-                20% { transform: translateX(-10px); }
-                40% { transform: translateX(10px); }
-                60% { transform: translateX(-10px); }
-                80% { transform: translateX(10px); }
-                100% { transform: translateX(0); }
+        function ActiveCodePatch(fpath, vaddr, bytes) {
+            if (!h5frida.ActiveCodePatch(fpath, vaddr, bytes)) {
+                var result = h5frida.ApplyCodePatch(fpath, vaddr, bytes);
+                alert(fpath + ":0x" + vaddr.toString(16) + "-PatchFailed!\n" + result);
+                return false;
             }
-        `;
-        document.head.appendChild(style);
-    </script>
+            return true;
+        }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+        function DeactiveCodePatch(fpath, vaddr, bytes) {
+            return h5frida.DeactiveCodePatch(fpath, vaddr, bytes);
+        }
+    </script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        h5gg.require(7.9); 
+        var h5frida = h5gg.loadPlugin("h5frida", "h5frida-16.0.10.dylib");
+        if (!h5frida) throw "Failed to load h5frida plugin";
+
+        document.body.onselectstart = document.body.ondrag = function() {
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <div id="menuView" class="draggable1" @touchmove="touchmove">
+        <label id="tsw">Ghost</label>
+        <input type="checkbox" class="switch" id="sw1">
+    </div>
+    <!-- 会用用，不会用垃圾吧倒 -->
+
+<html>
+<header>
+	<title>h5imgui</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.7/lib/theme-chalk/index.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js"></script>
+	<script src="https://unpkg.com/element-ui@2.15.7/lib/index.js"></script>
+
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			color:#fff;
+			font-weight: bold;
+		}
+
+		.ayimgui {
+			position: fixed;
+			width: 360px;
+			height: 320px;
+			top: calc(50% - 180px);
+			left: calc(50% - 180px);
+			z-index: 999;
+			background-color: #1C1C1C;
+			/* border-radius: 8px; */
+			overflow: hidden;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.onlyTitle {
+			height: 22px !important;
+		}
+
+		.ayimgui .aytitle {
+			padding: 0 5px;
+			font-size: 18px;
+			background-color: #000;
+			border-bottom: 2px solid rgb(200, 217, 233);
+		}
+
+		.ayimgui .aytitle .titleClose {
+			position: absolute;
+			top: 3px;
+			right: 6px;
+			color: #fff;
+		}
+
+		.ayimgui .aytitle .titleClose:hover {
+			color: #fff;
+		}
+
+		.ayimgui .aybody {
+			padding: 15px;
+			height: calc(100% - 21px - 15px - 15px);
+			/*减去标题高度，减去上线padding高度*/
+			overflow: auto;
+			font-size: 14px;
+		}
+
+
+		.aytext {
+			width: 100%;
+			margin-bottom: 10px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			color: #000;
+		}
+
+		input[type=checkbox]{
+ visibility: hidden;
+ vertical-align:middle; margin-bottom:1px;
+ cursor: pointer;
+ position: relative;
+ width: 26px;
+ height:30px;
+
+
+
+}
+input[type=checkbox]::after{
+ position: absolute;
+ top: 0;
+ margin-top:1px;
+ width: 25px; height: 25px;
+ border: 1px solid #fff;
+ border-radius: 10px;
+ background-color:#000;
+ display: inline-block;
+ visibility: visible;
+ text-align: center;
+ content: ' '
+
+
+
+}
+
+/* Sửa tất cả các màu thành màu ngẫu nhiên */
+input[type=checkbox]:checked::after {
+    content: "✓";
+    color:#fff;
+    border-color: #fff;
+    background-color: #000;
+    font-size: 20px;
+    font-weight: bold;
+   
+
+}
+
+
+
+		.onlySelect {
+			background-color: rgb(254, 254, 254);
+			border: none;
+		}
+
+		.onlySelect .el-select-dropdown__item {
+			color: #000;
+
+		}
+
+		.onlySelect .el-select-dropdown__item.hover,
+		.el-select-dropdown__item:hover:hover {
+			background-color: transparent;
+		}
+
+		.onlySelect .popper__arrow {
+			border-bottom-color: rgb(254, 254, 254) !important;
+		}
+
+		.onlySelect.el-popper[x-placement^=bottom] .popper__arrow::after {
+			border-bottom-color: rgb(8254, 254, 254) !important;
+		}
+
+		.select {
+			width: 100%;
+		}
+
+		.select .input {
+			background-color: rgb(254, 254, 254);
+		}
+
+		.select .input__suffix {
+			background-color: rgb(160, 196, 243);
+			color: #000;
+			right: 0;
+		}
+
+		.select .select__caret {
+			color: #000;
+		}
+
+		.select .input__inner {
+			background-color: transparent;
+			border: none;
+			color: #000;
+		}
+
+		.select .input .select__caret {
+			color: #000;
+		}
+
+		/* 解决ios下拉需要点两次 */
+		.el-scrollbar .el-scrollbar__bar {
+			opacity: 1 !important;
+		}
+
+
+		
+		button {
+		width:120px;
+    height: 25px;
+    background-color: #84848450;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    margin-right:15px;
+    margin-top:10px;
+    margin-left:5px;
+}
+
+button:active {
+     transform: translateY(5px);
+}
+	
+
+			
+		buttonl {
+		width:55px;
+    height: 30px;
+    background-color: #84848450;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    margin-right:15px;
+    margin-top:10px;
+    margin-left:5px;
+    font-size:10px;
+}
+
+buttonl:active {
+     transform: translateY(5px);
+}
+
+				.aycollapse {
+			width: 100%;
+			font-size: 14px;
+			background-color: rgb(177, 206, 240);
+			color: #000;
+		}
+		
+
+				.aytab {
+			width: 10%;
+			height: 20px;
+			display: flex;
+
+		}
+
+
+
+
+
+		.aytab span {
+			margin-top:10px;
+			height: 100%;
+			margin-right:10px;
+	
+
+			background-color: rgb(189, 199, 208);
+			color: #fff;
+			font-size: 14px;
+
+		}
+		
+		.el-input input {
+			background-color: rgb(254, 254, 254);
+			border: none;
+			border-radius: 0px;
+		}
+        
+
+    
+    
+    .menubox {
+            width: 130px;;
+            height: 60px;
+            line-height: 30px; /*height和line-height设置一样即可文字垂直居中*/
+            text-align:center;
+            background-color:black;
+              border-radius:10px;
+              border: 2px solid #fff;
+              margin-top:8px;
+          
+           
+            
+    }
+    .menubox.current {
+        background-color: black;
+        border: 2px solid #08e6ff;
+        border-radius:10px;
+        
+        
+        
+        
+    }
+    
+    .menuview {
+        display:none;
+             font-size:20px;
+    	border-left: 2px solid rgb(200, 217, 233);
+   
+        
+        
+    }
+    
+    
+    .menuview.current {
+        display:block;
+    overflow-x: hidden;
+        overflow-y: scroll;
+        height: 100%;
+     
+    }
+    
+    .typing-effect {
+      white-space: pre;
+      font-family: monospace;
+      color:#fff;
+    }
+    
+#colorSelect {
+  padding: 10px;
+  width:120px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #616161;
+  color: #000;
+}
+
+#colorSelect option {
+  padding: 10px;
+  background-color: #616161;
+  color: #000;
+}
+
+#colorSelect option:hover {
+  background-color: #ccc;
+}
+      #cpuInfo {
+      font-size: 17px;
+      color: #de3a8c;
+    }
+    
+  #fps {
+   font-size: 18px;
+   color:  #fc7b03;
+  }
+
+      .colorcc {
+      animation: color-change 5s infinite;
+    }
+    
+    @keyframes color-change {
+      0%, 100% {
+        color: #ff7675;
+      }
+      25% {
+        color: #74b9ff;
+      }
+      50% {
+        color: #55efc4;
+      }
+      75% {
+        color: #ffeaa7;
+      }
+      
+    #timeWrapper {
+      display: flex;
+      align-items: center;
+    }
+    #currentTime,
+    #currentSession {
+      margin-right: 10px;
+    }
+
+
+	</style>
+</header>
+
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    
+
+
+$(document).ready(function(){
+    //alert();
+    //绑定菜单点击切换子页面
+    $("div.menubox").click(function(){
+        $("div.menubox").removeClass("current");
+        $("div.menuview").removeClass("current");
+        $(this).addClass("current");
+        
+        var menuid = $(this).attr("menu");
+        $("div#"+menuid).addClass("current");
+        
+    });
+    
+
+  
+    
+
+   
+    
+    //激活webkit的button:active
+
+
+
+    
+});
+
+window.onload = function() {
+  var elements = document.getElementsByClassName('colorcc');
+  var index = 0;
+  
+  setInterval(function() {
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.color = getRandomColor();
+    }
+  }, 2000);
+
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  // Kiểm tra xem trình duyệt và thiết bị có hỗ trợ API Battery Status không
+  if ('getBattery' in navigator) {
+    navigator.getBattery().then(function (battery) {
+      updateBatteryLevel(battery.level * 100);
+      battery.addEventListener('levelchange', function () {
+        updateBatteryLevel(battery.level * 100);
+      });
+    });
+  }
+  
+  // Cập nhật thời gian hiện tại và thứ trong tuần
+  function updateCurrentTime() {
+       var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var now = new Date();
+      var hour = now.getHours();
+      var minute = now.getMinutes();
+      var second = now.getSeconds();
+      var dayOfWeek = days[now.getDay()];
+
+      var timeString = hour + ":" + (minute < 10 ? "0" + minute : minute) + ":" + (second < 10 ? "0" + second : second);
+      var colors = ['#ff0000', '#ff4000', '#ff8000', '#ffbf00', '#ffff00', '#bfff00', '#80ff00', '#40ff00', '#00ff00', '#00ff40', '#00ff80', '#00ffbf', '#00ffff', '#00bfff', '#0080ff', '#0040ff', '#0000ff', '#4000ff', '#8000ff', '#bf00ff', '#ff00ff', '#ff00bf', '#ff0080', '#ff0040', '#ff8080', '#ff944d', '#ffaa80', '#ffd480', '#fff4cc', '#ffd8d8', '#f7bdbd', '#ff6666', '#ff4d4d', '#ffcccc', '#ffb3b3', '#ff9999', '#ff3333', '#ff1a1a', '#bf3030', '#804040', '#ff9966', '#ff8533', '#cc6600', '#ffbb33', '#ffcc00', '#ffcc99', '#ffbf80', '#ffad60', '#ff944d'];
+
+      var colorIndex = second % colors.length; // Chọn màu dựa vào giây hiện tại
+
+      document.getElementById("currentTime").innerText = timeString;
+      document.getElementById("currentTime").style.color = colors[colorIndex];
+
+      document.getElementById("currentDay").innerText = dayOfWeek;
+      document.getElementById("currentDay").style.color = colors[colorIndex];
+    }
+
+  // Cập nhật thời gian hiện tại và thứ trong tuần mỗi giây
+  setInterval(updateCurrentTime, 1000);
+
+
+  var cpuCount = window.navigator.hardwareConcurrency; // Thay navigator thành window.navigator để tránh lỗi liên quan đến global Navigator interface
+  var cpuInfoElement = document.getElementById("cpuInfo");
+  cpuInfoElement.innerText =  cpuCount;
+  
+  var frameCount = 0;
+  var fps = 0;
+  var hue = 0;
+
+
+  function calculateFPS() {
+    requestAnimationFrame(function() {
+      frameCount++;
+      calculateFPS();
+    });
+  }
+
+  function updateFPS() {
+    setTimeout(function() {
+      fps = frameCount;
+      frameCount = 0;
+      document.getElementById("fps").textContent =  fps;
+      updateFPS();
+    }, 1000);
+  }
+
+  calculateFPS();
+  updateFPS();
+}
+      
+        function openLink(url) {
+            window.open(url, "_blank");
+        }
+        
+function changeMenuColor() {
+  var colorMap = {
+    dark: {
+      menuBgColor: "#1C1C1C",
+      titleBgColor: "#000000"
+    },
+    blue: {
+      menuBgColor: "#0000FF",
+      titleBgColor: "#87CEEB",
+    
+    },
+    green: {
+      menuBgColor: "#008000",
+      titleBgColor: "#90EE90"
+  },
+      
+    pink: {
+      menuBgColor: "#b52b9e",
+      titleBgColor: "#ff08d6"
+    },
+    transparent: {
+      menuBgColor: "rgba(255, 0, 0, 0.0)",
+      titleBgColor: "rgba(255, 0, 0, 0.03)"
+    },    
+
+    // Thêm các màu khác tại đây
+  };
+
+  var selectedColor = document.getElementById("colorSelect").value;
+  var menu = document.querySelector('.ayimgui');
+  var menuTitle = document.querySelector('.aytitle');
+
+  menu.style.backgroundColor = colorMap[selectedColor].menuBgColor;
+  menuTitle.style.backgroundColor = colorMap[selectedColor].titleBgColor;
+}
+
+    function runSpeedTest() {
+      var imageAddr = "https://www.google.com/images/phd/px.gif"; // Địa chỉ hình ảnh để tải xuống
+      var downloadSize = 5000000; // Kích thước ảnh để tải xuống (byte)
+
+      var download = new Image();
+      var startTime = 0;
+
+      setInterval(function() {
+        startTime = new Date().getTime();
+
+        download.onload = function() {
+          var endTime = new Date().getTime();
+          var duration = (endTime - startTime) / 1000; // tính thời gian (giây)
+          var bitsLoaded = downloadSize * 8;
+          var speedBps = (bitsLoaded / duration).toFixed(2);
+          var speedMbps = (speedBps / 1000000).toFixed(2);
+  
+          document.getElementById("speedResult").innerText = speedMbps + "Ms";
+        };
+        download.src = imageAddr + "?n=" + Math.random(); // Đảm bảo trình duyệt không lấy từ bộ nhớ cache
+      }, 1000); // Chạy kiểm tra mỗi giây
+    }
+
+    runSpeedTest();
+    
+   
+</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const texts = ['BLAKZET x SIMEONE 7owaya ', ' GA3 chlo7 w9 :) ','TFO 3la chal7', 'Mune Hack Tele @simeoneX7', 'SOLO EXCELSIOR AJMI', 'Munu Hack Tele @bl4kzet!']; // Mảng chứa các câu văn cần hiển thị
+      let i = 0;
+      let j = 0;
+      let isDeleting = false;
+
+      function typeWriter() {
+        const currentText = texts[j];
+        if(!isDeleting && i <= currentText.length) {
+          document.querySelector('.typing-effect').textContent = currentText.substring(0, i);
+          i++;
+          setTimeout(typeWriter, 140);
+          if (i > currentText.length) {
+            isDeleting = true;
+          }
+        } else if (isDeleting && i >= 0) {
+          document.querySelector('.typing-effect').textContent = currentText.substring(0, i);
+          i--;
+          setTimeout(typeWriter, 140);
+          if (i === 0) {
+            isDeleting = false;
+            j = (j + 1) % texts.length; // Chuyển sang câu tiếp theo trong mảng
+          }
+        }
+      }
+
+      typeWriter();
+    });
+ 
+    </script>
+</head>
+	<div id="app">
+		<div :class="!ifshow?'onlyTitle ayimgui':'ayimgui'" ref="menuMain">
+			<div class="aytitle" @touchstart="titleTouchStart" @touchmove="titleTouchMove">
+				<i :class="ifshow?'el-icon-caret-bottom':'el-icon-caret-top'" @click="ifshow = !ifshow"></i>
+				<span class="colorcc" style="margin-left:77px;font-size:15px;">MENU HACK BY BLAKZETxSIMEONE<img src="https://github.com/WeansHHN/weanshhn.github.io/blob/main/img/gif/gifwaifu.gif?raw=true" alt="weanshhn" width="25" height="25" /> </span>
+				<i class="titleClose el-icon el-icon-close" @click="closeimgui"></i>
+				</div>
+	
+			
+
+			  <script src="./template - Copy_files/jquery.min.js.tải xuống"></script>
+<script>
+             function magic() {
+            h5gg.clearResults();
+            h5gg.searchNumber('4333543704410193920', 'I64', '0x100000000', '0x160000000');
+            h5gg.searchNearby('0.01', 'F32', '0x8');
+            h5gg.searchNearby('0.0219~0.02975', 'F32', '0x32')
+            h5gg.searchNearby('0.1035~0.1070', 'F32', '0x4');
+            h5gg.searchNearby('2.802597e-45', 'F32', '0x4');
+            h5gg.searchNumber('0.1035~0.1070', 'F32', '0x100000000', '0x160000000');
+            h5gg.editAll('1.875', "F32");
+        }
+        
+                function so93() {
+            h5gg.clearResults();
+            h5gg.searchNumber('72340173878198272', 'I64', '0x100000000', '0x130000000');
+            h5gg.editAll('72340172821233664', 'I64');
+        }
+        
+                function so04() {
+            h5gg.clearResults();
+            h5gg.searchNumber('4575657224610966592', 'I64', '0x100000000', '0x160000000');
+            h5gg.editAll('4848125002066881600', 'I64');
+        }
+        
+        function norecoil() {
+            h5gg.clearResults();
+            h5gg.searchNumber('1016018816','I32','0x100000000', '0x200000000');
+            h5gg.editAll('6018816', 'I32'); 
+            h5gg.clearResults();
+        }
+        
+</script>
+			
+<!--用一个表格来布局左右两栏-->
+<table id="bodyView" width="100%" style="table-layout:fixed;height: calc(100% - 30px) ;">
+
+
+
+    
+<tr>
+    
+   <td width="31%" style="vertical-align:top;">
+      
+    <div>
+    <div class="menubox current"  
+ menu="menu1"style="font-size:20px;  font-weight: bold;"></p>Home</div>
+    <div class="menubox" menu="menu2"style="font-size:20px;  font-weight: bold;"></p>Music</div>
+    <div class="menubox" menu="menu3"style="font-size:20px;  font-weight: bold;"></p>Menu</div>
+    
+	      <buttonl onclick="openLink('https://www.instagram.com/blakzetxxv?igsh=bWN6Y2piajgyenVj&utm_source=qr')"style="margin-right:10px;"> Me </buttonl>
+
+	      
+    
+            
+    
+    </td>
+    </div>
+<td style="vertical-align:top" class="scrollbar">
+<div id="menu1" class="menuview current">
+ <span class="typing-effect"></span></p>
+ Key: <div class="colorcc" style="display:inline;">Admin</div><br>
+ HSD: <div class="colorcc" style="display:inline;">Permanent</div><br>
+ <div id="time">
+  <div style="color:#e60e0e;"> CurentTime: 
+    <span id="currentDay" class="coloreffect"></span> <span id="currentTime" class="coloreffect"></span></span>
+  
+  </div>
+ 
+  
+    <div style="color:#9f22e3;"> Cpu: 
+   <h id="cpuInfo"></h>
+   </div>
+  
+ <div style="color:#e33522;"> Fps Game:
+  <h id="fps"><span></span>0</h>
+  </div>
+  <div style="color:#d4de14;"> Ping: 
+  <span id="speedResult"></span> 
+  </div>
+
+  
+     <select id="colorSelect" onchange="changeMenuColor()">
+      <option value="dark">DarkMode (default)</option>
+      <option value="blue">BlueMode</option>
+            <option value="green">GreenMode</option>
+            <option value="pink">PinkMode</option>
+                <option value="transparent">Transparent</option>
+    </select>
+
+
+  <hr>
+  <div style="margin-top:5px;margin-left:5px;">
+ Version:1.105.1</div>
+</div>
+</div>
+<div id="menu2" class="menuview">
+         <div id="info-text">DOM DOM DOM PLUG</div>
+ <audio controls autoplay>
+  <source src="https://files.catbox.moe/h615ck.mp4" type="audio/mpeg">!---->
+                                    
+                                    
+                            <br>
+                            </audio>
+ <div id="info-text">LFRDA ERROR 404</div>
+ <audio controls autoplay>
+  <source src="https://files.catbox.moe/v41x0r.mp4" type="audio/mpeg">!---->
+                                    
+                                    
+                            <br>
+                            </audio>
+ <div id="info-text">L'morphine DRAGON</div>
+ <audio controls autoplay>
+  <source src="https://files.catbox.moe/qpvbpa.mp4" type="audio/mpeg">!----></span> 
+    </div>
+    
+	
+<div id="menu3" class="menuview">
+
+ 
+ 
+  <button onclick="magic()" class="checkbox-
+ button" id="button1"style="color:white;"> MAGIC BULLET</button>
+  <button onclick="so93()" class="checkbox-
+ button" id="button2"style="color:white;">ARM SWITCH</button><p>
+ 
+  <button onclick="so04()" class="checkbox-
+ button" id="button4"style="color:white;"> ANTENNA V3</button>
+    
+  <button onclick="norecoil()" class="checkbox-
+ button" id="button5"style="color:white;">NORECOIL</button>
+  <button onclick="start()" class="checkbox-
+ button" id="button6"style="color:white;">STAR SPEED</button>
+   <button onclick="avtive()" class="checkbox-
+ button" id="button7"style="color:white;">ACTIVE SPEED</button>
+</div>
+
+	
+
+</div>
+
+
+
+		</div>
+	</div>
+				
+		
+
+<script>
+		var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					ifshow: true,
+					checked: false,
+					radio: '1',
+					activeSelect: '',
+					selectOption: [{
+				
+					}],
+					input: "",
+					showOption: false,
+					tabValue: "one",
+				}
+			},
+			mounted() {
+				this.setRect(360, 320);
+
+				//设置不可拖动
+				setWindowDrag(0, 0, 0, 0);
+    
+				var layout = function()
+				{
+					//window.orientation是设备握持方向, 不是屏幕显示方向
+					if(window.lastorientation==window.orientation) return;
+					window.lastorientation=window.orientation;
+				
+					//window.screen中的宽高不会随着屏幕旋转更新(只会在初始化的时候固定)
+					if(Math.abs(window.orientation)==90) {
+						//横屏模式
+						setWindowRect(0,0,window.screen.height,window.screen.width);
+					} else {
+						//竖屏模式
+						setWindowRect(0,0,window.screen.width,window.screen.height);
+					}
+				}
+	
+				layout(); //设置旋转屏幕时自动调整布局和画布
+				window.addEventListener("orientationchange", layout, false);
+
+				setButtonAction(function () {
+					var menu = document.querySelector("#app");
+					if (menu.style.display == 'none') {
+						menu.style.display = 'block';
+						//显示菜单之后, 设置触控不可穿透悬浮窗口
+						setWindowTouch(true);
+					} else {
+						menu.style.display = 'none';
+						//隐藏菜单之后, 设置触控穿透悬浮窗口
+						setWindowTouch(false);
+					}
+				});
+			},
+
+			methods: {
+				setRect(w, h, x = -1, y = -1) {
+					var boxW = w;
+					var boxH = h;
+
+					var ayMenu = this.$refs.menuMain;
+					ayMenu.style.width = `${boxW}px`;
+					ayMenu.style.height = `${boxH}px`;
+					if (x == -1) ayMenu.style.left = `calc(50% - ${boxW / 2}px)`;
+					if (y == -1) ayMenu.style.top = `calc(50% - ${boxH / 2}px)`;
+
+	ayMenu.style.width= "470px";
+	ayMenu.style.height= "310px";
+
+    ayMenu.style.borderBottomLeftRadius = "10px";
+    ayMenu.style.borderBottomRightRadius = "10px";
+    ayMenu.style.borderTopLeftRadius = "10px";
+    ayMenu.style.borderTopRightRadius = "10px";              
+				},
+				titleTouchStart(event) {
+					this.touchStartX = parseInt(event.touches[0].clientX);
+					this.touchStartY = parseInt(event.touches[0].clientY);
+
+					var ayMenu = this.$refs.menuMain;
+					this.menuLastX = ayMenu.offsetLeft;
+					this.menuLastY = ayMenu.offsetTop;
+				},
+				titleTouchMove(event) {
+					event.preventDefault();
+					var distanceX = event.touches[0].clientX - this.touchStartX;
+					var distanceY = event.touches[0].clientY - this.touchStartY;
+
+					var ayMenu = this.$refs.menuMain;
+					ayMenu.style.left = this.menuLastX + distanceX + "px";
+					ayMenu.style.top = this.menuLastY + distanceY + "px";
+				},
+				//切换导航栏
+				changeTab(v) {
+					this.tabValue = v;
+				},
+				closeimgui() {
+               var menu = 
+document.querySelector("#app");
+        menu.style.display='none';
+        
+        //隐藏菜单之后, 设置触控穿透悬浮窗口
+        setWindowTouch(false);
+
+				}
+			}
+		});
+	</script>
+		
+
+</tr>
+
+</table>
+</body>
+
+</html>
 </body>
 </html>
