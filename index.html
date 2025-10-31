@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BLAKZET x SIMEONE Project</title>
+    <title>BLAKZET x SIMEONE - THE DARK REALM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --main-bg: linear-gradient(45deg, #000000, #0a0a0a, #000000);
-            --accent-color: #8b0000;
-            --accent-glow: 0 0 15px rgba(139, 0, 0, 0.8), 0 0 30px rgba(139, 0, 0, 0.4);
-            --card-bg: rgba(10, 10, 10, 0.7);
-            --text-color: #f1f1f1;
             --blood-color: #8b0000;
+            --dark-blood: #500000;
+            --glow-color: #ff0000;
+            --dark-bg: #0a0000;
+            --text-color: #cc0000;
+            --secondary-text: #990000;
         }
 
         * {
@@ -22,143 +22,91 @@
         }
 
         body {
-            font-family: 'Courier New', monospace;
-            background: var(--main-bg);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            font-family: 'Creepster', cursive, sans-serif;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                linear-gradient(45deg, #000000, #1a0000, #000000);
             color: var(--text-color);
             text-align: center;
             min-height: 100vh;
-            padding: 20px;
             overflow-x: hidden;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff0000" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/></svg>'), auto;
         }
 
-        @keyframes gradientBG {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* تأثير الجسيمات المتحركة */
-        .glowing-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
-            opacity: 0;
-            animation: float 8s linear infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(calc(-50vw + 100px));
-                opacity: 0;
-            }
-        }
-
-        /* تأثير الدم المتساقط */
-        .blood-drip {
+        /* تأثيرات الدم الثابتة */
+        .blood-stain {
             position: fixed;
-            top: -50px;
-            width: 3px;
-            height: 50px;
-            background: var(--blood-color);
-            opacity: 0.7;
-            box-shadow: 0 0 10px var(--blood-color);
-            animation: drip 10s linear infinite;
-            z-index: 0;
+            background: radial-gradient(ellipse, rgba(139, 0, 0, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(2px);
         }
 
-        @keyframes drip {
-            0% {
-                top: -50px;
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            95% {
-                opacity: 0.7;
-            }
-            100% {
-                top: 100vh;
-                opacity: 0;
-            }
+        .crack {
+            position: fixed;
+            background: linear-gradient(45deg, transparent, rgba(139, 0, 0, 0.3), transparent);
+            z-index: -1;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            padding: 20px;
         }
 
         .header {
-            padding: 30px 10px 20px;
+            padding: 30px 10px;
             position: relative;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
         }
 
-        .header::after {
+        .header::before {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 Q50,5 80,20 T80,80 Q50,95 20,80 T20,20" fill="none" stroke="%238b0000" stroke-width="2"/></svg>') center/contain no-repeat;
+            opacity: 0.3;
+            z-index: -1;
         }
 
         .header h1 {
-            font-size: 2.8rem;
-            font-weight: bold;
-            color: var(--text-color);
-            text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+            font-size: 4rem;
+            font-weight: normal;
+            color: #ff0000;
             margin-bottom: 10px;
-            letter-spacing: 3px;
-            font-family: 'Arial Black', sans-serif;
-            position: relative;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
         }
 
         .header h2 {
-            font-size: 1.2rem;
-            color: #ff4d4d;
-            text-shadow: 0 0 8px var(--accent-color);
-            margin-top: 0;
-            font-weight: normal;
-            letter-spacing: 1px;
+            font-size: 1.5rem;
+            color: #cc0000;
+            text-shadow: 0 0 5px #ff0000;
+            font-style: italic;
         }
 
         .logo {
-            width: 130px;
-            height: 130px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            margin: 0 auto 20px;
-            border: 3px solid var(--accent-color);
-            box-shadow: var(--accent-glow);
+            margin: 0 auto 30px;
+            border: 3px solid var(--blood-color);
+            box-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
             padding: 5px;
             overflow: hidden;
-            animation: pulse 3s infinite;
             position: relative;
-            background: #000;
+            filter: hue-rotate(300deg) contrast(150%) brightness(70%) grayscale(30%);
         }
 
         .logo::before {
@@ -169,21 +117,9 @@
             right: -10px;
             bottom: -10px;
             border-radius: 50%;
-            background: radial-gradient(circle, transparent 30%, var(--accent-color) 150%);
-            opacity: 0.5;
+            background: conic-gradient(from 0deg, #ff0000, #8b0000, #500000, #8b0000, #ff0000);
             z-index: -1;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 10px var(--accent-color);
-            }
-            50% {
-                box-shadow: 0 0 30px var(--accent-color);
-            }
-            100% {
-                box-shadow: 0 0 10px var(--accent-color);
-            }
+            opacity: 0.7;
         }
 
         .logo img {
@@ -191,19 +127,22 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            filter: grayscale(30%) contrast(120%);
+            filter: sepia(100%) hue-rotate(300deg) contrast(150%) brightness(70%) grayscale(20%);
         }
 
         .section {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 25px;
+            background: 
+                radial-gradient(circle at top left, rgba(139, 0, 0, 0.2), transparent 50%),
+                radial-gradient(circle at bottom right, rgba(255, 0, 0, 0.2), transparent 50%),
+                linear-gradient(135deg, rgba(10, 0, 0, 0.9), rgba(30, 0, 0, 0.9));
+            border-radius: 15px;
+            padding: 30px;
             margin: 30px auto;
-            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(139, 0, 0, 0.3);
-            max-width: 500px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 
+                0 0 20px rgba(255, 0, 0, 0.5),
+                inset 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--blood-color);
+            max-width: 600px;
             position: relative;
             overflow: hidden;
         }
@@ -213,24 +152,39 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-            animation: scanline 3s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% {
-                top: 0;
-            }
-            100% {
-                top: 100%;
-            }
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--blood-color), var(--glow-color), var(--blood-color), transparent);
+            box-shadow: 0 0 10px var(--glow-color);
         }
 
         .section:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 0 30px rgba(139, 0, 0, 0.6);
+            box-shadow: 
+                0 0 30px rgba(255, 0, 0, 0.7),
+                inset 0 0 30px rgba(255, 0, 0, 0.2);
+        }
+
+        .section-title {
+            color: var(--glow-color);
+            margin-bottom: 25px;
+            font-size: 2rem;
+            text-shadow: 0 0 10px var(--glow-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blood-color), var(--glow-color), var(--blood-color), transparent);
+            box-shadow: 0 0 10px var(--glow-color);
         }
 
         .app-button, .site-button, .next-button {
@@ -238,49 +192,45 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            background-color: rgba(15, 15, 15, 0.9);
-            border: 1px solid var(--accent-color);
-            border-radius: 6px;
-            padding: 14px 20px;
-            margin: 15px auto;
+            background: 
+                linear-gradient(135deg, rgba(50, 0, 0, 0.8), rgba(30, 0, 0, 0.9));
+            border: 2px solid var(--blood-color);
+            border-radius: 10px;
+            padding: 18px 25px;
+            margin: 20px auto;
             text-decoration: none;
-            color: var(--text-color);
-            width: 90%;
-            transition: all 0.3s;
+            color: #ffcccc;
+            width: 95%;
             position: relative;
             overflow: hidden;
             cursor: pointer;
             font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        .app-button::before, .site-button::before, .next-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(139, 0, 0, 0.3), transparent);
-            transition: 0.5s;
-        }
-
-        .app-button:hover::before, .site-button:hover::before, .next-button:hover::before {
-            left: 100%;
+            text-shadow: 0 0 5px #000;
+            box-shadow: 
+                0 4px 0 var(--dark-blood),
+                0 0 10px rgba(255, 0, 0, 0.5),
+                inset 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
         }
 
         .app-button:hover, .site-button:hover, .next-button:hover {
-            background-color: var(--accent-color);
-            color: #000;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px var(--accent-color);
-            letter-spacing: 2px;
+            background: 
+                linear-gradient(135deg, rgba(139, 0, 0, 0.8), rgba(80, 0, 0, 0.9));
+            color: #ffffff;
+            box-shadow: 
+                0 2px 0 var(--dark-blood),
+                0 0 20px var(--glow-color),
+                inset 0 0 20px rgba(255, 0, 0, 0.3);
+            border-color: #ff0000;
+            transform: translateY(2px);
         }
 
         .button-icon {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 3px #ff0000);
         }
 
         .hidden {
@@ -290,47 +240,55 @@
         .footer {
             margin: 40px 0 20px;
             font-weight: bold;
-            color: var(--accent-color);
-            text-shadow: 0 0 10px var(--accent-color);
-            padding: 15px;
-            border-top: 1px solid rgba(139, 0, 0, 0.3);
+            color: var(--blood-color);
+            text-shadow: 0 0 10px var(--glow-color);
+            padding: 20px;
+            border-top: 2px solid rgba(139, 0, 0, 0.5);
             position: relative;
-            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blood-color), var(--glow-color), var(--blood-color), transparent);
+            box-shadow: 0 0 10px var(--glow-color);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 25px;
+            margin-top: 25px;
         }
 
         .social-icon {
-            color: var(--text-color);
-            font-size: 1.5rem;
-            transition: 0.3s;
+            color: #ffcccc;
+            font-size: 2rem;
+            position: relative;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid rgba(139, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+            text-shadow: 0 0 5px #000;
+            transition: all 0.2s ease;
         }
 
         .social-icon:hover {
-            color: var(--accent-color);
-            transform: translateY(-3px) scale(1.2);
-            text-shadow: 0 0 10px var(--accent-color);
-        }
-
-        @media (max-width: 600px) {
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            .header h2 {
-                font-size: 1rem;
-            }
-            .section {
-                padding: 20px 15px;
-            }
-            .app-button, .site-button, .next-button {
-                padding: 12px 15px;
-                font-size: 0.85rem;
-            }
+            color: #ffffff;
+            background: rgba(255, 0, 0, 0.3);
+            border-color: var(--glow-color);
+            box-shadow: 0 0 20px var(--glow-color);
         }
 
         /* ===== Modal Password ===== */
@@ -341,460 +299,742 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0, 0, 0, 0.95);
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            font-family: 'Courier New', monospace;
+            font-family: 'Creepster', cursive;
         }
 
         .modal-content {
-            background: #0a0a0a;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 0 30px var(--accent-color);
-            padding: 30px;
-            border-radius: 8px;
+            background: 
+                radial-gradient(circle at top left, rgba(139, 0, 0, 0.3), transparent 50%),
+                radial-gradient(circle at bottom right, rgba(255, 0, 0, 0.3), transparent 50%),
+                linear-gradient(135deg, rgba(10, 0, 0, 0.95), rgba(30, 0, 0, 0.95));
+            border: 3px solid var(--blood-color);
+            box-shadow: 
+                0 0 30px var(--glow-color),
+                inset 0 0 30px rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
             text-align: center;
-            color: white;
-            width: 320px;
+            color: #ffcccc;
+            width: 400px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .modal-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, transparent 30%, #1a0000 100%);
-            pointer-events: none;
+            text-shadow: 0 0 5px #000;
         }
 
         .modal-header {
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            font-size: 22px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--accent-color);
+            color: var(--glow-color);
+            margin-bottom: 30px;
+            font-size: 26px;
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--glow-color);
+            position: relative;
+            padding-bottom: 15px;
             text-transform: uppercase;
+        }
+
+        .modal-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 20%;
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blood-color), var(--glow-color), var(--blood-color), transparent);
+            box-shadow: 0 0 10px var(--glow-color);
         }
 
         .modal-input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid var(--accent-color);
-            border-radius: 4px;
+            padding: 16px;
+            margin-bottom: 25px;
+            border: 2px solid var(--blood-color);
+            border-radius: 10px;
             background: rgba(0, 0, 0, 0.7);
-            color: white;
+            color: #ffcccc;
             text-align: center;
-            font-size: 16px;
+            font-size: 18px;
             outline: none;
-            letter-spacing: 2px;
-            font-family: 'Courier New', monospace;
+            font-family: 'Creepster', cursive;
+            text-shadow: 0 0 5px #000;
+            box-shadow: 
+                0 0 10px rgba(255, 0, 0, 0.3),
+                inset 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         .modal-input:focus {
-            box-shadow: 0 0 10px var(--accent-color);
-            background: rgba(20, 0, 0, 0.7);
+            box-shadow: 
+                0 0 20px var(--glow-color),
+                inset 0 0 20px rgba(0, 0, 0, 0.7);
+            border-color: var(--glow-color);
+            background: rgba(0, 0, 0, 0.8);
         }
 
         .modal-button {
-            padding: 12px 20px;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 4px;
+            padding: 16px 30px;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.8), rgba(80, 0, 0, 0.9));
+            color: #ffcccc;
+            border: 2px solid var(--blood-color);
+            border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
             width: 100%;
+            font-size: 18px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 5px #000;
+            box-shadow: 
+                0 4px 0 var(--dark-blood),
+                0 0 10px rgba(255, 0, 0, 0.5),
+                inset 0 0 10px rgba(0, 0, 0, 0.5);
+            font-family: 'Creepster', cursive;
+            transition: all 0.2s ease;
         }
 
         .modal-button:hover {
-            background: #600;
-            box-shadow: 0 0 15px var(--accent-color);
-            letter-spacing: 2px;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.8), rgba(139, 0, 0, 0.9));
+            box-shadow: 
+                0 2px 0 var(--dark-blood),
+                0 0 20px var(--glow-color),
+                inset 0 0 20px rgba(255, 0, 0, 0.3);
+            transform: translateY(2px);
+            border-color: var(--glow-color);
         }
 
         .error-message {
             color: #ff6b6b;
-            margin-top: 10px;
-            font-size: 14px;
+            margin-top: 20px;
+            font-size: 16px;
             display: none;
-            text-shadow: 0 0 5px #ff0000;
+            text-shadow: 0 0 5px #000, 0 0 10px #ff0000;
         }
 
         .close-modal {
             position: absolute;
-            top: 10px;
-            right: 15px;
-            color: white;
-            font-size: 24px;
+            top: 20px;
+            right: 25px;
+            color: #ffcccc;
+            font-size: 28px;
             cursor: pointer;
-            transition: 0.3s;
-            z-index: 10;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(139, 0, 0, 0.3);
+            text-shadow: 0 0 5px #000;
+            transition: all 0.2s ease;
         }
 
         .close-modal:hover {
-            color: var(--accent-color);
-            text-shadow: 0 0 10px var(--accent-color);
-            transform: scale(1.2);
+            color: var(--glow-color);
+            background: rgba(255, 0, 0, 0.3);
+            box-shadow: 0 0 10px var(--glow-color);
         }
 
-        /* تأثيرات النص المخيفة */
-        .creepy-text {
-            font-family: 'Arial Black', sans-serif;
-            text-transform: uppercase;
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid var(--blood-color);
+            border-radius: 10px;
+            padding: 12px 25px;
+            margin-top: 25px;
+            color: #ffcccc;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 0 0 5px #000;
+            box-shadow: 
+                0 4px 0 var(--dark-blood),
+                0 0 10px rgba(255, 0, 0, 0.3);
+            font-family: 'Creepster', cursive;
+            transition: all 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 0, 0, 0.3);
+            box-shadow: 
+                0 2px 0 var(--dark-blood),
+                0 0 15px var(--glow-color);
+            border-color: var(--glow-color);
+            transform: translateX(-5px) translateY(2px);
+        }
+
+        .password-hint {
+            font-size: 14px;
+            color: var(--secondary-text);
+            margin-top: 15px;
+            font-style: italic;
+            text-shadow: 0 0 5px #000;
+        }
+
+        /* تأثيرات الرعب الثابتة */
+        .scary-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .skull-decoration {
+            position: fixed;
+            font-size: 3rem;
+            color: rgba(139, 0, 0, 0.1);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* الأنماط الجديدة للزر الجديد */
+        .custom-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: 
+                linear-gradient(135deg, rgba(50, 0, 0, 0.8), rgba(30, 0, 0, 0.9));
+            border: 2px solid var(--blood-color);
+            border-radius: 10px;
+            padding: 18px 25px;
+            margin: 20px auto;
+            text-decoration: none;
+            color: #ffcccc;
+            width: 95%;
             position: relative;
-            display: inline-block;
+            overflow: hidden;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px #000;
+            box-shadow: 
+                0 4px 0 var(--dark-blood),
+                0 0 10px rgba(255, 0, 0, 0.5),
+                inset 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
         }
 
-        /* تأثير الوهج للنصوص */
-        .glow {
-            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+        .custom-button:hover {
+            background: 
+                linear-gradient(135deg, rgba(139, 0, 0, 0.8), rgba(80, 0, 0, 0.9));
+            color: #ffffff;
+            box-shadow: 
+                0 2px 0 var(--dark-blood),
+                0 0 20px var(--glow-color),
+                inset 0 0 20px rgba(255, 0, 0, 0.3);
+            border-color: #ff0000;
+            transform: translateY(2px);
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 2px solid var(--blood-color);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffcccc;
+            text-align: center;
+            font-size: 16px;
+            outline: none;
+            font-family: 'Creepster', cursive;
+            text-shadow: 0 0 5px #000;
+            box-shadow: 
+                0 0 8px rgba(255, 0, 0, 0.3),
+                inset 0 0 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .input-field:focus {
+            box-shadow: 
+                0 0 15px var(--glow-color),
+                inset 0 0 15px rgba(0, 0, 0, 0.7);
+            border-color: var(--glow-color);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+            .header h2 {
+                font-size: 1.2rem;
+            }
+            .section {
+                padding: 25px 20px;
+                margin: 25px auto;
+            }
+            .app-button, .site-button, .next-button, .custom-button {
+                padding: 16px 20px;
+                font-size: 1rem;
+            }
+            .logo {
+                width: 130px;
+                height: 130px;
+            }
+            .modal-content {
+                width: 90%;
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .header h2 {
+                font-size: 1rem;
+            }
+            .section {
+                padding: 20px 15px;
+            }
+            .app-button, .site-button, .next-button, .custom-button {
+                padding: 14px 18px;
+                font-size: 0.9rem;
+            }
+            .logo {
+                width: 110px;
+                height: 110px;
+            }
+            .social-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.6rem;
+            }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- الجسيمات المتحركة في الخلفية -->
-    <div id="particles"></div>
+    <!-- تأثيرات الدم الثابتة -->
+    <div id="bloodStains"></div>
     
-    <!-- تأثيرات الدم المتساقط -->
-    <div id="blood-drips"></div>
+    <!-- تشققات مرعبة -->
+    <div id="cracks"></div>
+    
+    <!-- جماجم زخرفية -->
+    <div id="skulls"></div>
+    
+    <!-- طبقة رعب شفافة -->
+    <div class="scary-overlay"></div>
 
     <div class="container">
         <div class="header">
             <div class="logo">
                 <img src="https://www2.0zz0.com/2025/07/27/06/186435785.jpeg" alt="BLAKZET x SIMEONE">
             </div>
-            <h1 class="creepy-text glow">BKZxSMN 🥷🏼🇲🇦</h1>
-            <h2>simeone mcha yn3as o blakzet fa9</h2>
+            <h1>BKZ x SMN</h1>
+            <h2>GA3 chlo7 w9</h2>
         </div>
 
         <!-- الصفحة الأولى -->
         <div class="section" id="page1">
+            <h3 class="section-title">SUPPORT  </h3>
             <a href="https://wa.me/+212600119471" class="app-button" target="_blank">
-                <i class="fab fa-whatsapp button-icon"></i> WhatsApp
+                <i class="fab fa-whatsapp button-icon"></i> WHATSAPP
             </a>
             <a href="https://t.me/blakzetxx" class="app-button" target="_blank">
-                <i class="fab fa-telegram button-icon"></i> Telegram
+                <i class="fab fa-telegram button-icon"></i> TELEGRAME
             </a>
             <a href="https://instagram.com/blakzetxxv" class="app-button" target="_blank">
-                <i class="fab fa-instagram button-icon"></i> Instagram
+                <i class="fab fa-instagram button-icon"></i> INSTAGRAME
             </a>
+            
+            <h3 class="section-title" style="margin-top: 40px;">XETRS </h3>
             <button class="next-button" onclick="showIosPasswordModal()">
-                <i class="fa-brands fa-apple"></i> GET XIT IOS
+                <i class="fa-brands fa-apple"></i> IOS XIT
             </button>
-            <!-- الزر الجديد المضاف -->
             <button class="next-button" onclick="showAndroidPasswordModal()">
-                <i class="fa-brands fa-android"></i> GET XIT ANDROID
+                <i class="fa-brands fa-android"></i> ANDROID XIT
             </button>
-            <!-- الزرين الجديدين -->
             <button class="next-button" onclick="showPcPasswordModal()">
-                <i class="fa-solid fa-download"></i> DOWNLOAD E-SIGN
+                <i class="fa-solid fa-download"></i> ISEGN 
             </button>
             <button class="next-button" onclick="showSupportPasswordModal()">
-                <i class="fa-solid fa-app-store"></i>  CRACK APPS
+                <i class="fa-solid fa-app-store"></i> THINGS
             </button>
         </div>
 
         <!-- الصفحة الثانية -->
         <div class="section hidden" id="page2">
-            <h3 style="color: var(--accent-color); margin-bottom: 20px; text-shadow: var(--accent-glow);">IOS XIT FREE</h3>
-            <a href="https://www.mediafire.com/file/yqa14ft4jms66b7/MAGIC_BULLET_PANEL_COUNTER.html/file" class="site-button"><i class="fas fa-magic button-icon"></i> MAGIC BULLET SAFE (h5gg)</a>
-            <a href="https://www.mediafire.com/file/4v57a6hj9irpbqx/ANTENNA_SAFE_HEAD.html/file" class="site-button"><i class="fas fa-satellite button-icon"></i> ANTENNA SAFE (h5gg)</a>
-            <a href="https://www.mediafire.com/file/yxgj29mdbezlc0f/SAFE_AIM_RECOIL_COMBO.html/file" class="site-button"><i class="fas fa-fist-raised button-icon"></i>AIM DRAGE X NORECOIL SAFE (h5gg)</a>
-            <a href="https://www.mediafire.com/file/7i8j1yn4tkc1ev3/OBB+.zip/file" class="site-button"><i class="fas fa-crosshairs button-icon"></i> OBB SAFE (filza)</a>
-            <a href="https://www.mediafire.com/file/h20xs6dhl76l84g/Aim+drage.zip/file" class="site-button"><i class="fa-duotone fa-solid fa-crosshairs"></i> AIM DRAGE SAFE (filza)</a>
-            <a href="https://www.mediafire.com/file/kfrklexwbze9opo/3d.zip/file" class="site-button"><i class="fa-solid fa-vr-cardboard"></i> 3D  SAFE (filza)</a>
-            <a href="https://www.mediafire.com/file/yynigbc9doavluq/Magec.zip/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles"></i> MAGEC  SAFE (filza)</a>
-            <a href="https://www.mediafire.com/file/fmi83tk1d3v4f41/Free+Fire_1.114.1_iPhone+Distribution-+EEO+Education+Ltd._1756001977@com.dts.freefireth.ipa/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles"></i> IPA ALL HACK  SAFE (esign)</a>
-            <a href="https://www.mediafire.com/file/rxfv5la1e0ze75i/AIM+DRAG+BKZ.imazingapp/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles"></i>AIM DRAGE  SAFE (imazing)</a>
-           <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85938" class="site-button"><i class="fa-solid fa-file-lines"></i>PANEL FREE FIRE  SAFE (DIRECT)</a>
+            <h3 class="section-title">IOS </h3>
+            <a href="https://www.mediafire.com/file/yqa14ft4jms66b7/MAGIC_BULLET_PANEL_COUNTER.html/file" class="site-button"><i class="fas fa-magic button-icon"></i> MAGIC BULLET (h5gg)</a>
+            <a href="https://www.mediafire.com/file/4v57a6hj9irpbqx/ANTENNA_SAFE_HEAD.html/file" class="site-button"><i class="fas fa-satellite button-icon"></i> ANTENNA (h5gg)</a>
+            <a href="https://www.mediafire.com/file/yxgj29mdbezlc0f/SAFE_AIM_RECOIL_COMBO.html/file" class="site-button"><i class="fas fa-fist-raised button-icon"></i>AIM DRAGE X NORECOIL (h5gg)</a>
+            <a href="https://www.mediafire.com/file/7i8j1yn4tkc1ev3/OBB+.zip/file" class="site-button"><i class="fas fa-crosshairs button-icon"></i> OBB  (filza)</a>
+            <a href="https://www.mediafire.com/file/h20xs6dhl76l84g/Aim+drage.zip/file" class="site-button"><i class="fa-duotone fa-solid fa-crosshairs"></i> AIM DRAGE (filza)</a>
+            <a href="https://www.mediafire.com/file/kfrklexwbze9opo/3d.zip/file" class="site-button"><i class="fa-solid fa-vr-cardboard"></i> 3D VISION (filza)</a>
+            <a href="https://www.mediafire.com/file/yynigbc9doavluq/Magec.zip/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles"></i> MAGEC  (filza)</a>
+            <a href="https://www.mediafire.com/file/fmi83tk1d3v4f41/Free+Fire_1.114.1_iPhone+Distribution-+EEO+Education+Ltd._1756001977@com.dts.freefireth.ipa/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles"></i> ALL SECRETS (esign)</a>
+            <a href="https://www.mediafire.com/file/rxfv5la1e0ze75i/AIM+DRAG+BKZ.imazingapp/file" class="site-button"><i class="fa-solid fa-wand-magic-sparkles"></i>AIM DRAGE (imazing)</a>
+            
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> RETURN TO DARKNESS
+            </button>
         </div>
 
         <!-- الصفحة الثالثة للأندرويد -->
         <div class="section hidden" id="page3">
-            <h3 style="color: var(--accent-color); margin-bottom: 20px; text-shadow: var(--accent-glow);">ANDROID XIT FREE</h3>
-            <a href="https://www.mediafire.com/file/ov83jxh7r4dv4v1/3D_ANDROID_.zip/file" class="site-button"><i class="fas fa-bolt button-icon"></i>3D SAFE (ZR)</a>
+            <h3 class="section-title">ANDROID TERRORS</h3>
+            <a href="https://www.mediafire.com/file/ov83jxh7r4dv4v1/3D_ANDROID_.zip/file" class="site-button"><i class="fas fa-bolt button-icon"></i>3D VISION (ZR)</a>
+            
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> RETURN TO DARKNESS
+            </button>
         </div>
 
         <!-- الصفحة الرابعة لأدوات الكمبيوتر -->
         <div class="section hidden" id="page4">
-            <h3 style="color: var(--accent-color); margin-bottom: 20px; text-shadow: var(--accent-glow);"> Download esign</h3>
-            <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85841" class="site-button"><i class="fa-solid fa-file-signature"></i> E-sign</a>
-            <a href="https://www.mediafire.com/file/817gxh3pl4tc6it/Certificate.zip/file" class="site-button"><i class="fa-solid fa-file"></i> Download Certificate</a>
+            <h3 class="section-title">ESIGN</h3>
+            <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85841" class="site-button"><i class="fa-solid fa-file-signature"></i> E-SIGN TOOL</a>
+            <a href="https://www.mediafire.com/file/817gxh3pl4tc6it/Certificate.zip/file" class="site-button"><i class="fa-solid fa-file"></i>  CERTIFICATE</a>
+            
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> RETURN TO DARKNESS
+            </button>
         </div>
 
         <!-- الصفحة الخامسة للدعم والإرشادات -->
         <div class="section hidden" id="page5">
-            <h3 style="color: var(--accent-color); margin-bottom: 20px; text-shadow: var(--accent-glow);">CRACK APPS</h3>
-            <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85842" class="site-button"><i class=" fa-brands fa-spotify"></i> Spotify</a>
+            <h3 class="section-title">THÎNGS</h3>
+            <!-- الزر الجديد -->
+            <button class="custom-button" onclick="showCustomModal()">
+                <i class="fa-solid fa-skull"></i> DONCES
+            </button>
+            
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> RETURN TO DARKNESS
+            </button>
         </div>
 
         <div class="footer">
-            By BLAKZET x SIMEONE | <span id="current-year">2023</span>
+            BY BLAKZET x SIMEONE | <span id="current-year">2023</span>
+            
+            <div class="social-links">
+                <a href="https://wa.me/+212600119471" class="social-icon" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://t.me/blakzetxx" class="social-icon" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://instagram.com/blakzetxxv" class="social-icon" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
         </div>
     </div>
 
-    <!-- نافذة كلمة السر لـ iOS -->
+    <!-- نوافذ كلمات المرور -->
     <div id="iosPasswordModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeIosPasswordModal()">&times;</span>
-            <h2 class="modal-header">ENTER PASSWORD FOR iOS</h2>
-            <input type="password" id="iosPasswordInput" class="modal-input" placeholder="iOS Password" onkeypress="handleIosKeyPress(event)">
-            <button class="modal-button" onclick="checkIosPassword()">SUBMIT</button>
+            <h2 class="modal-header">IOS PASSWORD</h2>
+            <input type="password" id="iosPasswordInput" class="modal-input" placeholder="PASSWORD..." onkeypress="handleIosKeyPress(event)">
+            <button class="modal-button" onclick="checkIosPassword()">ENTER</button>
             <p id="iosErrorMessage" class="error-message">
-                ❌ كلمة السر غير صحيحة!
+                ❌ TFO 3la chal7 dzb
             </p>
+            <p class="password-hint">GA3 chlo7 w9</p>
         </div>
     </div>
 
-    <!-- نافذة كلمة السر لـ Android -->
     <div id="androidPasswordModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeAndroidPasswordModal()">&times;</span>
-            <h2 class="modal-header">ENTER PASSWORD FOR ANDROID</h2>
-            <input type="password" id="androidPasswordInput" class="modal-input" placeholder="Android Password" onkeypress="handleAndroidKeyPress(event)">
-            <button class="modal-button" onclick="checkAndroidPassword()">SUBMIT</button>
+            <h2 class="modal-header">ANDROID PASSWORD</h2>
+            <input type="password" id="androidPasswordInput" class="modal-input" placeholder="PASSWORD..." onkeypress="handleAndroidKeyPress(event)">
+            <button class="modal-button" onclick="checkAndroidPassword()">ENTER</button>
             <p id="androidErrorMessage" class="error-message">
-                ❌ كلمة السر غير صحيحة!
+                ❌ TFO 3la chal7 dzb
             </p>
+            <p class="password-hint">GA3 chlo7 w9</p>
         </div>
     </div>
 
-    <!-- نافذة كلمة السر لأدوات الكمبيوتر -->
     <div id="pcPasswordModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closePcPasswordModal()">&times;</span>
-            <h2 class="modal-header">ENTER PASSWORD FOR ESINGN</h2>
-            <input type="password" id="pcPasswordInput" class="modal-input" placeholder="PC Tools Password" onkeypress="handlePcKeyPress(event)">
-            <button class="modal-button" onclick="checkPcPassword()">SUBMIT</button>
+            <h2 class="modal-header">ESIGN PASSWORD</h2>
+            <input type="password" id="pcPasswordInput" class="modal-input" placeholder="PASSWORD..." onkeypress="handlePcKeyPress(event)">
+            <button class="modal-button" onclick="checkPcPassword()">ENTER</button>
             <p id="pcErrorMessage" class="error-message">
-                ❌ كلمة السر غير صحيحة!
+                ❌ TFO 3la chal7 dzb
             </p>
+            <p class="password-hint">GA3 chlo7 w9</p>
         </div>
     </div>
 
-    <!-- نافذة كلمة السر للدعم -->
     <div id="supportPasswordModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeSupportPasswordModal()">&times;</span>
-            <h2 class="modal-header">ENTER PASSWORD FOR Crack apps</h2>
-            <input type="password" id="supportPasswordInput" class="modal-input" placeholder="Support Password" onkeypress="handleSupportKeyPress(event)">
-            <button class="modal-button" onclick="checkSupportPassword()">SUBMIT</button>
+            <h2 class="modal-header">THINGS PASSWORD</h2>
+            <input type="password" id="supportPasswordInput" class="modal-input" placeholder="PASSWORD..." onkeypress="handleSupportKeyPress(event)">
+            <button class="modal-button" onclick="checkSupportPassword()">ENTERE</button>
             <p id="supportErrorMessage" class="error-message">
-                ❌ كلمة السر غير صحيحة!
+                ❌ TFO 3la chal7 dzb
             </p>
+            <p class="password-hint">GA3 chlo7 w9</p>
+        </div>
+    </div>
+
+    <!-- النافذة الجديدة للزر الجديد -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCustomModal()">&times;</span>
+            <h2 class="modal-header">DANCES</h2>
+            
+            <div class="input-group">
+                <input type="text" id="option1" class="input-field" placeholder=" Player ID">
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="option2" class="input-field" placeholder=" Code Dance">
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="option3" class="input-field" placeholder=" Code Dance">
+            </div>
+            
+            <button class="modal-button" onclick="submitCustomRequest()">
+                <i class="fa-solid fa-skull"></i> CONFIRM REQUEST
+            </button>
         </div>
     </div>
 
     <script>
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 40;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('glowing-particle');
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.top = Math.random() * 100 + 'vh';
-                const size = Math.random() * 4 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particlesContainer.appendChild(particle);
+        // تحديث السنة الحالية
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // إنشاء تأثيرات الدم الثابتة
+        function createBloodStains() {
+            const container = document.getElementById('bloodStains');
+            for (let i = 0; i < 15; i++) {
+                const stain = document.createElement('div');
+                stain.className = 'blood-stain';
+                stain.style.width = Math.random() * 200 + 50 + 'px';
+                stain.style.height = Math.random() * 200 + 50 + 'px';
+                stain.style.left = Math.random() * 100 + 'vw';
+                stain.style.top = Math.random() * 100 + 'vh';
+                stain.style.opacity = Math.random() * 0.3 + 0.1;
+                container.appendChild(stain);
             }
         }
 
-        function createBloodDrips() {
-            const dripsContainer = document.getElementById('blood-drips');
-            const dripCount = 10;
-            for (let i = 0; i < dripCount; i++) {
-                const drip = document.createElement('div');
-                drip.classList.add('blood-drip');
-                drip.style.left = Math.random() * 100 + 'vw';
-                drip.style.animationDelay = Math.random() * 15 + 's';
-                drip.style.animationDuration = (Math.random() * 10 + 5) + 's';
-                dripsContainer.appendChild(drip);
+        // إنشاء تشققات مرعبة
+        function createCracks() {
+            const container = document.getElementById('cracks');
+            for (let i = 0; i < 8; i++) {
+                const crack = document.createElement('div');
+                crack.className = 'crack';
+                crack.style.width = Math.random() * 300 + 100 + 'px';
+                crack.style.height = Math.random() * 10 + 2 + 'px';
+                crack.style.left = Math.random() * 100 + 'vw';
+                crack.style.top = Math.random() * 100 + 'vh';
+                crack.style.transform = `rotate(${Math.random() * 360}deg)`;
+                crack.style.opacity = Math.random() * 0.2 + 0.1;
+                container.appendChild(crack);
             }
         }
 
-        // وظائف خاصة بـ iOS
+        // إنشاء جماجم زخرفية
+        function createSkulls() {
+            const container = document.getElementById('skulls');
+            const skulls = ['💀', '☠️', '👁️', '🕷️'];
+            for (let i = 0; i < 12; i++) {
+                const skull = document.createElement('div');
+                skull.className = 'skull-decoration';
+                skull.textContent = skulls[Math.floor(Math.random() * skulls.length)];
+                skull.style.left = Math.random() * 100 + 'vw';
+                skull.style.top = Math.random() * 100 + 'vh';
+                skull.style.transform = `rotate(${Math.random() * 360}deg) scale(${Math.random() * 0.5 + 0.5})`;
+                skull.style.opacity = Math.random() * 0.1 + 0.05;
+                container.appendChild(skull);
+            }
+        }
+
+        // التنقل بين الصفحات
+        function showPage(pageId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        function goBack() {
+            showPage('page1');
+        }
+
+        // وظائف نوافذ كلمات المرور
         function showIosPasswordModal() {
-            document.getElementById("iosPasswordModal").style.display = "flex";
-            document.getElementById("iosPasswordInput").value = "";
-            document.getElementById("iosErrorMessage").style.display = "none";
-            document.getElementById("iosPasswordInput").focus();
+            document.getElementById('iosPasswordModal').style.display = 'flex';
+            document.getElementById('iosPasswordInput').focus();
         }
 
         function closeIosPasswordModal() {
-            document.getElementById("iosPasswordModal").style.display = "none";
-        }
-
-        function checkIosPassword() {
-            const pass = document.getElementById("iosPasswordInput").value;
-            const errorMsg = document.getElementById("iosErrorMessage");
-
-            if (pass === "CHAL7") {
-                // كلمة السر لـ iOS
-                document.getElementById("iosPasswordModal").style.display = "none";
-                document.getElementById("page1").classList.add("hidden");
-                document.getElementById("page2").classList.remove("hidden");
-            } else {
-                errorMsg.style.display = "block";
-                document.getElementById("iosPasswordInput").value = "";
-                document.getElementById("iosPasswordInput").focus();
-            }
+            document.getElementById('iosPasswordModal').style.display = 'none';
+            document.getElementById('iosPasswordInput').value = '';
+            document.getElementById('iosErrorMessage').style.display = 'none';
         }
 
         function handleIosKeyPress(event) {
-            if (event.key === "Enter") {
+            if (event.key === 'Enter') {
                 checkIosPassword();
             }
         }
 
-        // وظائف خاصة بـ Android
-        function showAndroidPasswordModal() {
-            document.getElementById("androidPasswordModal").style.display = "flex";
-            document.getElementById("androidPasswordInput").value = "";
-            document.getElementById("androidErrorMessage").style.display = "none";
-            document.getElementById("androidPasswordInput").focus();
-        }
-
-        function closeAndroidPasswordModal() {
-            document.getElementById("androidPasswordModal").style.display = "none";
-        }
-
-        function checkAndroidPassword() {
-            const pass = document.getElementById("androidPasswordInput").value;
-            const errorMsg = document.getElementById("androidErrorMessage");
-
-            if (pass === "EXCELSIOR") {
-                // كلمة السر لـ Android
-                document.getElementById("androidPasswordModal").style.display = "none";
-                document.getElementById("page1").classList.add("hidden");
-                document.getElementById("page3").classList.remove("hidden");
+        function checkIosPassword() {
+            const password = document.getElementById('iosPasswordInput').value;
+            if (password === 'blakzet') {
+                showPage('page2');
+                closeIosPasswordModal();
             } else {
-                errorMsg.style.display = "block";
-                document.getElementById("androidPasswordInput").value = "";
-                document.getElementById("androidPasswordInput").focus();
+                document.getElementById('iosErrorMessage').style.display = 'block';
             }
         }
 
+        function showAndroidPasswordModal() {
+            document.getElementById('androidPasswordModal').style.display = 'flex';
+            document.getElementById('androidPasswordInput').focus();
+        }
+
+        function closeAndroidPasswordModal() {
+            document.getElementById('androidPasswordModal').style.display = 'none';
+            document.getElementById('androidPasswordInput').value = '';
+            document.getElementById('androidErrorMessage').style.display = 'none';
+        }
+
         function handleAndroidKeyPress(event) {
-            if (event.key === "Enter") {
+            if (event.key === 'Enter') {
                 checkAndroidPassword();
             }
         }
 
-        // وظائف خاصة بـ PC Tools
-        function showPcPasswordModal() {
-            document.getElementById("pcPasswordModal").style.display = "flex";
-            document.getElementById("pcPasswordInput").value = "";
-            document.getElementById("pcErrorMessage").style.display = "none";
-            document.getElementById("pcPasswordInput").focus();
-        }
-
-        function closePcPasswordModal() {
-            document.getElementById("pcPasswordModal").style.display = "none";
-        }
-
-        function checkPcPassword() {
-            const pass = document.getElementById("pcPasswordInput").value;
-            const errorMsg = document.getElementById("pcErrorMessage");
-
-            if (pass === "blakzet") {
-                // كلمة السر لأدوات الكمبيوتر (يمكن تغييرها)
-                document.getElementById("pcPasswordModal").style.display = "none";
-                document.getElementById("page1").classList.add("hidden");
-                document.getElementById("page4").classList.remove("hidden");
+        function checkAndroidPassword() {
+            const password = document.getElementById('androidPasswordInput').value;
+            if (password === 'blakzet') {
+                showPage('page3');
+                closeAndroidPasswordModal();
             } else {
-                errorMsg.style.display = "block";
-                document.getElementById("pcPasswordInput").value = "";
-                document.getElementById("pcPasswordInput").focus();
+                document.getElementById('androidErrorMessage').style.display = 'block';
             }
         }
 
+        function showPcPasswordModal() {
+            document.getElementById('pcPasswordModal').style.display = 'flex';
+            document.getElementById('pcPasswordInput').focus();
+        }
+
+        function closePcPasswordModal() {
+            document.getElementById('pcPasswordModal').style.display = 'none';
+            document.getElementById('pcPasswordInput').value = '';
+            document.getElementById('pcErrorMessage').style.display = 'none';
+        }
+
         function handlePcKeyPress(event) {
-            if (event.key === "Enter") {
+            if (event.key === 'Enter') {
                 checkPcPassword();
             }
         }
 
-        // وظائف خاصة بـ Support
-        function showSupportPasswordModal() {
-            document.getElementById("supportPasswordModal").style.display = "flex";
-            document.getElementById("supportPasswordInput").value = "";
-            document.getElementById("supportErrorMessage").style.display = "none";
-            document.getElementById("supportPasswordInput").focus();
-        }
-
-        function closeSupportPasswordModal() {
-            document.getElementById("supportPasswordModal").style.display = "none";
-        }
-
-        function checkSupportPassword() {
-            const pass = document.getElementById("supportPasswordInput").value;
-            const errorMsg = document.getElementById("supportErrorMessage");
-
-            if (pass === "blakzet") {
-                // كلمة السر للدعم (يمكن تغييرها)
-                document.getElementById("supportPasswordModal").style.display = "none";
-                document.getElementById("page1").classList.add("hidden");
-                document.getElementById("page5").classList.remove("hidden");
+        function checkPcPassword() {
+            const password = document.getElementById('pcPasswordInput').value;
+            if (password === 'blakzet') {
+                showPage('page4');
+                closePcPasswordModal();
             } else {
-                errorMsg.style.display = "block";
-                document.getElementById("supportPasswordInput").value = "";
-                document.getElementById("supportPasswordInput").focus();
+                document.getElementById('pcErrorMessage').style.display = 'block';
             }
         }
 
+        function showSupportPasswordModal() {
+            document.getElementById('supportPasswordModal').style.display = 'flex';
+            document.getElementById('supportPasswordInput').focus();
+        }
+
+        function closeSupportPasswordModal() {
+            document.getElementById('supportPasswordModal').style.display = 'none';
+            document.getElementById('supportPasswordInput').value = '';
+            document.getElementById('supportErrorMessage').style.display = 'none';
+        }
+
         function handleSupportKeyPress(event) {
-            if (event.key === "Enter") {
+            if (event.key === 'Enter') {
                 checkSupportPassword();
             }
         }
 
-        // إغلاق النوافذ عند النقر خارجها
-        window.onclick = function(event) {
-            const iosModal = document.getElementById("iosPasswordModal");
-            const androidModal = document.getElementById("androidPasswordModal");
-            const pcModal = document.getElementById("pcPasswordModal");
-            const supportModal = document.getElementById("supportPasswordModal");
-
-            if (event.target == iosModal) closeIosPasswordModal();
-            if (event.target == androidModal) closeAndroidPasswordModal();
-            if (event.target == pcModal) closePcPasswordModal();
-            if (event.target == supportModal) closeSupportPasswordModal();
+        function checkSupportPassword() {
+            const password = document.getElementById('supportPasswordInput').value;
+            if (password === 'blakzet') {
+                showPage('page5');
+                closeSupportPasswordModal();
+            } else {
+                document.getElementById('supportErrorMessage').style.display = 'block';
+            }
         }
 
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        // وظائف النافذة الجديدة
+        function showCustomModal() {
+            document.getElementById('customModal').style.display = 'flex';
+            document.getElementById('option1').focus();
+        }
 
+        function closeCustomModal() {
+            document.getElementById('customModal').style.display = 'none';
+            document.getElementById('option1').value = '';
+            document.getElementById('option2').value = '';
+            document.getElementById('option3').value = '';
+        }
+
+        function submitCustomRequest() {
+            const option1 = document.getElementById('option1').value;
+            const option2 = document.getElementById('option2').value;
+            const option3 = document.getElementById('option3').value;
+            
+            if (option1 || option2 || option3) {
+                alert('Your custom request has been submitted!');
+                closeCustomModal();
+            } else {
+                alert('Please fill at least one option');
+            }
+        }
+
+        // تهيئة التأثيرات عند تحميل الصفحة
         window.onload = function() {
-            createParticles();
-            createBloodDrips();
-            
-            // إضافة تأثير كتابة للنص الرئيسي
-            const title = document.querySelector('.header h1');
-            const originalText = title.textContent;
-            title.textContent = '';
-            
-            let i = 0;
-            const typeWriter = setInterval(() => {
-                if (i < originalText.length) {
-                    title.textContent += originalText.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(typeWriter);
+            createBloodStains();
+            createCracks();
+            createSkulls();
+        };
+
+        // إغلاق النوافذ عند النقر خارجها
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    // إعادة تعيين الحقول في النافذة الجديدة
+                    if (modal.id === 'customModal') {
+                        document.getElementById('option1').value = '';
+                        document.getElementById('option2').value = '';
+                        document.getElementById('option3').value = '';
+                    }
                 }
-            }, 100);
+            });
         };
     </script>
 </body>
