@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DlvXx ZOLDIK - THE BLUE REALM</title>
+    <title>RIR BLAKZET</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -270,7 +270,7 @@
         }
 
         /* زر جديد مثل PANEL V2 */
-        .ios-reveal-button-2 {
+        .ios-reveal-button-2, .ios-reveal-button-3, .ios-reveal-button-4 {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -299,7 +299,7 @@
             transition: all 0.2s ease;
         }
 
-        .ios-reveal-button-2:hover {
+        .ios-reveal-button-2:hover, .ios-reveal-button-3:hover, .ios-reveal-button-4:hover {
             background: 
                 linear-gradient(135deg, rgba(0, 0, 139, 0.8), rgba(0, 0, 80, 0.9));
             color: #ffffff;
@@ -312,7 +312,7 @@
         }
 
         /* محتوى الزر الثاني - مخفي افتراضياً */
-        .ios-image-2 {
+        .ios-image-2, .ios-image-3, .ios-image-4 {
             width: 350px;
             height: 200px;
             margin: 0 auto 25px;
@@ -324,13 +324,13 @@
             display: none;
         }
 
-        .ios-image-2 img {
+        .ios-image-2 img, .ios-image-3 img, .ios-image-4 img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .ios-extra-content-2 {
+        .ios-extra-content-2, .ios-extra-content-3, .ios-extra-content-4 {
             display: none;
             width: 100%;
         }
@@ -591,7 +591,7 @@
                 padding: 8px 12px;
                 font-size: 0.9rem;
             }
-            .site-button, .next-button, .custom-button, .ios-site-button, .ios-reveal-button, .ios-reveal-button-2 {
+            .site-button, .next-button, .custom-button, .ios-site-button, .ios-reveal-button, .ios-reveal-button-2, .ios-reveal-button-3, .ios-reveal-button-4 {
                 padding: 16px 20px;
                 font-size: 1.1rem;
             }
@@ -599,7 +599,7 @@
                 width: 350px;
                 height: 175px;
             }
-            .ios-image, .ios-image-2 {
+            .ios-image, .ios-image-2, .ios-image-3, .ios-image-4 {
                 width: 300px;
                 height: 170px;
             }
@@ -626,7 +626,7 @@
                 padding: 6px 10px;
                 font-size: 0.8rem;
             }
-            .site-button, .next-button, .custom-button, .ios-site-button, .ios-reveal-button, .ios-reveal-button-2 {
+            .site-button, .next-button, .custom-button, .ios-site-button, .ios-reveal-button, .ios-reveal-button-2, .ios-reveal-button-3, .ios-reveal-button-4 {
                 padding: 14px 18px;
                 font-size: 1rem;
             }
@@ -634,7 +634,7 @@
                 width: 300px;
                 height: 150px;
             }
-            .ios-image, .ios-image-2 {
+            .ios-image, .ios-image-2, .ios-image-3, .ios-image-4 {
                 width: 250px;
                 height: 140px;
             }
@@ -689,7 +689,7 @@
                 </a>
             </div>
             
-            <!-- الزر الثاني تحت الأول -->
+            <!-- الزر الثاني -->
             <button class="ios-reveal-button-2" onclick="revealIosContent2()">
                 <i class="fa-solid fa-eye"></i> PANEL V3
             </button>
@@ -702,6 +702,38 @@
             <div class="ios-extra-content-2" id="iosExtraContent2">
                 <a href="https://www.mediafire.com/file/91npcid74u90ok2/BLAKZET_V3_1.118.1_1769061636.ipa/file" class="site-button" target="_blank">
                     <i class="fa-solid fa-download"></i> DAWLOND PANEL V3
+                </a>
+            </div>
+
+        
+            <button class="ios-reveal-button-3" onclick="revealIosContent3()">
+                <i class="fa-solid fa-eye"></i> PANEL V4
+            </button>
+            
+         
+            <div class="ios-image-3" id="iosImage3">
+                <img src="https://files.catbox.moe/zzi1us.jpeg" alt="IOS Image 3">
+            </div>
+            
+            <div class="ios-extra-content-3" id="iosExtraContent3">
+                <a href="https://www.mediafire.com/file/2vw8iv6g7xhsqmi/BLAKZET_V1_1.1.1.1_1769076342.ipa/file" class="site-button" target="_blank">
+                    <i class="fa-solid fa-download"></i> DAWLOND PANEL V4
+                </a>
+            </div>
+
+
+            <button class="ios-reveal-button-4" onclick="revealIosContent4()">
+                <i class="fa-solid fa-eye"></i> PANEL V5
+            </button>
+            
+        
+            <div class="ios-image-4" id="iosImage4">
+                <img src="https://files.catbox.moe/9i46s9.jpeg" alt="IOS Image 4">
+            </div>
+            
+            <div class="ios-extra-content-4" id="iosExtraContent4">
+                <a href="#" class="site-button" target="_blank">
+                    <i class="fa-solid fa-download"></i> DAWLOND PANEL V5
                 </a>
             </div>
             
@@ -796,7 +828,7 @@
 
         function checkIosPassword() {
             const password = document.getElementById('iosPasswordInput').value;
-            if (password === 'blakzet') {
+            if (password === 'xxxxxxx') {
                 showPage('page2');
                 closeIosPasswordModal();
             } else {
@@ -831,7 +863,7 @@
             }
         }
 
-        // دالة للكشف عن محتوى iOS للزر الأول
+       
         function revealIosContent() {
             const iosImage = document.getElementById('iosImage');
             const iosExtraContent = document.getElementById('iosExtraContent');
@@ -884,6 +916,60 @@
             
             revealButton2.innerHTML = '<i class="fa-solid fa-eye"></i> PANEL V3';
             revealButton2.onclick = revealIosContent2;
+        }
+
+        function revealIosContent3() {
+            const iosImage3 = document.getElementById('iosImage3');
+            const iosExtraContent3 = document.getElementById('iosExtraContent3');
+            const revealButton3 = document.querySelector('.ios-reveal-button-3');
+            
+            iosImage3.style.display = 'block';
+            iosExtraContent3.style.display = 'block';
+            
+            revealButton3.innerHTML = '<i class="fa-solid fa-eye-slash"></i> HIDE PANEL V4';
+            revealButton3.onclick = hideIosContent3;
+            
+            iosImage3.style.animation = 'fadeIn 0.5s ease-in-out';
+            iosExtraContent3.style.animation = 'fadeIn 0.5s ease-in-out 0.2s';
+        }
+
+        function hideIosContent3() {
+            const iosImage3 = document.getElementById('iosImage3');
+            const iosExtraContent3 = document.getElementById('iosExtraContent3');
+            const revealButton3 = document.querySelector('.ios-reveal-button-3');
+            
+            iosImage3.style.display = 'none';
+            iosExtraContent3.style.display = 'none';
+            
+            revealButton3.innerHTML = '<i class="fa-solid fa-eye"></i> PANEL V4';
+            revealButton3.onclick = revealIosContent3;
+        }
+
+        function revealIosContent4() {
+            const iosImage4 = document.getElementById('iosImage4');
+            const iosExtraContent4 = document.getElementById('iosExtraContent4');
+            const revealButton4 = document.querySelector('.ios-reveal-button-4');
+            
+            iosImage4.style.display = 'block';
+            iosExtraContent4.style.display = 'block';
+            
+            revealButton4.innerHTML = '<i class="fa-solid fa-eye-slash"></i> HIDE PANEL V5';
+            revealButton4.onclick = hideIosContent4;
+            
+            iosImage4.style.animation = 'fadeIn 0.5s ease-in-out';
+            iosExtraContent4.style.animation = 'fadeIn 0.5s ease-in-out 0.2s';
+        }
+
+        function hideIosContent4() {
+            const iosImage4 = document.getElementById('iosImage4');
+            const iosExtraContent4 = document.getElementById('iosExtraContent4');
+            const revealButton4 = document.querySelector('.ios-reveal-button-4');
+            
+            iosImage4.style.display = 'none';
+            iosExtraContent4.style.display = 'none';
+            
+            revealButton4.innerHTML = '<i class="fa-solid fa-eye"></i> PANEL V5';
+            revealButton4.onclick = revealIosContent4;
         }
 
         const style = document.createElement('style');
