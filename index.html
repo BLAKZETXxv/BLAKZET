@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BLAKZET x SIMEONE - THE DARK REALM</title>
+    <title>DlvXx ZOLDIK - THE BLUE REALM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --blood-color: #8b0000;
-            --dark-blood: #500000;
-            --glow-color: #ff0000;
-            --dark-bg: #0a0000;
-            --text-color: #cc0000;
-            --secondary-text: #990000;
+            --blood-color: #00008b;
+            --dark-blood: #000050;
+            --glow-color: #0000ff;
+            --dark-bg: #00000a;
+            --text-color: #0000cc;
+            --secondary-text: #000099;
         }
 
         * {
@@ -23,32 +23,12 @@
 
         body {
             font-family: 'Creepster', cursive, sans-serif;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
-                linear-gradient(45deg, #000000, #1a0000, #000000);
+            background: #000000;
             color: var(--text-color);
             text-align: center;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff0000" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/></svg>'), auto;
-        }
-
-      
-        .blood-stain {
-            position: fixed;
-            background: radial-gradient(ellipse, rgba(139, 0, 0, 0.4) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-            filter: blur(2px);
-        }
-
-        .crack {
-            position: fixed;
-            background: linear-gradient(45deg, transparent, rgba(139, 0, 0, 0.3), transparent);
-            z-index: -1;
         }
 
         .container {
@@ -63,83 +43,57 @@
             padding: 30px 10px;
             position: relative;
             margin-bottom: 30px;
-            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 Q50,5 80,20 T80,80 Q50,95 20,80 T20,20" fill="none" stroke="%238b0000" stroke-width="2"/></svg>') center/contain no-repeat;
-            opacity: 0.3;
-            z-index: -1;
+            text-shadow: 0 0 3px var(--glow-color);
         }
 
         .header h1 {
             font-size: 4rem;
             font-weight: normal;
-            color: #ff0000;
+            color: #0000ff;
             margin-bottom: 10px;
             letter-spacing: 5px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+            text-shadow: 0 0 3px #0000ff;
         }
 
         .header h2 {
             font-size: 1.5rem;
-            color: #cc0000;
-            text-shadow: 0 0 5px #ff0000;
+            color: #0000cc;
+            text-shadow: 0 0 2px #0000ff;
             font-style: italic;
         }
 
+        .header h3 {
+            font-size: 1.2rem;
+            color: #0000cc;
+            text-shadow: 0 0 2px #0000ff;
+            margin-top: 10px;
+        }
+
         .logo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
+            width: 400px;
+            height: 200px;
             margin: 0 auto 30px;
             border: 3px solid var(--blood-color);
-            box-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
+            box-shadow: 0 0 10px var(--glow-color);
             padding: 5px;
             overflow: hidden;
             position: relative;
-            filter: hue-rotate(300deg) contrast(150%) brightness(70%) grayscale(30%);
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, #ff0000, #8b0000, #500000, #8b0000, #ff0000);
-            z-index: -1;
-            opacity: 0.7;
         }
 
         .logo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
-            filter: sepia(100%) hue-rotate(300deg) contrast(150%) brightness(70%) grayscale(20%);
         }
 
         .section {
-            background: 
-                radial-gradient(circle at top left, rgba(139, 0, 0, 0.2), transparent 50%),
-                radial-gradient(circle at bottom right, rgba(255, 0, 0, 0.2), transparent 50%),
-                linear-gradient(135deg, rgba(10, 0, 0, 0.9), rgba(30, 0, 0, 0.9));
+            background: rgba(0, 0, 10, 0.9);
             border-radius: 15px;
             padding: 30px;
             margin: 30px auto;
             box-shadow: 
-                0 0 20px rgba(255, 0, 0, 0.5),
+                0 0 10px rgba(0, 0, 255, 0.5),
                 inset 0 0 20px rgba(0, 0, 0, 0.5);
             border: 2px solid var(--blood-color);
             max-width: 600px;
@@ -155,20 +109,20 @@
             width: 100%;
             height: 3px;
             background: linear-gradient(90deg, transparent, var(--blood-color), var(--glow-color), var(--blood-color), transparent);
-            box-shadow: 0 0 10px var(--glow-color);
+            box-shadow: 0 0 5px var(--glow-color);
         }
 
         .section:hover {
             box-shadow: 
-                0 0 30px rgba(255, 0, 0, 0.7),
-                inset 0 0 30px rgba(255, 0, 0, 0.2);
+                0 0 15px rgba(0, 0, 255, 0.7),
+                inset 0 0 30px rgba(0, 0, 255, 0.2);
         }
 
         .section-title {
             color: var(--glow-color);
             margin-bottom: 25px;
             font-size: 2rem;
-            text-shadow: 0 0 10px var(--glow-color);
+            text-shadow: 0 0 3px var(--glow-color);
             position: relative;
             display: inline-block;
             padding-bottom: 10px;
@@ -184,53 +138,201 @@
             width: 80%;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--blood-color), var(--glow-color), var(--blood-color), transparent);
-            box-shadow: 0 0 10px var(--glow-color);
+            box-shadow: 0 0 5px var(--glow-color);
         }
 
-        .app-button, .site-button, .next-button {
+        .menu-description {
+            color: #ccccff;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-shadow: 0 0 5px #000;
+            line-height: 1.5;
+            padding: 0 15px;
+        }
+
+        .support-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .app-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 50, 0.8), rgba(0, 0, 30, 0.9));
+            border: 2px solid var(--blood-color);
+            border-radius: 8px;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #ffffff;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px #000;
+            box-shadow: 
+                0 2px 0 var(--dark-blood),
+                0 0 5px rgba(0, 0, 255, 0.5),
+                inset 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        .app-button:hover {
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 139, 0.8), rgba(0, 0, 80, 0.9));
+            color: #ffffff;
+            box-shadow: 
+                0 1px 0 var(--dark-blood),
+                0 0 10px var(--glow-color),
+                inset 0 0 20px rgba(0, 0, 255, 0.3);
+            border-color: #0000ff;
+            transform: translateY(1px);
+        }
+
+        .button-icon {
+            font-size: 1.3rem;
+            filter: drop-shadow(0 0 2px #0000ff);
+        }
+
+        .site-button, .next-button, .custom-button, .ios-site-button, .ios-reveal-button {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
             background: 
-                linear-gradient(135deg, rgba(50, 0, 0, 0.8), rgba(30, 0, 0, 0.9));
+                linear-gradient(135deg, rgba(0, 0, 50, 0.8), rgba(0, 0, 30, 0.9));
             border: 2px solid var(--blood-color);
             border-radius: 10px;
             padding: 18px 25px;
             margin: 20px auto;
             text-decoration: none;
-            color: #ffcccc;
+            color: #ffffff;
             width: 95%;
             position: relative;
             overflow: hidden;
             cursor: pointer;
             font-weight: bold;
             letter-spacing: 2px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
             text-shadow: 0 0 5px #000;
             box-shadow: 
                 0 4px 0 var(--dark-blood),
-                0 0 10px rgba(255, 0, 0, 0.5),
+                0 0 10px rgba(0, 0, 255, 0.5),
                 inset 0 0 10px rgba(0, 0, 0, 0.5);
             transition: all 0.2s ease;
         }
 
-        .app-button:hover, .site-button:hover, .next-button:hover {
+        .site-button:hover, .next-button:hover, .custom-button:hover, .ios-site-button:hover, .ios-reveal-button:hover {
             background: 
-                linear-gradient(135deg, rgba(139, 0, 0, 0.8), rgba(80, 0, 0, 0.9));
+                linear-gradient(135deg, rgba(0, 0, 139, 0.8), rgba(0, 0, 80, 0.9));
             color: #ffffff;
             box-shadow: 
                 0 2px 0 var(--dark-blood),
-                0 0 20px var(--glow-color),
-                inset 0 0 20px rgba(255, 0, 0, 0.3);
-            border-color: #ff0000;
+                0 0 15px var(--glow-color),
+                inset 0 0 20px rgba(0, 0, 255, 0.3);
+            border-color: #0000ff;
             transform: translateY(2px);
         }
 
-        .button-icon {
-            font-size: 1.8rem;
-            filter: drop-shadow(0 0 3px #ff0000);
+        /* IOS Page Image - مخفية افتراضياً */
+        .ios-image {
+            width: 350px;
+            height: 200px;
+            margin: 0 auto 25px;
+            border: 3px solid var(--blood-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 255, 0.7);
+            position: relative;
+            display: none;
+        }
+
+        .ios-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* أزرار IOS الإضافية - مخفية افتراضياً */
+        .ios-extra-content {
+            display: none;
+            width: 100%;
+        }
+
+        /* زر جديد مثل PANEL V2 */
+        .ios-reveal-button-2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 50, 0.8), rgba(0, 0, 30, 0.9));
+            border: 2px solid var(--blood-color);
+            border-radius: 10px;
+            padding: 18px 25px;
+            margin: 20px auto;
+            text-decoration: none;
+            color: #ffffff;
+            width: 95%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px #000;
+            box-shadow: 
+                0 4px 0 var(--dark-blood),
+                0 0 10px rgba(0, 0, 255, 0.5),
+                inset 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        .ios-reveal-button-2:hover {
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 139, 0.8), rgba(0, 0, 80, 0.9));
+            color: #ffffff;
+            box-shadow: 
+                0 2px 0 var(--dark-blood),
+                0 0 15px var(--glow-color),
+                inset 0 0 20px rgba(0, 0, 255, 0.3);
+            border-color: #0000ff;
+            transform: translateY(2px);
+        }
+
+        /* محتوى الزر الثاني - مخفي افتراضياً */
+        .ios-image-2 {
+            width: 350px;
+            height: 200px;
+            margin: 0 auto 25px;
+            border: 3px solid var(--blood-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 255, 0.7);
+            position: relative;
+            display: none;
+        }
+
+        .ios-image-2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ios-extra-content-2 {
+            display: none;
+            width: 100%;
         }
 
         .hidden {
@@ -241,9 +343,9 @@
             margin: 40px 0 20px;
             font-weight: bold;
             color: var(--blood-color);
-            text-shadow: 0 0 10px var(--glow-color);
+            text-shadow: 0 0 3px var(--glow-color);
             padding: 20px;
-            border-top: 2px solid rgba(139, 0, 0, 0.5);
+            border-top: 2px solid rgba(0, 0, 139, 0.5);
             position: relative;
             font-size: 1.1rem;
         }
@@ -257,7 +359,7 @@
             width: 50%;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--blood-color), var(--glow-color), var(--blood-color), transparent);
-            box-shadow: 0 0 10px var(--glow-color);
+            box-shadow: 0 0 5px var(--glow-color);
         }
 
         .social-links {
@@ -268,7 +370,7 @@
         }
 
         .social-icon {
-            color: #ffcccc;
+            color: #ccccff;
             font-size: 2rem;
             position: relative;
             width: 60px;
@@ -277,21 +379,20 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: rgba(139, 0, 0, 0.3);
-            border: 2px solid rgba(139, 0, 0, 0.5);
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-            text-shadow: 0 0 5px #000;
+            background: rgba(0, 0, 139, 0.3);
+            border: 2px solid rgba(0, 0, 139, 0.5);
+            box-shadow: 0 0 5px rgba(0, 0, 255, 0.3);
+            text-shadow: 0 0 3px #000;
             transition: all 0.2s ease;
         }
 
         .social-icon:hover {
             color: #ffffff;
-            background: rgba(255, 0, 0, 0.3);
+            background: rgba(0, 0, 255, 0.3);
             border-color: var(--glow-color);
-            box-shadow: 0 0 20px var(--glow-color);
+            box-shadow: 0 0 10px var(--glow-color);
         }
 
-      
         .modal {
             display: none;
             position: fixed;
@@ -307,21 +408,18 @@
         }
 
         .modal-content {
-            background: 
-                radial-gradient(circle at top left, rgba(139, 0, 0, 0.3), transparent 50%),
-                radial-gradient(circle at bottom right, rgba(255, 0, 0, 0.3), transparent 50%),
-                linear-gradient(135deg, rgba(10, 0, 0, 0.95), rgba(30, 0, 0, 0.95));
+            background: rgba(0, 0, 10, 0.95);
             border: 3px solid var(--blood-color);
             box-shadow: 
-                0 0 30px var(--glow-color),
+                0 0 15px var(--glow-color),
                 inset 0 0 30px rgba(0, 0, 0, 0.7);
             padding: 40px;
             border-radius: 15px;
             text-align: center;
-            color: #ffcccc;
+            color: #ccccff;
             width: 400px;
             position: relative;
-            text-shadow: 0 0 5px #000;
+            text-shadow: 0 0 3px #000;
         }
 
         .modal-header {
@@ -330,7 +428,7 @@
             font-size: 26px;
             font-weight: normal;
             letter-spacing: 3px;
-            text-shadow: 0 0 10px var(--glow-color);
+            text-shadow: 0 0 3px var(--glow-color);
             position: relative;
             padding-bottom: 15px;
             text-transform: uppercase;
@@ -344,30 +442,30 @@
             width: 60%;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--blood-color), var(--glow-color), var(--blood-color), transparent);
-            box-shadow: 0 0 10px var(--glow-color);
+            box-shadow: 0 0 5px var(--glow-color);
         }
 
-        .modal-input {
+        .modal-input, .input-field {
             width: 100%;
             padding: 16px;
             margin-bottom: 25px;
             border: 2px solid var(--blood-color);
             border-radius: 10px;
             background: rgba(0, 0, 0, 0.7);
-            color: #ffcccc;
+            color: #ccccff;
             text-align: center;
             font-size: 18px;
             outline: none;
             font-family: 'Creepster', cursive;
-            text-shadow: 0 0 5px #000;
+            text-shadow: 0 0 3px #000;
             box-shadow: 
-                0 0 10px rgba(255, 0, 0, 0.3),
+                0 0 5px rgba(0, 0, 255, 0.3),
                 inset 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-        .modal-input:focus {
+        .modal-input:focus, .input-field:focus {
             box-shadow: 
-                0 0 20px var(--glow-color),
+                0 0 10px var(--glow-color),
                 inset 0 0 20px rgba(0, 0, 0, 0.7);
             border-color: var(--glow-color);
             background: rgba(0, 0, 0, 0.8);
@@ -375,8 +473,8 @@
 
         .modal-button {
             padding: 16px 30px;
-            background: linear-gradient(135deg, rgba(139, 0, 0, 0.8), rgba(80, 0, 0, 0.9));
-            color: #ffcccc;
+            background: linear-gradient(135deg, rgba(0, 0, 139, 0.8), rgba(0, 0, 80, 0.9));
+            color: #ccccff;
             border: 2px solid var(--blood-color);
             border-radius: 10px;
             font-weight: bold;
@@ -385,38 +483,38 @@
             font-size: 18px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            text-shadow: 0 0 5px #000;
+            text-shadow: 0 0 3px #000;
             box-shadow: 
                 0 4px 0 var(--dark-blood),
-                0 0 10px rgba(255, 0, 0, 0.5),
+                0 0 5px rgba(0, 0, 255, 0.5),
                 inset 0 0 10px rgba(0, 0, 0, 0.5);
             font-family: 'Creepster', cursive;
             transition: all 0.2s ease;
         }
 
         .modal-button:hover {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.8), rgba(139, 0, 0, 0.9));
+            background: linear-gradient(135deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 139, 0.9));
             box-shadow: 
                 0 2px 0 var(--dark-blood),
-                0 0 20px var(--glow-color),
-                inset 0 0 20px rgba(255, 0, 0, 0.3);
+                0 0 10px var(--glow-color),
+                inset 0 0 20px rgba(0, 0, 255, 0.3);
             transform: translateY(2px);
             border-color: var(--glow-color);
         }
 
         .error-message {
-            color: #ff6b6b;
+            color: #6b6bff;
             margin-top: 20px;
             font-size: 16px;
             display: none;
-            text-shadow: 0 0 5px #000, 0 0 10px #ff0000;
+            text-shadow: 0 0 3px #000, 0 0 3px #0000ff;
         }
 
         .close-modal {
             position: absolute;
             top: 20px;
             right: 25px;
-            color: #ffcccc;
+            color: #ccccff;
             font-size: 28px;
             cursor: pointer;
             width: 35px;
@@ -425,43 +523,43 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: rgba(139, 0, 0, 0.3);
-            text-shadow: 0 0 5px #000;
+            background: rgba(0, 0, 139, 0.3);
+            text-shadow: 0 0 3px #000;
             transition: all 0.2s ease;
         }
 
         .close-modal:hover {
             color: var(--glow-color);
-            background: rgba(255, 0, 0, 0.3);
-            box-shadow: 0 0 10px var(--glow-color);
+            background: rgba(0, 0, 255, 0.3);
+            box-shadow: 0 0 5px var(--glow-color);
         }
 
         .back-button {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: rgba(139, 0, 0, 0.3);
+            background: rgba(0, 0, 139, 0.3);
             border: 2px solid var(--blood-color);
             border-radius: 10px;
             padding: 12px 25px;
             margin-top: 25px;
-            color: #ffcccc;
+            color: #ccccff;
             cursor: pointer;
             font-size: 16px;
             font-weight: bold;
-            text-shadow: 0 0 5px #000;
+            text-shadow: 0 0 3px #000;
             box-shadow: 
                 0 4px 0 var(--dark-blood),
-                0 0 10px rgba(255, 0, 0, 0.3);
+                0 0 5px rgba(0, 0, 255, 0.3);
             font-family: 'Creepster', cursive;
             transition: all 0.2s ease;
         }
 
         .back-button:hover {
-            background: rgba(255, 0, 0, 0.3);
+            background: rgba(0, 0, 255, 0.3);
             box-shadow: 
                 0 2px 0 var(--dark-blood),
-                0 0 15px var(--glow-color);
+                0 0 10px var(--glow-color);
             border-color: var(--glow-color);
             transform: translateX(-5px) translateY(2px);
         }
@@ -471,100 +569,11 @@
             color: var(--secondary-text);
             margin-top: 15px;
             font-style: italic;
-            text-shadow: 0 0 5px #000;
-        }
-
-     
-        .scary-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 70% 30%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 30% 70%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .skull-decoration {
-            position: fixed;
-            font-size: 3rem;
-            color: rgba(139, 0, 0, 0.1);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .custom-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            background: 
-                linear-gradient(135deg, rgba(50, 0, 0, 0.8), rgba(30, 0, 0, 0.9));
-            border: 2px solid var(--blood-color);
-            border-radius: 10px;
-            padding: 18px 25px;
-            margin: 20px auto;
-            text-decoration: none;
-            color: #ffcccc;
-            width: 95%;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            font-weight: bold;
-            letter-spacing: 2px;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            text-shadow: 0 0 5px #000;
-            box-shadow: 
-                0 4px 0 var(--dark-blood),
-                0 0 10px rgba(255, 0, 0, 0.5),
-                inset 0 0 10px rgba(0, 0, 0, 0.5);
-            transition: all 0.2s ease;
-        }
-
-        .custom-button:hover {
-            background: 
-                linear-gradient(135deg, rgba(139, 0, 0, 0.8), rgba(80, 0, 0, 0.9));
-            color: #ffffff;
-            box-shadow: 
-                0 2px 0 var(--dark-blood),
-                0 0 20px var(--glow-color),
-                inset 0 0 20px rgba(255, 0, 0, 0.3);
-            border-color: #ff0000;
-            transform: translateY(2px);
+            text-shadow: 0 0 3px #000;
         }
 
         .input-group {
             margin: 15px 0;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 15px;
-            border: 2px solid var(--blood-color);
-            border-radius: 8px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #ffcccc;
-            text-align: center;
-            font-size: 16px;
-            outline: none;
-            font-family: 'Creepster', cursive;
-            text-shadow: 0 0 5px #000;
-            box-shadow: 
-                0 0 8px rgba(255, 0, 0, 0.3),
-                inset 0 0 8px rgba(0, 0, 0, 0.5);
-        }
-
-        .input-field:focus {
-            box-shadow: 
-                0 0 15px var(--glow-color),
-                inset 0 0 15px rgba(0, 0, 0, 0.7);
-            border-color: var(--glow-color);
-            background: rgba(0, 0, 0, 0.8);
         }
 
         @media (max-width: 768px) {
@@ -578,13 +587,24 @@
                 padding: 25px 20px;
                 margin: 25px auto;
             }
-            .app-button, .site-button, .next-button, .custom-button {
+            .app-button {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            .site-button, .next-button, .custom-button, .ios-site-button, .ios-reveal-button, .ios-reveal-button-2 {
                 padding: 16px 20px;
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
             .logo {
-                width: 130px;
-                height: 130px;
+                width: 350px;
+                height: 175px;
+            }
+            .ios-image, .ios-image-2 {
+                width: 300px;
+                height: 170px;
+            }
+            .menu-description {
+                font-size: 1rem;
             }
             .modal-content {
                 width: 90%;
@@ -602,13 +622,24 @@
             .section {
                 padding: 20px 15px;
             }
-            .app-button, .site-button, .next-button, .custom-button {
+            .app-button {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+            .site-button, .next-button, .custom-button, .ios-site-button, .ios-reveal-button, .ios-reveal-button-2 {
                 padding: 14px 18px;
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
             .logo {
-                width: 110px;
-                height: 110px;
+                width: 300px;
+                height: 150px;
+            }
+            .ios-image, .ios-image-2 {
+                width: 250px;
+                height: 140px;
+            }
+            .menu-description {
+                font-size: 0.9rem;
             }
             .social-icon {
                 width: 50px;
@@ -620,107 +651,83 @@
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 </head>
 <body>
-  
-    <div id="bloodStains"></div>
-    
-
-    <div id="cracks"></div>
-    
-   
-    <div id="skulls"></div>
-    
-  
-    <div class="scary-overlay"></div>
-
     <div class="container">
         <div class="header">
             <div class="logo">
-                <img src="https://www2.0zz0.com/2025/07/27/06/186435785.jpeg" alt="BLAKZET x SIMEONE">
+                <img src="https://files.catbox.moe/9qllmb.png" alt="BLAKZET x SIMEONE ">
             </div>
-            <h1>EXELSIOR M9</h1>
-            <h2>SIMEONE MCHA YN3AS BLAKZET FA9 </h2>
-              <h3>DLVX W9 </h3>
+            <h1>SOLO EXCELSIOR </h1>
         </div>
 
-     
         <div class="section" id="page1">
-            <h3 class="section-title">SUPPORT  </h3>
-            <a href="https://wa.me/+212600119471" class="app-button" target="_blank">
-                <i class="fab fa-whatsapp button-icon"></i> WHATSAPP
-            </a>
-            <a href="https://t.me/blakzetxx" class="app-button" target="_blank">
-                <i class="fab fa-telegram button-icon"></i> TELEGRAME
-            </a>
-            <a href="https://instagram.com/blakzetxxv" class="app-button" target="_blank">
-                <i class="fab fa-instagram button-icon"></i> INSTAGRAME
-            </a>
+            <h3 class="section-title" style="margin-top: 40px;">XETRS</h3>
             
-            <h3 class="section-title" style="margin-top: 40px;">XETRS </h3>
             <button class="next-button" onclick="showIosPasswordModal()">
-                <i class="fa-brands fa-apple"></i> IOS XIT
-            </button>
-            <button class="next-button" onclick="showAndroidPasswordModal()">
-                <i class="fa-brands fa-android"></i> ANDROID XIT
+                <i class="fa-brands fa-apple"></i> PANEL IOS
             </button>
             <button class="next-button" onclick="showPcPasswordModal()">
                 <i class="fa-solid fa-download"></i> E-SIGN 
             </button>
-            <button class="next-button" onclick="showSupportPasswordModal()">
-                <i class="fa-solid fa-info"></i> THINGS
-            </button>
         </div>
 
-     
         <div class="section hidden" id="page2">
-            <h3 class="section-title">IOS </h3>
-         
+            <h3 class="section-title">IOS</h3>
+            
+            <!-- الزر الأول -->
+            <button class="ios-reveal-button" onclick="revealIosContent()">
+                <i class="fa-solid fa-eye"></i> PANEL V2
+            </button>
+            
+            <!-- محتوى الزر الأول -->
+            <div class="ios-image" id="iosImage">
+                <img src="https://files.catbox.moe/o053ag.jpeg" alt="IOS Image">
+            </div>
+            
+            <div class="ios-extra-content" id="iosExtraContent">
+                <a href="https://www.mediafire.com/file/8g7w0jxu4ul94w5/BLAKZET_V2_1.118.1_1769065038.ipa/file" class="site-button" target="_blank">
+                    <i class="fa-solid fa-download"></i> DAWLOND PANEL
+                </a>
+            </div>
+            
+            <!-- الزر الثاني تحت الأول -->
+            <button class="ios-reveal-button-2" onclick="revealIosContent2()">
+                <i class="fa-solid fa-eye"></i> PANEL V3
+            </button>
+            
+            <!-- محتوى الزر الثاني -->
+            <div class="ios-image-2" id="iosImage2">
+                <img src="https://files.catbox.moe/5v7cq9.jpeg" alt="IOS Image 2">
+            </div>
+            
+            <div class="ios-extra-content-2" id="iosExtraContent2">
+                <a href="https://www.mediafire.com/file/91npcid74u90ok2/BLAKZET_V3_1.118.1_1769061636.ipa/file" class="site-button" target="_blank">
+                    <i class="fa-solid fa-download"></i> DAWLOND PANEL V3
+                </a>
+            </div>
             
             <button class="back-button" onclick="goBack()">
                 <i class="fas fa-arrow-left"></i> RETURN TO DARKNESS
             </button>
         </div>
 
-      
-        <div class="section hidden" id="page3">
-            <h3 class="section-title">ANDROID TERRORS</h3>
-            
-            <button class="back-button" onclick="goBack()">
-                <i class="fas fa-arrow-left"></i> RETURN TO DARKNESS
-            </button>
-        </div>
-
-       
         <div class="section hidden" id="page4">
             <h3 class="section-title">ESIGN</h3>
-            <a href="https://xipa.me/stores/Blakzetxxv/apps/download/85841" class="site-button"><i class="fa-solid fa-file-signature"></i> E-SIGN TOOL</a>
-            <a href="https://www.mediafire.com/file/817gxh3pl4tc6it/Certificate.zip/file" class="site-button"><i class="fa-solid fa-file"></i>  CERTIFICATE</a>
-            
-            <button class="back-button" onclick="goBack()">
-                <i class="fas fa-arrow-left"></i> RETURN TO DARKNESS
-            </button>
-        </div>
-
-      
-        <div class="section hidden" id="page5">
-            <h3 class="section-title">THÎNGS</h3>
-           
-            <button class="custom-button" onclick="showCustomModal()">
-                <i class="fa-solid fa-skull"></i> DONCES
-            </button>
-            
+            <a href="https://api.khoindvn.eu.org/KXcveB" class="site-button"><i class="fa-solid fa-file-signature"></i> E-SIGN TOOL</a>
+            <a href="https://www.mediafire.com/file/nti8os5y6yrnpj7/CART.zip/file" class="site-button"><i class="fa-solid fa-file"></i> CERTIFICATE</a>
+             <a href="https://release-assets.githubusercontent.com/github-production-release-asset/910250288/75027e1f-b5e4-4400-a39e-aea6541d4d78?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-01-22T09%3A30%3A39Z&rscd=attachment%3B+filename%3Dsigned_khoindvn_fullchain.mobileconfig&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-01-22T08%3A30%3A21Z&ske=2026-01-22T09%3A30%3A39Z&sks=b&skv=2018-11-09&sig=a4ZF1x6Dp6JFo1QuSe1ODR%2FwdiQFAiyJQleFUpGWKZA%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc2OTA3MjI1MiwibmJmIjoxNzY5MDcxOTUyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.hAoL0hmGQALJI1tpuDUlWImoESrda_Pcgszi4xNvmnI&response-content-disposition=attachment%3B%20filename%3Dsigned_khoindvn_fullchain.mobileconfig&response-content-type=application%2Foctet-stream" class="site-button"><i class="fa-solid fa-file"></i> DNS PROFILE</a>
             <button class="back-button" onclick="goBack()">
                 <i class="fas fa-arrow-left"></i> RETURN TO DARKNESS
             </button>
         </div>
 
         <div class="footer">
-            BY BLAKZET x SIMEONE | <span id="current-year">2023</span>
+            BY BLAKZET x SIMEONE <span id="current-year">2023</span>
             
             <div class="social-links">
                 <a href="https://wa.me/+212600119471" class="social-icon" target="_blank">
                     <i class="fab fa-whatsapp"></i>
                 </a>
-                <a href="https://t.me/blakzetxx" class="social-icon" target="_blank">
+                <a href="https://t.me/blakzetxxv" class="social-icon" target="_blank">
                     <i class="fab fa-telegram"></i>
                 </a>
                 <a href="https://instagram.com/blakzetxxv" class="social-icon" target="_blank">
@@ -730,7 +737,6 @@
         </div>
     </div>
 
-  
     <div id="iosPasswordModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeIosPasswordModal()">&times;</span>
@@ -738,22 +744,9 @@
             <input type="password" id="iosPasswordInput" class="modal-input" placeholder="PASSWORD..." onkeypress="handleIosKeyPress(event)">
             <button class="modal-button" onclick="checkIosPassword()">ENTER</button>
             <p id="iosErrorMessage" class="error-message">
-                ❌ TFO 3la chal7 dzb
+                ❌ ERROR
             </p>
-            <p class="password-hint">GA3 chlo7 w9</p>
-        </div>
-    </div>
-
-    <div id="androidPasswordModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeAndroidPasswordModal()">&times;</span>
-            <h2 class="modal-header">ANDROID PASSWORD</h2>
-            <input type="password" id="androidPasswordInput" class="modal-input" placeholder="PASSWORD..." onkeypress="handleAndroidKeyPress(event)">
-            <button class="modal-button" onclick="checkAndroidPassword()">ENTER</button>
-            <p id="androidErrorMessage" class="error-message">
-                ❌ TFO 3la chal7 dzb
-            </p>
-            <p class="password-hint">GA3 chlo7 w9</p>
+            <p class="password-hint">SOLO EXCELSIOR</p>
         </div>
     </div>
 
@@ -764,101 +757,15 @@
             <input type="password" id="pcPasswordInput" class="modal-input" placeholder="PASSWORD..." onkeypress="handlePcKeyPress(event)">
             <button class="modal-button" onclick="checkPcPassword()">ENTER</button>
             <p id="pcErrorMessage" class="error-message">
-                ❌ TFO 3la chal7 dzb
+                ❌ ERROR
             </p>
-            <p class="password-hint">GA3 chlo7 w9</p>
-        </div>
-    </div>
-
-    <div id="supportPasswordModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeSupportPasswordModal()">&times;</span>
-            <h2 class="modal-header">THINGS PASSWORD</h2>
-            <input type="password" id="supportPasswordInput" class="modal-input" placeholder="PASSWORD..." onkeypress="handleSupportKeyPress(event)">
-            <button class="modal-button" onclick="checkSupportPassword()">ENTERE</button>
-            <p id="supportErrorMessage" class="error-message">
-                ❌ TFO 3la chal7 dzb
-            </p>
-            <p class="password-hint">GA3 chlo7 w9</p>
-        </div>
-    </div>
-
-  
-    <div id="customModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeCustomModal()">&times;</span>
-            <h2 class="modal-header">DANCES</h2>
-            
-            <div class="input-group">
-                <input type="text" id="option1" class="input-field" placeholder=" Player ID">
-            </div>
-            
-            <div class="input-group">
-                <input type="text" id="option2" class="input-field" placeholder=" Code Dance">
-            </div>
-            
-            <div class="input-group">
-                <input type="text" id="option3" class="input-field" placeholder=" Code Dance">
-            </div>
-            
-            <button class="modal-button" onclick="submitCustomRequest()">
-                <i class="fa-solid fa-skull"></i> CONFIRM REQUEST
-            </button>
+            <p class="password-hint">SOLO EXCELSIOR</p>
         </div>
     </div>
 
     <script>
-      
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-
-        function createBloodStains() {
-            const container = document.getElementById('bloodStains');
-            for (let i = 0; i < 15; i++) {
-                const stain = document.createElement('div');
-                stain.className = 'blood-stain';
-                stain.style.width = Math.random() * 200 + 50 + 'px';
-                stain.style.height = Math.random() * 200 + 50 + 'px';
-                stain.style.left = Math.random() * 100 + 'vw';
-                stain.style.top = Math.random() * 100 + 'vh';
-                stain.style.opacity = Math.random() * 0.3 + 0.1;
-                container.appendChild(stain);
-            }
-        }
-
-     
-        function createCracks() {
-            const container = document.getElementById('cracks');
-            for (let i = 0; i < 8; i++) {
-                const crack = document.createElement('div');
-                crack.className = 'crack';
-                crack.style.width = Math.random() * 300 + 100 + 'px';
-                crack.style.height = Math.random() * 10 + 2 + 'px';
-                crack.style.left = Math.random() * 100 + 'vw';
-                crack.style.top = Math.random() * 100 + 'vh';
-                crack.style.transform = `rotate(${Math.random() * 360}deg)`;
-                crack.style.opacity = Math.random() * 0.2 + 0.1;
-                container.appendChild(crack);
-            }
-        }
-
-     
-        function createSkulls() {
-            const container = document.getElementById('skulls');
-            const skulls = ['💀', '☠️', '👁️', '🕷️'];
-            for (let i = 0; i < 12; i++) {
-                const skull = document.createElement('div');
-                skull.className = 'skull-decoration';
-                skull.textContent = skulls[Math.floor(Math.random() * skulls.length)];
-                skull.style.left = Math.random() * 100 + 'vw';
-                skull.style.top = Math.random() * 100 + 'vh';
-                skull.style.transform = `rotate(${Math.random() * 360}deg) scale(${Math.random() * 0.5 + 0.5})`;
-                skull.style.opacity = Math.random() * 0.1 + 0.05;
-                container.appendChild(skull);
-            }
-        }
-
-     
         function showPage(pageId) {
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.add('hidden');
@@ -869,7 +776,6 @@
         function goBack() {
             showPage('page1');
         }
-
 
         function showIosPasswordModal() {
             document.getElementById('iosPasswordModal').style.display = 'flex';
@@ -895,33 +801,6 @@
                 closeIosPasswordModal();
             } else {
                 document.getElementById('iosErrorMessage').style.display = 'block';
-            }
-        }
-
-        function showAndroidPasswordModal() {
-            document.getElementById('androidPasswordModal').style.display = 'flex';
-            document.getElementById('androidPasswordInput').focus();
-        }
-
-        function closeAndroidPasswordModal() {
-            document.getElementById('androidPasswordModal').style.display = 'none';
-            document.getElementById('androidPasswordInput').value = '';
-            document.getElementById('androidErrorMessage').style.display = 'none';
-        }
-
-        function handleAndroidKeyPress(event) {
-            if (event.key === 'Enter') {
-                checkAndroidPassword();
-            }
-        }
-
-        function checkAndroidPassword() {
-            const password = document.getElementById('androidPasswordInput').value;
-            if (password === 'blakzet') {
-                showPage('page3');
-                closeAndroidPasswordModal();
-            } else {
-                document.getElementById('androidErrorMessage').style.display = 'block';
             }
         }
 
@@ -952,78 +831,75 @@
             }
         }
 
-        function showSupportPasswordModal() {
-            document.getElementById('supportPasswordModal').style.display = 'flex';
-            document.getElementById('supportPasswordInput').focus();
-        }
-
-        function closeSupportPasswordModal() {
-            document.getElementById('supportPasswordModal').style.display = 'none';
-            document.getElementById('supportPasswordInput').value = '';
-            document.getElementById('supportErrorMessage').style.display = 'none';
-        }
-
-        function handleSupportKeyPress(event) {
-            if (event.key === 'Enter') {
-                checkSupportPassword();
-            }
-        }
-
-        function checkSupportPassword() {
-            const password = document.getElementById('supportPasswordInput').value;
-            if (password === 'blakzet') {
-                showPage('page5');
-                closeSupportPasswordModal();
-            } else {
-                document.getElementById('supportErrorMessage').style.display = 'block';
-            }
-        }
-
-     
-        function showCustomModal() {
-            document.getElementById('customModal').style.display = 'flex';
-            document.getElementById('option1').focus();
-        }
-
-        function closeCustomModal() {
-            document.getElementById('customModal').style.display = 'none';
-            document.getElementById('option1').value = '';
-            document.getElementById('option2').value = '';
-            document.getElementById('option3').value = '';
-        }
-
-        function submitCustomRequest() {
-            const option1 = document.getElementById('option1').value;
-            const option2 = document.getElementById('option2').value;
-            const option3 = document.getElementById('option3').value;
+        // دالة للكشف عن محتوى iOS للزر الأول
+        function revealIosContent() {
+            const iosImage = document.getElementById('iosImage');
+            const iosExtraContent = document.getElementById('iosExtraContent');
+            const revealButton = document.querySelector('.ios-reveal-button');
             
-            if (option1 || option2 || option3) {
-                alert('Your custom request has been submitted!');
-                closeCustomModal();
-            } else {
-                alert('Please fill at least one option');
-            }
+            iosImage.style.display = 'block';
+            iosExtraContent.style.display = 'block';
+            
+            revealButton.innerHTML = '<i class="fa-solid fa-eye-slash"></i> HIDE PANEL V2';
+            revealButton.onclick = hideIosContent;
+            
+            iosImage.style.animation = 'fadeIn 0.5s ease-in-out';
+            iosExtraContent.style.animation = 'fadeIn 0.5s ease-in-out 0.2s';
         }
 
-    
-        window.onload = function() {
-            createBloodStains();
-            createCracks();
-            createSkulls();
-        };
+        function hideIosContent() {
+            const iosImage = document.getElementById('iosImage');
+            const iosExtraContent = document.getElementById('iosExtraContent');
+            const revealButton = document.querySelector('.ios-reveal-button');
+            
+            iosImage.style.display = 'none';
+            iosExtraContent.style.display = 'none';
+            
+            revealButton.innerHTML = '<i class="fa-solid fa-eye"></i> PANEL V2';
+            revealButton.onclick = revealIosContent;
+        }
 
-       
+        function revealIosContent2() {
+            const iosImage2 = document.getElementById('iosImage2');
+            const iosExtraContent2 = document.getElementById('iosExtraContent2');
+            const revealButton2 = document.querySelector('.ios-reveal-button-2');
+            
+            iosImage2.style.display = 'block';
+            iosExtraContent2.style.display = 'block';
+            
+            revealButton2.innerHTML = '<i class="fa-solid fa-eye-slash"></i> HIDE PANEL V3';
+            revealButton2.onclick = hideIosContent2;
+            
+            iosImage2.style.animation = 'fadeIn 0.5s ease-in-out';
+            iosExtraContent2.style.animation = 'fadeIn 0.5s ease-in-out 0.2s';
+        }
+
+        function hideIosContent2() {
+            const iosImage2 = document.getElementById('iosImage2');
+            const iosExtraContent2 = document.getElementById('iosExtraContent2');
+            const revealButton2 = document.querySelector('.ios-reveal-button-2');
+            
+            iosImage2.style.display = 'none';
+            iosExtraContent2.style.display = 'none';
+            
+            revealButton2.innerHTML = '<i class="fa-solid fa-eye"></i> PANEL V3';
+            revealButton2.onclick = revealIosContent2;
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
         window.onclick = function(event) {
             const modals = document.querySelectorAll('.modal');
             modals.forEach(modal => {
                 if (event.target === modal) {
                     modal.style.display = 'none';
-                
-                    if (modal.id === 'customModal') {
-                        document.getElementById('option1').value = '';
-                        document.getElementById('option2').value = '';
-                        document.getElementById('option3').value = '';
-                    }
                 }
             });
         };
